@@ -11,6 +11,7 @@ function App() {
   const [clicks, setClicks]=useState(0)
   const [clickValue, setClickValue]=useState(1)
   const [autoClicks, setAutoClicks]=useState(0)
+  const [clickStarter,setClickStarter]=useState(false)
   // const [mainStoreItems, setMainStoreItems]=useState([])
   const [mainStoreItems,setMainStoreItems] = useState([
   {"index":0,"item":"Cursor", "price":15, "clicks":0.1}, 
@@ -31,11 +32,14 @@ function App() {
   // const [mainStorePrices,setMainStorePrices]=useState[15,100,,12000,130000,1400000,20000000,330000000,5100000000,75000000000,1000000000000,14000000000000,170000000000000,2100000000000000]
   // const [mainStoreClicks,setMainStoreClicks]=useState[0.1,1,8,47,260,1400,7800,44000,260000,1600000,10000000,65000000,430000000,2900000000]
   useEffect(()=>{
-    // fetch("http://localhost:3001/items")
-    //   .then((r)=>r.json())
-    //   .then((data)=>setMainStoreItems(data))
-    setTimeout(setClicks(autoClicks+clicks),1000)
-  },[autoClicks])
+    const autoClicker = setTimeout(()=>{
+        setClicks(prev=>(prev+autoClicks))
+        if (autoClicks > 0){
+          setClickStarter(!clickStarter)
+        }
+    },1000)
+
+  },[clickStarter])
   
 
   function clickOnFace(){
@@ -43,8 +47,14 @@ function App() {
   }
 
   function buyMain(event){
-  const mainObject = mainStoreItems.filter((itemName)=>(itemName["index"]===event.target.getAttribute('value')))
-  console.log(mainObject)
+  const mainObject = mainStoreItems.filter((itemName)=>(itemName["index"]===parseInt(event.target.getAttribute('value'))))[0]
+  if (mainObject["price"] <= clicks){
+    setAutoClicks(autoClicks+mainObject["clicks"])
+    setClickStarter(!clickStarter)
+    setClicks(clicks-mainObject["price"])
+    setMainStoreItems(mainStoreItems.map((item)=>(item["index"]===mainObject["index"] ? {...mainObject,price:mainObject["price"]*1.15}:item)))
+  }
+  
   }
 
 
@@ -62,8 +72,8 @@ function App() {
           <div className="sarahClicker">
           <h2 className="userTitle">Sarah Smiler</h2>
             <div className="sarahCounter">
-              <h1>{clicks} Smiles</h1>
-              <h3>per second: TBD</h3>
+              <h1>{Math.floor(clicks)} Smiles</h1>
+              <h3>per second: {Math.floor(autoClicks)}</h3>
             </div>
               <SarahFace clickOnFace={clickOnFace} />
             </div>
