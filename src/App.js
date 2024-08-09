@@ -1,7 +1,22 @@
 import SarahFace from './components/SarahFace'
 import Store from './components/Store'
+import AutomatedClicks from './components/AutomatedClicks'
 import './App.css';
 import React, {useState, useEffect} from 'react'
+import cursor from "./mainStorePictures/cursor.png"
+import dietCoke from './mainStorePictures/dietCoke.png'
+import musicNote from './mainStorePictures/musicNote.png'
+import beyondMeat from './mainStorePictures/beyondMeat.png'
+import trueCrime from './mainStorePictures/trueCrime.png'
+import family from './mainStorePictures/family.png'
+import anime from './mainStorePictures/anime.png'
+import nature from './mainStorePictures/nature.png'
+import wine from './mainStorePictures/wine.png'
+import movie from './mainStorePictures/movie.png'
+import house from './mainStorePictures/house.png'
+import videoGame from './mainStorePictures/videoGame.png'
+import boutique from './mainStorePictures/boutique.png'
+import brian from './mainStorePictures/brian.png'
 
 
 export const ClicksContext = React.createContext()
@@ -14,20 +29,20 @@ function App() {
   const [clickStarter,setClickStarter]=useState(false)
   // const [mainStoreItems, setMainStoreItems]=useState([])
   const [mainStoreItems,setMainStoreItems] = useState([
-  {"index":0,"item":"Cursor", "price":15, "clicks":0.1}, 
-  {"index":1,"item":"Diet Coke", "price":100, "clicks":1},
-  {"index":2,"item":"Mid 2000's Pop Song", "price":1100, "clicks":8},
-  {"index":3,"item":"Meat Substitute", "price":12000, "clicks":47},
-  {"index":4,"item":"True Crime Video","price":130000, "clicks":260},
-  {"index":5,"item":"Family/Friend", "price":1400000, "clicks":1400},
-  {"index":6,"item":"Nature", "price":20000000, "clicks":7800},
-  {"index":7,"item":"Anime", "price":330000000, "clicks":44000},
-  {"index":8,"item":"Wine", "price":5100000000, "clicks":260000},
-  {"index":9,"item":"Very Specific Movie", "price":75000000000, "clicks":1600000},
-  {"index":10,"item":"Special Place", "price":1000000000000, "clicks":10000000},
-  {"index":11,"item":"Video Game", "price":14000000000000, "clicks":65000000},
-  {"index":12,"item":"Boutique", "price":170000000000000, "clicks":430000000},
-  {"index":13,"item":"Brian", "price":2100000000000000, "clicks":2900000000}])
+  {"index":0,"item":"Cursor", "price":15, "clicks":0.1, "amount":0, "picture":cursor}, 
+  {"index":1,"item":"Diet Coke", "price":100, "clicks":1, "amount":0, "picture":dietCoke},
+  {"index":2,"item":"Mid 2000's Pop Song", "price":1100, "clicks":8, "amount":0, "picture":musicNote},
+  {"index":3,"item":"Meat Substitute", "price":12000, "clicks":47, "amount":0, "picture":beyondMeat},
+  {"index":4,"item":"True Crime Video","price":130000, "clicks":260, "amount":0, "picture":trueCrime},
+  {"index":5,"item":"Family/Friend", "price":1400000, "clicks":1400, "amount":0, "picture":family},
+  {"index":6,"item":"Nature", "price":20000000, "clicks":7800, "amount":0, "picture":anime},
+  {"index":7,"item":"Anime", "price":330000000, "clicks":44000, "amount":0, "picture":nature},
+  {"index":8,"item":"Wine", "price":5100000000, "clicks":260000, "amount":0, "picture":wine},
+  {"index":9,"item":"Very Specific Movie", "price":75000000000, "clicks":1600000, "amount":0, "picture":movie},
+  {"index":10,"item":"Special Place", "price":1000000000000, "clicks":10000000, "amount":0, "picture":house},
+  {"index":11,"item":"Video Game", "price":14000000000000, "clicks":65000000, "amount":0, "picture":videoGame},
+  {"index":12,"item":"Boutique", "price":170000000000000, "clicks":430000000, "amount":0, "picture":boutique},
+  {"index":13,"item":"Brian", "price":2100000000000000, "clicks":2900000000, "amount":0, "picture":brian}])
   
   // const [mainStorePrices,setMainStorePrices]=useState[15,100,,12000,130000,1400000,20000000,330000000,5100000000,75000000000,1000000000000,14000000000000,170000000000000,2100000000000000]
   // const [mainStoreClicks,setMainStoreClicks]=useState[0.1,1,8,47,260,1400,7800,44000,260000,1600000,10000000,65000000,430000000,2900000000]
@@ -78,7 +93,7 @@ function App() {
               <SarahFace clickOnFace={clickOnFace} />
             </div>
             <div className="automatedClicks">
-              <h1>automated clicks</h1>
+              <AutomatedClicks mainStoreItems={mainStoreItems}/>
             </div>
             <div className="store">
               <Store mainStoreItems={mainStoreItems} buyMain={buyMain}/>

@@ -1,4 +1,4 @@
-import sarahFace from "../sarahPictures/sarah.png"
+
 import cursor from "../mainStorePictures/cursor.png"
 import dietCoke from '../mainStorePictures/dietCoke.png'
 import musicNote from '../mainStorePictures/musicNote.png'
@@ -15,14 +15,14 @@ import boutique from '../mainStorePictures/boutique.png'
 import brian from '../mainStorePictures/brian.png'
 
 
-function StoreItem({item,index,buyMain,price}){
+function StoreItem({item,index,buyMain,price,picture}){
 
 const imageArray = [cursor,dietCoke, musicNote, beyondMeat, trueCrime, family, nature, anime,
                     wine, movie, house, videoGame, boutique, brian
 ]
 
     return <div className="storeItem" onClick={buyMain} value={index}>
-        <img src={imageArray[index]} className="storePicture" alt="storePicture" value={index}/>
+        <img src={picture} className="storePicture" alt="storePicture" value={index}/>
         <div className="storeRight" value={index}>
             <h1 className="storeWord" value={index}>{item}</h1>
             <h2 className="storePrice" value={index}>{Math.ceil(price)}</h2>
