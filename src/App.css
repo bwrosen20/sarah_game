@@ -116,7 +116,7 @@ marquee{
 }
 
 .sarahCounter{
-  margin-top:10vh;
+  margin-top:5vh;
 }
 
 .sarahFace{
@@ -124,7 +124,7 @@ marquee{
   justify-content:center;
   align-items:auto;
   border:3px green solid;
-  margin:6vh auto;
+  margin:=4vh auto;
   cursor:pointer;
 }
 

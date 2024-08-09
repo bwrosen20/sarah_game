@@ -20,6 +20,7 @@ function StoreItem({item,index,buyMain,price}){
 const imageArray = [cursor,dietCoke, musicNote, beyondMeat, trueCrime, family, nature, anime,
                     wine, movie, house, videoGame, boutique, brian
 ]
+
     return <div className="storeItem" onClick={buyMain} value={index}>
         <img src={imageArray[index]} className="storePicture" alt="storePicture" value={index}/>
         <div className="storeRight" value={index}>
