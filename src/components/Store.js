@@ -1,14 +1,10 @@
 import StoreItem from './StoreItem'
 
-function Store(){
-
-const storeArray = ["Cursor", "Diet Coke", "Mid 2000's Pop Song", "Meat Substitute", "True Crime Video",
-                "Family/Friend", "Nature", "Anime", "Wine", "Very Specific Movie", "Special Place",
-                "Video Game", "Boutique", "Brian"]
+function Store({buyMain,mainStoreItems}){
 
     return <div >
-        {storeArray.map((item)=>(
-            <StoreItem item={item} value={(storeArray.findIndex((x)=>x===item))} key = {item}/>
+        {mainStoreItems.map((item)=>(
+            <StoreItem buyMain={buyMain} item={item["item"]} index={item["index"]} key = {item["index"]}/>
         ))}
     </div>
 }

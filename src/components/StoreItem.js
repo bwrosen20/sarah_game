@@ -15,14 +15,14 @@ import boutique from '../mainStorePictures/boutique.png'
 import brian from '../mainStorePictures/brian.png'
 
 
-function StoreItem({item,value}){
+function StoreItem({item,index,buyMain}){
 
 const imageArray = [cursor,dietCoke, musicNote, beyondMeat, trueCrime, family, nature, anime,
                     wine, movie, house, videoGame, boutique, brian
 ]
-    return <div className="storeItem">
-        <img src={imageArray[value]} className="storePicture" alt="storePicture"/>
-        <h1 className="storeWord">{item}</h1>
+    return <div className="storeItem" onClick={buyMain} value={index}>
+        <img src={imageArray[index]} className="storePicture" alt="storePicture" value={index}/>
+        <h1 className="storeWord" value={index}>{item}</h1>
     </div>
 }
 

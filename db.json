@@ -1,0 +1,99 @@
+
+{
+    "items": [
+      {
+        "id":1,
+        "item":"Cursor",
+        "price":15,
+        "clicks":0.1
+      },
+      {
+        "id":2,
+        "item":"Diet Coke",
+        "price":100,
+        "clicks":1
+      },
+      {
+        "id":3,
+        "item":"Mid 2000's Pop Song",
+        "price":1100,
+        "clicks":8
+      },
+      {
+        "id":4,
+        "item":"Meat Substitute",
+        "price":12000,
+        "clicks":47
+      },
+      {
+        "id":5,
+        "item":"True Crime Video",
+        "price":130000,
+        "clicks":260
+      },
+      {
+        "id":6,
+        "item":"Family/Friend",
+        "price":1400000,
+        "clicks":1400
+      },
+      {
+        "id":7,
+        "item":"Nature",
+        "price":20000000,
+        "clicks":7800
+      },
+      {
+        "id":8,
+        "item":"Anime",
+        "price":330000000,
+        "clicks":44000
+      },
+      {
+        "id":9,
+        "item":"Wine",
+        "price":5100000000,
+        "clicks":260000
+      },
+      {
+        "id":10,
+        "item":"Very Specific Movie",
+        "price":75000000000,
+        "clicks":1600000
+      },
+      {
+        "id":11,
+        "item":"Special Place",
+        "price":1000000000000,
+        "clicks":10000000
+      },
+      {
+        "id":12,
+        "item":"Video Game",
+        "price":14000000000000,
+        "clicks":65000000
+      },
+      {
+        "id":13,
+        "item":"Boutique",
+        "price":170000000000000,
+        "clicks":430000000
+      },
+      {
+        "id":14,
+        "item":"Brian",
+        "price":2100000000000000,
+        "clicks":2900000000
+      }
+      
+    ]
+  }
+
+
+
+
+
+
+
+
+ 
