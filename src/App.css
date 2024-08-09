@@ -162,17 +162,18 @@ marquee{
   }
 
   .storeItem{
-    padding:0.05vh;
+    padding:0.3vh;
     height:8vh;
     display:grid;
-    grid-template-columns: 20% 70%;
+    grid-template-columns: 20% 80%;
     grid-template-rows: 100%;
-    row-gap:10px;
+    row-gap:1vh;
     cursor:pointer;
     border:1px solid  rgb(238, 238, 197);
     margin-bottom:1vh;
+    border-radius:2vw;
     background-image:linear-gradient(to bottom right, rgb(238, 238, 197) 25%,rgb(56, 151, 56));
-  }
+  } 
 
     .storeItem:hover{
       background-image:none;
@@ -185,6 +186,21 @@ marquee{
     padding-left:0.1vw;
   }
 
+  .storeRight{
+    object-fit:contain;
+    display:grid;
+    grid-template-columns:100%;
+    grid-template-rows:50% 30%;
+  }
+
+  .storePrice{
+    margin:auto 0;
+    padding-left:1vw;
+    font-size:calc(1vw + 5px);
+    text-align:left;
+    vertical-align:top;
+  }
+
   .storePicture{
     
     height:100%;
@@ -195,7 +211,8 @@ marquee{
   .storeWord{
     margin:auto 0;
     padding-left:1vw;
-    font-size:2vh;
+    font-size:2vw;
     text-align:left;
-    vertical-align:middle;
+    vertical-align:top;
+  
   }
