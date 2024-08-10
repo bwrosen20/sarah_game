@@ -56,8 +56,13 @@ function App() {
 
   },[clickStarter])
 
+if (mainStoreItems[0]["visible"]<2 && clicks > 14){
+  setMainStoreItems(mainStoreItems.map((item)=>(item["index"]===0 ? {...item,visible:2} : item["index"]===2 ? {...item,visible:1} : item)))
+}
+if (mainStoreItems[1]["visible"]<2 && clicks > 99){
+  setMainStoreItems(mainStoreItems.map((item)=>(item["index"]===1 ? {...item,visible:2} : item["index"]===3 ? {...item,visible:1} : item)))
+}
 
-  
 
 const clicksArray = Math.ceil(clicks).toString().split('')
 let clicksString = "Hi"
@@ -187,8 +192,8 @@ else{
           <div className="sarahClicker">
           <h2 className="userTitle">Sarah Smiler</h2>
             <div className="sarahCounter">
-              <h1>{Math.floor(parseInt(clicksString))} Smiles</h1>
-              <h3>per second: {Math.floor(autoClicks)}</h3>
+              <h1 className="smilesCounter">{Math.floor(parseInt(clicksString))} Smiles</h1>
+              <h3 className="perSecond">per second: {Math.floor(autoClicks)}</h3>
             </div>
               <SarahFace clickOnFace={clickOnFace} />
             </div>
