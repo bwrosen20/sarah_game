@@ -2,9 +2,9 @@ import AutomatedClickItem from './AutomatedClickItem'
 
 function AutomatedClicks({mainStoreItems}){
 
-    return<div>
+    return<div className="automatedClicks">
         {mainStoreItems.map((item)=>(
-            <AutomatedClickItem item={item}/>
+            <AutomatedClickItem item={item} key={item["index"]}/>
         ))}
     </div>
 }

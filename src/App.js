@@ -57,6 +57,104 @@ function App() {
   },[clickStarter])
   
 
+const clicksArray = Math.ceil(clicks).toString().split('')
+let clicksString = "Hi"
+
+if (clicks < 1000){
+    clicksString = clicks.toString()
+}
+else if (1000 <= clicks && clicks <1000000){
+    let firstPart = clicksArray.slice(0,clicksArray.length-3).join().replace(',','').replace(',','')
+    let secondPart = clicksArray.slice(-3).join().replace(',','').replace(',','')
+    clicksString = `${firstPart},${secondPart}`
+}
+else if (1000000 <= clicks && clicks <1000000000){
+    let firstPart = clicksArray.slice(0,clicksArray.length-6).join().replace(',','').replace(',','')
+    let secondPart = clicksArray.slice(-6,4).join().replace(',','').replace(',','')
+    if (secondPart.length>0){
+        clicksString = `${firstPart}.${secondPart} Million`
+    }
+    else{
+        clicksString = `${firstPart} Million`
+    }
+
+    
+}
+else if (1000000000 <= clicks && clicks <1000000000000){
+    let firstPart = clicksArray.slice(0,clicksArray.length-9).join().replace(',','').replace(',','')
+    let secondPart = clicksArray.slice(-9,4).join().replace(',','').replace(',','')
+    if (secondPart.length>0){
+        clicksString = `${firstPart}.${secondPart} Billion`
+    }
+    else{
+        clicksString = `${firstPart} Billion`
+    }
+
+    
+}
+else if (1000000000000 <= clicks && clicks <1000000000000000){
+    let firstPart = clicksArray.slice(0,clicksArray.length-12).join().replace(',','').replace(',','')
+    let secondPart = clicksArray.slice(-12,4).join().replace(',','').replace(',','')
+    if (secondPart.length>0){
+        clicksString = `${firstPart}.${secondPart} Trillion`
+    }
+    else{
+        clicksString = `${firstPart} Trillion`
+    }
+
+    
+}
+else if (1000000000000000 <= clicks && clicks <1000000000000000000n){
+    let firstPart = clicksArray.slice(0,clicksArray.length-15).join().replace(',','').replace(',','')
+    let secondPart = clicksArray.slice(-15,4).join().replace(',','').replace(',','')
+    if (secondPart.length>0){
+        clicksString = `${firstPart}.${secondPart} Quadrillion`
+    }
+    else{
+        clicksString = `${firstPart} Quadrillion`
+    }
+
+    
+}
+else if (1000000000000000000n <= clicks && clicks <1000000000000000000000n){
+    let firstPart = clicksArray.slice(0,clicksArray.length-18).join().replace(',','').replace(',','')
+    let secondPart = clicksArray.slice(-18,4).join().replace(',','').replace(',','')
+    if (secondPart.length>0){
+        clicksString = `${firstPart}.${secondPart} Quintillion`
+    }
+    else{
+        clicksString = `${firstPart} Quintillion`
+    }
+
+    
+}
+else if (1000000000000000000000n <= clicks && clicks <1000000000000000000000000n){
+    let firstPart = clicksArray.slice(0,clicksArray.length-21).join().replace(',','').replace(',','')
+    let secondPart = clicksArray.slice(-21,4).join().replace(',','').replace(',','')
+    if (secondPart.length>0){
+        clicksString = `${firstPart}.${secondPart} Sextillion`
+    }
+    else{
+        clicksString = `${firstPart} Sextillion`
+    }
+
+    
+}
+else if (1000000000000000000000000n <= clicks && clicks <1000000000000000000000000000n){
+    let firstPart = clicksArray.slice(0,clicksArray.length-24).join().replace(',','').replace(',','')
+    let secondPart = clicksArray.slice(-24,4).join().replace(',','').replace(',','')
+    if (secondPart.length>0){
+        clicksString = `${firstPart}.${secondPart} Septillion`
+    }
+    else{
+        clicksString = `${firstPart} Septillion`
+    }
+
+}
+else{
+    clicksString = "Too Many"
+}
+
   function clickOnFace(){
     setClicks(clicks+clickValue)
   }
@@ -67,7 +165,7 @@ function App() {
     setAutoClicks(autoClicks+mainObject["clicks"])
     setClickStarter(!clickStarter)
     setClicks(clicks-mainObject["price"])
-    setMainStoreItems(mainStoreItems.map((item)=>(item["index"]===mainObject["index"] ? {...mainObject,price:mainObject["price"]*1.15}:item)))
+    setMainStoreItems(mainStoreItems.map((item)=>(item["index"]===mainObject["index"] ? {...mainObject,price:Math.ceil(mainObject["price"]*1.15),amount:mainObject["amount"]+1}:item)))
   }
   
   }
@@ -87,7 +185,7 @@ function App() {
           <div className="sarahClicker">
           <h2 className="userTitle">Sarah Smiler</h2>
             <div className="sarahCounter">
-              <h1>{Math.floor(clicks)} Smiles</h1>
+              <h1>{Math.floor(parseInt(clicksString))} Smiles</h1>
               <h3>per second: {Math.floor(autoClicks)}</h3>
             </div>
               <SarahFace clickOnFace={clickOnFace} />
