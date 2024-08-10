@@ -15,7 +15,7 @@ import boutique from '../mainStorePictures/boutique.png'
 import brian from '../mainStorePictures/brian.png'
 
 
-function StoreItem({amount,item,index,buyMain,price,picture}){
+function StoreItem({visible,amount,item,index,buyMain,price,picture}){
 
 const imageArray = [cursor,dietCoke, musicNote, beyondMeat, trueCrime, family, nature, anime,
                     wine, movie, house, videoGame, boutique, brian
@@ -161,13 +161,13 @@ else{
     priceString = "Too Many"
 }
 
-    return <div className="storeItem" onClick={buyMain} value={index}>
-        <img src={picture} className="storePicture" alt="storePicture" value={index}/>
+    return <div className={visible>1 ? "storeItem" : "mysteryItem"} onClick={buyMain} value={index}>
+        <img src={picture} className={visible>1 ? "storePicture" : "mysteryPicture"} alt="storePicture" value={index}/>
         <div className="storeRight" value={index}>
-            <h1 className="storeWord" value={index}>{item}</h1>
+            <h1 className="storeWord" value={index}>{visible>1 ? item : "???"}</h1>
             <h2 className="storePrice" value={index}>😊{priceString}</h2>
         </div>
-        <h1 className="storeAmount">{amount}</h1>
+        <h1 className="storeAmount">{visible>1 ? amount : null}</h1>
     </div>
 }
 
