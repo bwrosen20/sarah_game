@@ -1,25 +1,8 @@
-
-import cursor from "../mainStorePictures/cursor.png"
-import dietCoke from '../mainStorePictures/dietCoke.png'
-import musicNote from '../mainStorePictures/musicNote.png'
-import beyondMeat from '../mainStorePictures/beyondMeat.png'
-import trueCrime from '../mainStorePictures/trueCrime.png'
-import family from '../mainStorePictures/family.png'
-import anime from '../mainStorePictures/anime.png'
-import nature from '../mainStorePictures/nature.png'
-import wine from '../mainStorePictures/wine.png'
-import movie from '../mainStorePictures/movie.png'
-import house from '../mainStorePictures/house.png'
-import videoGame from '../mainStorePictures/videoGame.png'
-import boutique from '../mainStorePictures/boutique.png'
-import brian from '../mainStorePictures/brian.png'
-
+import {useState} from 'react'
 
 function StoreItem({visible,amount,item,index,buyMain,price,picture}){
 
-const imageArray = [cursor,dietCoke, musicNote, beyondMeat, trueCrime, family, nature, anime,
-                    wine, movie, house, videoGame, boutique, brian
-]
+const [storeBlurb,setStoreBlurb]=useState(false)
 
 const priceArray = Math.ceil(price).toString().split('')
 let priceString = "Hi"
@@ -162,12 +145,16 @@ else{
 }
 
     return <div className={visible>1 ? "storeItem" : "mysteryItem"} onClick={buyMain} value={index}>
-        <img src={picture} className={visible>1 ? "storePicture" : "mysteryPicture"} alt="storePicture" value={index}/>
-        <div className="storeRight" value={index}>
-            <h1 className="storeWord" value={index}>{visible>1 ? item : "???"}</h1>
-            <h2 className="storePrice" value={index}>😊{priceString}</h2>
-        </div>
-        <h1 className="storeAmount">{visible>1 ? amount : null}</h1>
+            <img src={picture} className={visible>1 ? "storePicture" : "mysteryPicture"} alt="storePicture" value={index} onMouseEnter={(()=>{setStoreBlurb(true)})} onMouseLeave={(()=>{setStoreBlurb(false)})}/>
+            <div className="storeRight" value={index}>
+                <h1 className="storeWord" value={index}>{visible>1 ? item : "???"}</h1>
+                <h2 className="storePrice" value={index}>😊{priceString}</h2>
+            </div>
+            <h1 className="storeAmount">{visible>1 ? amount : null}</h1>
+            <div>
+                <h1 className={storeBlurb ? "storeBlurb" : "noStoreBlurb"}>{}</h1>
+            </div>
+            
     </div>
 }
 
