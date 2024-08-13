@@ -19,36 +19,37 @@ import boutique from './mainStorePictures/boutique.png'
 import brian from './mainStorePictures/brian.png'
 
 
-export const ClicksContext = React.createContext()
+export const StoreItemsContext = React.createContext()
 
 function App() {
 
-  const [clicks, setClicks]=useState(0)
+  const [clicks, setClicks]=useState(1099)
   const [clickValue, setClickValue]=useState(1)
   const [autoClicks, setAutoClicks]=useState(0)
   const [clickStarter,setClickStarter]=useState(false)
   // const [mainStoreItems, setMainStoreItems]=useState([])
   const [mainStoreItems,setMainStoreItems] = useState([
-  {"index":0,"item":"Cursor", "price":15, "clicks":0.1, "amount":0, "picture":cursor, "visible":1}, 
-  {"index":1,"item":"Diet Coke", "price":100, "clicks":1, "amount":0, "picture":dietCoke, "visible":1},
-  {"index":2,"item":"Mid 2000's Pop Song", "price":1100, "clicks":8, "amount":0, "picture":musicNote, "visible":0},
-  {"index":3,"item":"Meat Substitute", "price":12000, "clicks":47, "amount":0, "picture":beyondMeat, "visible":0},
-  {"index":4,"item":"True Crime Video","price":130000, "clicks":260, "amount":0, "picture":trueCrime, "visible":0},
-  {"index":5,"item":"Family/Friend", "price":1400000, "clicks":1400, "amount":0, "picture":family, "visible":0},
-  {"index":6,"item":"Nature", "price":20000000, "clicks":7800, "amount":0, "picture":anime, "visible":0},
-  {"index":7,"item":"Anime", "price":330000000, "clicks":44000, "amount":0, "picture":nature, "visible":0},
-  {"index":8,"item":"Wine", "price":5100000000, "clicks":260000, "amount":0, "picture":wine, "visible":0},
-  {"index":9,"item":"Very Specific Movie", "price":75000000000, "clicks":1600000, "amount":0, "picture":movie, "visible":0},
-  {"index":10,"item":"Special Place", "price":1000000000000, "clicks":10000000, "amount":0, "picture":house, "visible":0},
-  {"index":11,"item":"Video Game", "price":14000000000000, "clicks":65000000, "amount":0, "picture":videoGame, "visible":0},
-  {"index":12,"item":"Boutique", "price":170000000000000, "clicks":430000000, "amount":0, "picture":boutique, "visible":0},
-  {"index":13,"item":"Brian", "price":2100000000000000, "clicks":2900000000, "amount":0, "picture":brian, "visible":0}])
+  {"index":0,"item":"Cursor", "price":15, "clicks":0.1, "amount":0, "picture":cursor, "visible":1,"soFar":0}, 
+  {"index":1,"item":"Diet Coke", "price":100, "clicks":1, "amount":0, "picture":dietCoke, "visible":1,"soFar":0},
+  {"index":2,"item":"Mid 2000's Pop Song", "price":1100, "clicks":8, "amount":0, "picture":musicNote, "visible":0,"soFar":0},
+  {"index":3,"item":"Meat Substitute", "price":12000, "clicks":47, "amount":0, "picture":beyondMeat, "visible":0,"soFar":0},
+  {"index":4,"item":"True Crime Video","price":130000, "clicks":260, "amount":0, "picture":trueCrime, "visible":0,"soFar":0},
+  {"index":5,"item":"Family/Friend", "price":1400000, "clicks":1400, "amount":0, "picture":family, "visible":0,"soFar":0},
+  {"index":6,"item":"Nature", "price":20000000, "clicks":7800, "amount":0, "picture":anime, "visible":0,"soFar":0},
+  {"index":7,"item":"Anime", "price":330000000, "clicks":44000, "amount":0, "picture":nature, "visible":0,"soFar":0},
+  {"index":8,"item":"Wine", "price":5100000000, "clicks":260000, "amount":0, "picture":wine, "visible":0,"soFar":0},
+  {"index":9,"item":"Very Specific Movie", "price":75000000000, "clicks":1600000, "amount":0, "picture":movie, "visible":0,"soFar":0},
+  {"index":10,"item":"Special Place", "price":1000000000000, "clicks":10000000, "amount":0, "picture":house, "visible":0,"soFar":0},
+  {"index":11,"item":"Video Game", "price":14000000000000, "clicks":65000000, "amount":0, "picture":videoGame, "visible":0,"soFar":0},
+  {"index":12,"item":"Boutique", "price":170000000000000, "clicks":430000000, "amount":0, "picture":boutique, "visible":0,"soFar":0},
+  {"index":13,"item":"Brian", "price":2100000000000000, "clicks":2900000000, "amount":0, "picture":brian, "visible":0,"soFar":0}])
   
   // const [mainStorePrices,setMainStorePrices]=useState[15,100,,12000,130000,1400000,20000000,330000000,5100000000,75000000000,1000000000000,14000000000000,170000000000000,2100000000000000]
   // const [mainStoreClicks,setMainStoreClicks]=useState[0.1,1,8,47,260,1400,7800,44000,260000,1600000,10000000,65000000,430000000,2900000000]
   useEffect(()=>{
     const autoClicker = setTimeout(()=>{
-        setClicks(prev=>(prev+autoClicks))
+        setClicks(prev=>(Math.floor(prev+autoClicks)))
+        setMainStoreItems((mainStoreItems.map((item)=>({...item,soFar:item["clicks"]*item["amount"]}))))
         if (autoClicks > 0){
           setClickStarter(!clickStarter)
         }
@@ -56,12 +57,49 @@ function App() {
 
   },[clickStarter])
 
-if (mainStoreItems[0]["visible"]<2 && clicks > 14){
+if (mainStoreItems[0]["visible"]<2 && clicks >= 15){
   setMainStoreItems(mainStoreItems.map((item)=>(item["index"]===0 ? {...item,visible:2} : item["index"]===2 ? {...item,visible:1} : item)))
 }
-if (mainStoreItems[1]["visible"]<2 && clicks > 99){
+if (mainStoreItems[1]["visible"]<2 && clicks >= 100){
   setMainStoreItems(mainStoreItems.map((item)=>(item["index"]===1 ? {...item,visible:2} : item["index"]===3 ? {...item,visible:1} : item)))
 }
+if (mainStoreItems[2]["visible"]<2 && clicks >= 1100){
+  setMainStoreItems(mainStoreItems.map((item)=>(item["index"]===2 ? {...item,visible:2} : item["index"]===4 ? {...item,visible:1} : item)))
+}
+if (mainStoreItems[3]["visible"]<2 && clicks >= 12000){
+  setMainStoreItems(mainStoreItems.map((item)=>(item["index"]===3 ? {...item,visible:2} : item["index"]===5 ? {...item,visible:1} : item)))
+}
+if (mainStoreItems[4]["visible"]<2 && clicks >= 130000){
+  setMainStoreItems(mainStoreItems.map((item)=>(item["index"]===4 ? {...item,visible:2} : item["index"]===6 ? {...item,visible:1} : item)))
+}
+if (mainStoreItems[5]["visible"]<2 && clicks >= 1400000){
+  setMainStoreItems(mainStoreItems.map((item)=>(item["index"]===5 ? {...item,visible:2} : item["index"]===7 ? {...item,visible:1} : item)))
+}
+if (mainStoreItems[6]["visible"]<2 && clicks >= 20000000){
+  setMainStoreItems(mainStoreItems.map((item)=>(item["index"]===6 ? {...item,visible:2} : item["index"]===8 ? {...item,visible:1} : item)))
+}
+if (mainStoreItems[7]["visible"]<2 && clicks >= 330000000){
+  setMainStoreItems(mainStoreItems.map((item)=>(item["index"]===7 ? {...item,visible:2} : item["index"]===9 ? {...item,visible:1} : item)))
+}
+if (mainStoreItems[8]["visible"]<2 && clicks >= 5100000000){
+  setMainStoreItems(mainStoreItems.map((item)=>(item["index"]===8 ? {...item,visible:2} : item["index"]===10 ? {...item,visible:1} : item)))
+}
+if (mainStoreItems[9]["visible"]<2 && clicks >= 75000000000){
+  setMainStoreItems(mainStoreItems.map((item)=>(item["index"]===9 ? {...item,visible:2} : item["index"]===11 ? {...item,visible:1} : item)))
+}
+if (mainStoreItems[10]["visible"]<2 && clicks >= 1000000000000){
+  setMainStoreItems(mainStoreItems.map((item)=>(item["index"]===10 ? {...item,visible:2} : item["index"]===12 ? {...item,visible:1} : item)))
+}
+if (mainStoreItems[11]["visible"]<2 && clicks >= 14000000000000){
+  setMainStoreItems(mainStoreItems.map((item)=>(item["index"]===11 ? {...item,visible:2} : item["index"]===13 ? {...item,visible:1} : item)))
+}
+if (mainStoreItems[12]["visible"]<2 && clicks >= 170000000000000){
+  setMainStoreItems(mainStoreItems.map((item)=>(item["index"]===12 ? {...item,visible:2} : item)))
+}
+if (mainStoreItems[13]["visible"]<2 && clicks >= 2100000000000000){
+  setMainStoreItems(mainStoreItems.map((item)=>(item["index"]===13 ? {...item,visible:2} : item)))
+}
+
 
 
 const clicksArray = Math.ceil(clicks).toString().split('')
@@ -187,24 +225,24 @@ else{
         </marquee> */}
         </header>
 
-        <ClicksContext.Provider value={clicks}>
+        <StoreItemsContext.Provider value={mainStoreItems}>
           <div className="mainGame">
           <div className="sarahClicker">
           <h2 className="userTitle">Sarah Smiler</h2>
             <div className="sarahCounter">
-              <h1 className="smilesCounter">{Math.floor(parseInt(clicksString))} Smiles</h1>
-              <h3 className="perSecond">per second: {Math.floor(autoClicks)}</h3>
+              <h1 className="smilesCounter">{clicksString} Smiles</h1>
+              <h3 className="perSecond">per second: {autoClicks < 100 && autoClicks!=0 ? autoClicks.toFixed(1):Math.floor(autoClicks)}</h3>
             </div>
               <SarahFace clickOnFace={clickOnFace} />
             </div>
             <div className="automatedClicks">
-              <AutomatedClicks mainStoreItems={mainStoreItems}/>
+              <AutomatedClicks/>
             </div>
             <div className="store">
-              <Store mainStoreItems={mainStoreItems} buyMain={buyMain}/>
+              <Store buyMain={buyMain}/>
             </div>
           </div>
-        </ClicksContext.Provider>
+        </StoreItemsContext.Provider>
     </div>
   );
 }

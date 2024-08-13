@@ -145,14 +145,16 @@ else{
 }
 
     return <div className={visible>1 ? "storeItem" : "mysteryItem"} onClick={buyMain} value={index}>
-            <img src={picture} className={visible>1 ? "storePicture" : "mysteryPicture"} alt="storePicture" value={index} onMouseEnter={(()=>{setStoreBlurb(true)})} onMouseLeave={(()=>{setStoreBlurb(false)})}/>
+            <img src={picture} className={visible>1 ? "storePicture" : "mysteryPicture"} alt="storePicture" value={index} onMouseEnter={(()=>{setStoreBlurb(visible>1?true:false)})} onMouseLeave={(()=>{setStoreBlurb(false)})}/>
             <div className="storeRight" value={index}>
                 <h1 className="storeWord" value={index}>{visible>1 ? item : "???"}</h1>
                 <h2 className="storePrice" value={index}>😊{priceString}</h2>
             </div>
             <h1 className="storeAmount">{visible>1 ? amount : null}</h1>
             <div>
-                <h1 className={storeBlurb ? "storeBlurb" : "noStoreBlurb"}>{}</h1>
+                <ul className={storeBlurb ? "storeBlurb" : "noStoreBlurb"}>
+                    <li>Each {item} produces {}</li>
+                </ul>
             </div>
             
     </div>

@@ -1,6 +1,10 @@
 import StoreItem from './StoreItem'
+import {StoreItemsContext} from '../App'
+import {useContext} from 'react'
 
-function Store({buyMain,mainStoreItems}){
+function Store({buyMain}){
+
+    const mainStoreItems = useContext(StoreItemsContext)
 
     return <div >
         <h1 className="storeTitle">Store</h1>

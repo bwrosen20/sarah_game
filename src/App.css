@@ -206,7 +206,7 @@ marquee{
     display:grid;
     grid-template-columns: 20% 80%;
     grid-template-rows: 100%;
-    row-gap:1vh;
+    column-gap:1vh;
     cursor:pointer;
     border:1px solid  rgb(238, 238, 197);
     margin-bottom:1vh;
@@ -221,12 +221,12 @@ marquee{
     display:grid;
     grid-template-columns: 20% 80%;
     grid-template-rows: 100%;
-    row-gap:1vh;
+    column-gap:1vh;
     cursor:pointer;
     border:1px solid  rgb(238, 238, 197);
     margin-bottom:1vh;
     border-radius:2vw;
-    background-image:linear-gradient(to bottom right, rgb(238, 238, 197) 25%,rgb(56, 151, 56));
+    background-image:linear-gradient(to right, rgb(4, 4, 4) 23%, rgb(63, 107, 63)25%,rgba(129, 216, 129, 0.958));
   } 
 
     .storeItem:hover{
@@ -244,6 +244,7 @@ marquee{
     object-fit:contain;
     padding-right:1.5vw;
     padding-left:0.1vw;
+    border-radius:3vw;
   }
 
   .storeRight{
