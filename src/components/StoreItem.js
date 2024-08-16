@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-function StoreItem({visible,amount,item,index,buyMain,price,picture}){
+function StoreItem({clicks,soFar,visible,amount,item,index,buyMain,price,picture}){
 
 const [storeBlurb,setStoreBlurb]=useState(false)
 
@@ -151,9 +151,10 @@ else{
                 <h2 className="storePrice" value={index}>😊{priceString}</h2>
             </div>
             <h1 className="storeAmount">{visible>1 ? amount : null}</h1>
-            <div>
-                <ul className={storeBlurb ? "storeBlurb" : "noStoreBlurb"}>
-                    <li>Each {item} produces {}</li>
+            <div className={storeBlurb ? "storeBlurb" : "noStoreBlurb"}>
+                <ul >
+                    <li>Each {item} produces {clicks} smiles</li>
+                    <li>{soFar} smiles so far</li>
                 </ul>
             </div>
             

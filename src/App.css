@@ -299,7 +299,7 @@ marquee{
     top:-11vh;
     left:-21vw;
     width:20vw;
-    height:6vh;
+    height:auto;
     padding:0;
     background-color:rgb(74, 70, 70);
   }
