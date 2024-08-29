@@ -189,6 +189,23 @@ marquee{
     rotate:-7deg;
   }
 
+  .upgradeStore{
+    border:1px solid black;
+  }
+
+  .upgradeItems{
+    display:flex;
+  }
+
+  .upgradePicture{
+    width:3vh;
+    padding:.5vh;
+    border:1px solid green;
+    border-radius:1vh;
+    margin:.5vh;
+    cursor:pointer;
+  }
+
   .storeTitle{
     text-align:center;
   }
@@ -214,6 +231,21 @@ marquee{
     background-image:linear-gradient(to bottom right, rgb(238, 238, 197) 25%,rgb(56, 151, 56));
   } 
 
+  .storeItemNoBuy{
+    position:relative;
+    padding:0.3vh;
+    height:8vh;
+    display:grid;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 100%;
+    column-gap:1vh;
+    cursor:pointer;
+    border:1px solid rgb(192, 196, 192);
+    margin-bottom:1vh;
+    border-radius:2vw;
+    background-color:rgb(192, 196, 192);
+  }
+
   .mysteryItem{
     position:relative;
     padding:0.3vh;
@@ -234,7 +266,13 @@ marquee{
       background-color: rgb(243, 235, 190);
     }
 
-  .storeItem  img{
+  .storeItem img{
+    object-fit:contain;
+    padding-right:1.5vw;
+    padding-left:0.1vw;
+  }
+
+  .storeItemNoBuy img{
     object-fit:contain;
     padding-right:1.5vw;
     padding-left:0.1vw;

@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import numberify from '../numberify'
 
-function StoreItem({soFar,clicks,visible,amount,item,index,buyMain,price,picture}){
+function StoreItem({mainClicks,soFar,clicks,visible,amount,item,index,buyMain,price,picture}){
 
 const [storeBlurb,setStoreBlurb]=useState(false)
 
@@ -15,7 +15,7 @@ const priceString=numberify(price)
 
 
 
-    return <div className={visible>1 ? "storeItem" : "mysteryItem"} onClick={buyMain} value={index}>
+    return <div className={visible>1 ? price<=mainClicks ? "storeItem" :"storeItemNoBuy": "mysteryItem"} onClick={buyMain} value={index}>
             <img src={picture} className={visible>1 ? "storePicture" : "mysteryPicture"} alt="storePicture" value={index} onMouseEnter={(()=>{setStoreBlurb(visible>1?true:false)})} onMouseLeave={(()=>{setStoreBlurb(false)})}/>
             <div className="storeRight" value={index} onMouseEnter={(()=>{setStoreBlurb(visible>1?true:false)})} onMouseLeave={(()=>{setStoreBlurb(false)})}>
                 <h1 className="storeWord" value={index}>{visible>1 ? item : "???"}</h1>

@@ -1,6 +1,7 @@
 import SarahFace from './components/SarahFace'
 import Store from './components/Store'
 import AutomatedClicks from './components/AutomatedClicks'
+import UpgradeStore from './components/UpgradeStore'
 import './App.css';
 import React, {useState, useEffect} from 'react'
 import numberify from './numberify'
@@ -24,7 +25,7 @@ export const StoreItemsContext = React.createContext()
 
 function App() {
 
-  const [clicks, setClicks]=useState(10000000000)
+  const [clicks, setClicks]=useState(0)
   const [clickValue, setClickValue]=useState(1)
   const [autoClicks, setAutoClicks]=useState(0)
   const [clickStarter,setClickStarter]=useState(false)
@@ -60,6 +61,11 @@ function App() {
   {"index":11,"item":"Video Game", "price":14000000000000, "clicks":65000000, "amount":0, "picture":videoGame, "visible":0},
   {"index":12,"item":"Boutique", "price":170000000000000, "clicks":430000000, "amount":0, "picture":boutique, "visible":0},
   {"index":13,"item":"Brian", "price":2100000000000000, "clicks":2900000000, "amount":0, "picture":brian, "visible":0}])
+
+  const [upgrades,setUpgrades] = useState([
+    {"index":0,"item":"Cursor","unlock":1,"price":100,"name":"Reinforced Index Finger","description":"Mouse and Cursor are twice as efficient","picture":cursor},
+    {"index":1,"item":"Cursor","unlock":1,"price":500,"name":"Carpal Tunnel Prevention Cream","description":"Mouse and Cursor are twice as efficient","picture":cursor}
+  ])
   
   // const [mainStorePrices,setMainStorePrices]=useState[15,100,,12000,130000,1400000,20000000,330000000,5100000000,75000000000,1000000000000,14000000000000,170000000000000,2100000000000000]
   // const [mainStoreClicks,setMainStoreClicks]=useState[0.1,1,8,47,260,1400,7800,44000,260000,1600000,10000000,65000000,430000000,2900000000]
@@ -166,7 +172,8 @@ const perSecondString=numberify(autoClicks)
               <AutomatedClicks/>
             </div>
             <div className="store">
-              <Store soFar={soFar} buyMain={buyMain}/>
+              <UpgradeStore upgrades={upgrades}/>
+              <Store soFar={soFar} buyMain={buyMain} mainClicks={clicks}/>
             </div>
           </div>
         </StoreItemsContext.Provider>
