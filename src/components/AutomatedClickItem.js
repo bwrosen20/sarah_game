@@ -6,7 +6,7 @@ function AutomatedClickItem({item}){
 
     return <div className={item["amount"] ? "automatedClickItem" : "automatedNone"}>
             {totalAmount.map((single)=>(
-                <img src={item["picture"]} className="automatedPicture" key={item["index"]}/>
+                <img src={item["picture"]} className="automatedPicture"/>
             ))
             }
     </div>

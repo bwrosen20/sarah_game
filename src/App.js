@@ -3,6 +3,7 @@ import Store from './components/Store'
 import AutomatedClicks from './components/AutomatedClicks'
 import './App.css';
 import React, {useState, useEffect} from 'react'
+import numberify from './numberify'
 import cursor from "./mainStorePictures/cursor.png"
 import dietCoke from './mainStorePictures/dietCoke.png'
 import musicNote from './mainStorePictures/musicNote.png'
@@ -23,7 +24,7 @@ export const StoreItemsContext = React.createContext()
 
 function App() {
 
-  const [clicks, setClicks]=useState(0)
+  const [clicks, setClicks]=useState(10000000000)
   const [clickValue, setClickValue]=useState(1)
   const [autoClicks, setAutoClicks]=useState(0)
   const [clickStarter,setClickStarter]=useState(false)
@@ -67,14 +68,14 @@ function App() {
         setClicks(prev=>(prev+autoClicks))
         if (autoClicks > 0){
           setSoFar(soFar.map((item)=>({...item,soFar:item["soFar"]+(mainStoreItems[parseFloat(item["index"])]["clicks"]*mainStoreItems[parseFloat(item["index"])]["amount"])})))
+          setClickStarter(!clickStarter)
         }
     },1000)
 
-  },[clickStarter,soFar])
+  },[clickStarter])
 
 if (mainStoreItems[0]["visible"]<2 && clicks >= 15){
   setMainStoreItems(mainStoreItems.map((item)=>(item["index"]===0 ? {...item,visible:2} : item["index"]===2 ? {...item,visible:1} : item)))
-  console.log("it happened")
 }
 if (mainStoreItems[1]["visible"]<2 && clicks >= 100){
   setMainStoreItems(mainStoreItems.map((item)=>(item["index"]===1 ? {...item,visible:2} : item["index"]===3 ? {...item,visible:1} : item)))
@@ -118,103 +119,11 @@ if (mainStoreItems[13]["visible"]<2 && clicks >= 2100000000000000){
 
 
 
-const clicksArray = Math.ceil(clicks).toString().split('')
-let clicksString = "Hi"
+const clicksString=numberify(clicks)
+const perSecondString=numberify(autoClicks)
 
-if (clicks < 1000){
-    clicksString = clicks < 100  && clicks%1!==0 ?  clicks.toFixed(1) :  Math.floor(clicks).toString()
-}
-else if (1000 <= clicks && clicks <1000000){
-    let firstPart = clicksArray.slice(0,clicksArray.length-3).join().replace(',','').replace(',','')
-    let secondPart = clicksArray.slice(-3).join().replace(',','').replace(',','')
-    clicksString = `${firstPart},${secondPart}`
-}
-else if (1000000 <= clicks && clicks <1000000000){
-    let firstPart = clicksArray.slice(0,clicksArray.length-6).join().replace(',','').replace(',','')
-    let secondPart = clicksArray.slice(-6,4).join().replace(',','').replace(',','')
-    if (secondPart.length>0){
-        clicksString = `${firstPart}.${secondPart} Million`
-    }
-    else{
-        clicksString = `${firstPart} Million`
-    }
 
-    
-}
-else if (1000000000 <= clicks && clicks <1000000000000){
-    let firstPart = clicksArray.slice(0,clicksArray.length-9).join().replace(',','').replace(',','')
-    let secondPart = clicksArray.slice(-9,4).join().replace(',','').replace(',','')
-    if (secondPart.length>0){
-        clicksString = `${firstPart}.${secondPart} Billion`
-    }
-    else{
-        clicksString = `${firstPart} Billion`
-    }
 
-    
-}
-else if (1000000000000 <= clicks && clicks <1000000000000000){
-    let firstPart = clicksArray.slice(0,clicksArray.length-12).join().replace(',','').replace(',','')
-    let secondPart = clicksArray.slice(-12,4).join().replace(',','').replace(',','')
-    if (secondPart.length>0){
-        clicksString = `${firstPart}.${secondPart} Trillion`
-    }
-    else{
-        clicksString = `${firstPart} Trillion`
-    }
-
-    
-}
-else if (1000000000000000 <= clicks && clicks <1000000000000000000n){
-    let firstPart = clicksArray.slice(0,clicksArray.length-15).join().replace(',','').replace(',','')
-    let secondPart = clicksArray.slice(-15,4).join().replace(',','').replace(',','')
-    if (secondPart.length>0){
-        clicksString = `${firstPart}.${secondPart} Quadrillion`
-    }
-    else{
-        clicksString = `${firstPart} Quadrillion`
-    }
-
-    
-}
-else if (1000000000000000000n <= clicks && clicks <1000000000000000000000n){
-    let firstPart = clicksArray.slice(0,clicksArray.length-18).join().replace(',','').replace(',','')
-    let secondPart = clicksArray.slice(-18,4).join().replace(',','').replace(',','')
-    if (secondPart.length>0){
-        clicksString = `${firstPart}.${secondPart} Quintillion`
-    }
-    else{
-        clicksString = `${firstPart} Quintillion`
-    }
-
-    
-}
-else if (1000000000000000000000n <= clicks && clicks <1000000000000000000000000n){
-    let firstPart = clicksArray.slice(0,clicksArray.length-21).join().replace(',','').replace(',','')
-    let secondPart = clicksArray.slice(-21,4).join().replace(',','').replace(',','')
-    if (secondPart.length>0){
-        clicksString = `${firstPart}.${secondPart} Sextillion`
-    }
-    else{
-        clicksString = `${firstPart} Sextillion`
-    }
-
-    
-}
-else if (1000000000000000000000000n <= clicks && clicks <1000000000000000000000000000n){
-    let firstPart = clicksArray.slice(0,clicksArray.length-24).join().replace(',','').replace(',','')
-    let secondPart = clicksArray.slice(-24,4).join().replace(',','').replace(',','')
-    if (secondPart.length>0){
-        clicksString = `${firstPart}.${secondPart} Septillion`
-    }
-    else{
-        clicksString = `${firstPart} Septillion`
-    }
-
-}
-else{
-    clicksString = "Too Many"
-}
 
   function clickOnFace(){
     setClicks(clicks+clickValue)
@@ -223,8 +132,10 @@ else{
   function buyMain(event){
   const mainObject = mainStoreItems.filter((itemName)=>(itemName["index"]===parseInt(event.target.getAttribute('value'))))[0]
   if (mainObject["price"] <= clicks){
+    if (autoClicks===0){
+      setClickStarter(!clickStarter)
+    }
     setAutoClicks(autoClicks+mainObject["clicks"])
-    setClickStarter(!clickStarter)
     setClicks(clicks-mainObject["price"])
     setMainStoreItems(mainStoreItems.map((item)=>(item["index"]===mainObject["index"] ? {...mainObject,price:Math.ceil(mainObject["price"]*1.15),amount:mainObject["amount"]+1}:item)))
   }
@@ -247,7 +158,7 @@ else{
           <h2 className="userTitle">Sarah Smiler</h2>
             <div className="sarahCounter">
               <h1 className="smilesCounter">{clicksString} Smiles</h1>
-              <h3 className="perSecond">per second: {autoClicks < 100 && autoClicks!==0 ? autoClicks.toFixed(1):Math.floor(autoClicks)}</h3>
+              <h3 className="perSecond">per second: {perSecondString}</h3>
             </div>
               <SarahFace clickOnFace={clickOnFace} />
             </div>
@@ -255,7 +166,7 @@ else{
               <AutomatedClicks/>
             </div>
             <div className="store">
-              <Store buyMain={buyMain}/>
+              <Store soFar={soFar} buyMain={buyMain}/>
             </div>
           </div>
         </StoreItemsContext.Provider>

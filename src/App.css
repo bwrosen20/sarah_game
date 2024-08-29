@@ -172,12 +172,12 @@ marquee{
   .automatedClickItem{
     padding:0.3vh;
     display:flex;
-    flex-wrap:wrap;
     cursor:pointer;
     margin-bottom:1vh;
     border-radius:2vw;
     box-sizing:border-box;
-    overflow:unset;
+    overflow-x:auto;
+    height:10vh;
   }
 
   .automatedPicture{
@@ -295,15 +295,21 @@ marquee{
   }
 
   .storeBlurb{
-    position:relative;
-    top:-11vh;
-    left:-21vw;
-    width:20vw;
+    position:absolute;
+    bottom:0;
+    left:-360px;
+    width:350px;
     height:auto;
     padding:0;
-    background-color:rgb(74, 70, 70);
+    background-color:rgb(172, 158, 158);
+    border-radius:2vw;
+    
   }
 
   .noStoreBlurb{
     display:none
+  }
+
+  .bold{
+    font-weight:bold;
   }

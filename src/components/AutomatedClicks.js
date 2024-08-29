@@ -7,7 +7,7 @@ function AutomatedClicks(){
 
     return<div className="automatedClicks">
         {mainStoreItems.map((item)=>(
-            <AutomatedClickItem item={item} key={item["index"]}/>
+            <AutomatedClickItem item={item}/>
         ))}
     </div>
 }
