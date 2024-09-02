@@ -1,13 +1,13 @@
 import Upgrade from './Upgrade'
 
 
-function UpgradeStore({upgrades}){
+function UpgradeStore({upgrades,getUpgrade}){
 
     return<div className="upgradeStore">
-            <h1 className="storeTitle">Upgrades</h1>
+            <h4>Upgrades</h4>
         <div className="upgradeItems">  
             {upgrades.map((upgrade)=>(
-                <Upgrade upgrade={upgrade}/>
+                <Upgrade getUpgrade={getUpgrade} upgrade={upgrade}/>
             ))}
         </div>
     </div>

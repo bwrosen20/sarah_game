@@ -11,7 +11,7 @@ function Store({soFar,buyMain,mainClicks}){
     })
 
     return <div >
-        <h1 className="storeTitle">Store</h1>
+        <h4>Smile Makers</h4>
         {mainStoreItems.map((item)=>(
             item["visible"]>0 ? <StoreItem mainClicks={mainClicks} soFar={soFar} visible={item["visible"]} buyMain={buyMain} item={item["item"]} amount={item["amount"]} price={item["price"]} picture={item["picture"]} index={item["index"]} soFar={item["soFar"]} clicks={item["clicks"]} key = {item["index"]}/> : null
         ))}

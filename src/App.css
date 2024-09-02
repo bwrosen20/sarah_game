@@ -177,6 +177,7 @@ marquee{
     border-radius:2vw;
     box-sizing:border-box;
     overflow-x:auto;
+    overflow-y:hidden;
     height:10vh;
   }
 
@@ -198,12 +199,57 @@ marquee{
   }
 
   .upgradePicture{
-    width:3vh;
+    width:4vh;
     padding:.5vh;
-    border:1px solid green;
     border-radius:1vh;
-    margin:.5vh;
+    margin:.25vh;
     cursor:pointer;
+  }
+
+  .upgrade{
+    position:relative;
+    cursor:pointer;
+  } 
+
+  .upgradeBlurb{
+    position:absolute;
+    display:flex;
+    flex-wrap:wrap;
+    right:34%;
+    width:350px;
+    top:12vh;
+    height:auto;
+    padding:0;
+    background-color:rgb(172, 158, 158);
+    border-radius:2vw;
+  }
+
+  .upgradeBlurbPicture{
+    width:4vh;
+    object-fit:contain;
+    padding:.5vh;
+    border-radius:1vh;
+    margin:.25vh;
+    cursor:pointer;
+  }
+
+  .noBlurb{
+   display:none;
+  }
+
+  h6{
+    font-size:0.8rem;
+  }
+
+  h6:last-of-type{
+    margin-left:auto;
+    padding-right:0.5vh;
+  }
+
+  .upgradeDescription{
+    top:0;
+    padding-left:1vh;
+    text-decoration-line:overline;
   }
 
   .storeTitle{

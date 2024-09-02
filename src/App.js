@@ -62,9 +62,18 @@ function App() {
   {"index":12,"item":"Boutique", "price":170000000000000, "clicks":430000000, "amount":0, "picture":boutique, "visible":0},
   {"index":13,"item":"Brian", "price":2100000000000000, "clicks":2900000000, "amount":0, "picture":brian, "visible":0}])
 
+
+  //14 is none
+
+  //additions: 
+  //1 is multiply clicks by 2
+  //2 is thousand fingers related
+  //3 is twice as efficient and +1% sps to item 2 per item 1 (diet coke)
+  //4 +5% sps on item 1 for each item 2 and +0.1% on item 2 for each item 1
+
   const [upgrades,setUpgrades] = useState([
-    {"index":0,"item":"Cursor","unlock":1,"price":100,"name":"Reinforced Index Finger","description":"Mouse and Cursor are twice as efficient","picture":cursor},
-    {"index":1,"item":"Cursor","unlock":1,"price":500,"name":"Carpal Tunnel Prevention Cream","description":"Mouse and Cursor are twice as efficient","picture":cursor}
+    {"index":0,"item":0,"unlock":1,"price":100,"name":"Reinforced Index Finger","description":"Mouse and Cursor are twice as efficient","picture":cursor,"visible":1,"secondItem":14,"unlockTwo":0,"addition":1},
+    {"index":1,"item":0,"unlock":1,"price":500,"name":"Carpal Tunnel Prevention Cream","description":"Mouse and Cursor are twice as efficient","picture":cursor,"visible":1,"secondItem":14,"unlockTwo":0,"addition":1}
   ])
   
   // const [mainStorePrices,setMainStorePrices]=useState[15,100,,12000,130000,1400000,20000000,330000000,5100000000,75000000000,1000000000000,14000000000000,170000000000000,2100000000000000]
@@ -143,11 +152,16 @@ const perSecondString=numberify(autoClicks)
     }
     setAutoClicks(autoClicks+mainObject["clicks"])
     setClicks(clicks-mainObject["price"])
-    setMainStoreItems(mainStoreItems.map((item)=>(item["index"]===mainObject["index"] ? {...mainObject,price:Math.ceil(mainObject["price"]*1.15),amount:mainObject["amount"]+1}:item)))
-  }
-  
+    setMainStoreItems(mainStoreItems.map((item)=>(item["index"]===mainObject["index"] ? {...mainObject,price:Math.ceil(mainObject["price"]*1.15),amount:mainObject["amount"]+1}:item)))}
   }
 
+  function getUpgrade(event){
+    const itemID = event.target.getAttribute('value')
+    console.log(event.target.getAttribute('value'))
+    if (upgrades[itemID]["price"] <= clicks){
+      console.log(event.target.getAttribute("value"))
+    }
+  }
 
   return (
     <div className="App">
@@ -172,7 +186,8 @@ const perSecondString=numberify(autoClicks)
               <AutomatedClicks/>
             </div>
             <div className="store">
-              <UpgradeStore upgrades={upgrades}/>
+              <h1 className="storeTitle">Store</h1>
+              <UpgradeStore getUpgrade={getUpgrade} upgrades={upgrades}/>
               <Store soFar={soFar} buyMain={buyMain} mainClicks={clicks}/>
             </div>
           </div>
