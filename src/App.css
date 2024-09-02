@@ -213,8 +213,6 @@ marquee{
 
   .upgradeBlurb{
     position:absolute;
-    display:flex;
-    flex-wrap:wrap;
     right:34%;
     width:350px;
     top:12vh;
@@ -224,13 +222,23 @@ marquee{
     border-radius:2vw;
   }
 
+  .upgradeFirstRow{
+    display:flex;
+    row-gap:0;
+  }
+
   .upgradeBlurbPicture{
-    width:4vh;
+    width:6vh;
+    height:6vh;
     object-fit:contain;
     padding:.5vh;
     border-radius:1vh;
     margin:.25vh;
     cursor:pointer;
+  }
+
+  .upgradeName{
+    margin-bottom:3vh;
   }
 
   .noBlurb{
@@ -239,6 +247,7 @@ marquee{
 
   h6{
     font-size:0.8rem;
+    height:4vh;
   }
 
   h6:last-of-type{
@@ -247,9 +256,9 @@ marquee{
   }
 
   .upgradeDescription{
-    top:0;
+    position:relative;
+    margin-top:-4vh;
     padding-left:1vh;
-    text-decoration-line:overline;
   }
 
   .storeTitle{
