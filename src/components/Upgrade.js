@@ -5,7 +5,7 @@ function Upgrade({upgrade,getUpgrade}){
     const [blurb,setBlurb] = useState(false)
 
     return <div onClick={getUpgrade} value={upgrade["index"]}>
-        <div className="upgrade" onMouseEnter={(()=>{setBlurb(true)})} onMouseLeave={(()=>{setBlurb(false)})}>
+        <div className={upgrade["visible"]===2?"upgradeTwo":upgrade["visible"]===1?"upgradeOne":"upgradeZero"} onMouseEnter={(()=>{setBlurb(true)})} onMouseLeave={(()=>{setBlurb(false)})} value={upgrade["index"]}>
             <img src={upgrade["picture"]} value={upgrade["index"]} className="upgradePicture" alt="storePicture"/>
         </div>
         <div className={blurb?"upgradeBlurb":"noBlurb"}>
