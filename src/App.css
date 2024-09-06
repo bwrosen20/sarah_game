@@ -191,15 +191,18 @@ marquee{
   }
 
   .upgradeStore{
-    border:1px solid black;
+    
   }
 
   .upgradeItems{
-    display:flex;
+    display:grid;
+    grid-template-columns:repeat(auto-fill,7.5vh);
+    row-gap:3px;
+    column-gap:3px;
   }
 
   .upgradePicture{
-    width:4vh;
+    width:4.95vh;
     padding:.5vh;
     border-radius:1vh;
     margin:.25vh;
@@ -209,6 +212,8 @@ marquee{
   .upgrade{
     position:relative;
     cursor:pointer;
+    border:3px solid rgb(30, 145, 30);
+    background-color:rgb(80, 80, 80)
   } 
 
   .upgradeBlurb{

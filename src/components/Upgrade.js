@@ -12,7 +12,7 @@ function Upgrade({upgrade,getUpgrade}){
             <div className="upgradeFirstRow">
             <img src={upgrade["picture"]} className="upgradeBlurbPicture" alt="storePicture"/>
                 <h6 className="upgradeName">{upgrade["name"]}</h6>
-                <h6>😊{upgrade["price"]}</h6>
+                <h6>😊{upgrade["wordPrice"]}</h6>
             </div>
             <p className="upgradeDescription">{upgrade["description"]}</p>
         </div>

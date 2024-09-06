@@ -65,6 +65,11 @@ function App() {
 
   //14 is none
 
+  //visibility
+  //0: not there yet
+  //1: there but not buyable
+  //2: buyable
+
   //additions: 
   //1 is multiply clicks by 2
   //2 is thousand fingers related
@@ -72,8 +77,13 @@ function App() {
   //4 +5% sps on item 1 for each item 2 and +0.1% on item 2 for each item 1
 
   const [upgrades,setUpgrades] = useState([
-    {"index":0,"item":0,"unlock":1,"price":100,"name":"Reinforced Index Finger","description":"Mouse and Cursor are twice as efficient","picture":cursor,"visible":1,"secondItem":14,"unlockTwo":0,"addition":1},
-    {"index":1,"item":0,"unlock":1,"price":500,"name":"Carpal Tunnel Prevention Cream","description":"Mouse and Cursor are twice as efficient","picture":cursor,"visible":1,"secondItem":14,"unlockTwo":0,"addition":1}
+    {"index":0,"item":0,"unlock":1,"price":100,"wordPrice":100,"name":"Reinforced Index Finger","description":"Mouse and Cursor are twice as efficient","picture":cursor,"visible":1,"secondItem":14,"unlockTwo":0,"addition":1},
+    {"index":1,"item":0,"unlock":1,"price":500,"wordPrice":500,"name":"Carpal Tunnel Prevention Cream","description":"Mouse and Cursor are twice as efficient","picture":cursor,"visible":1,"secondItem":14,"unlockTwo":0,"addition":1},
+    {"index":2,"item":0,"unlock":10,"price":10000,"wordPrice":"10 Thousand","name":"Ambidextrous","description":"Mouse and Cursor are twice as efficient","picture":cursor,"visible":1,"secondItem":14,"unlockTwo":0,"addition":1},
+    {"index":3,"item":0,"unlock":25,"price":100000,"wordPrice":"100 Thousand","name":"Thousand Fingers","description":"Mouse and Cursors gain +0.1 Smiles for each non-cursor object owned","picture":cursor,"visible":1,"secondItem":14,"unlockTwo":0,"addition":2},
+    {"index":4,"item":0,"unlock":50,"price":10000000,"wordPrice":"10 Million","name":"Million Fingers","description":"Multiplies gain from thousand fingers by 5","picture":cursor,"visible":1,"secondItem":14,"unlockTwo":0,"addition":2},
+    {"index":5,"item":0,"unlock":100,"price":100000000,"wordPrice":"100 Million","name":"Billion Fingers","description":"Multiplies gain from thousand fingers by 10","picture":cursor,"visible":1,"secondItem":14,"unlockTwo":0,"addition":2},
+    {"index":6,"item":0,"unlock":150,"price":1000000000,"wordPrice":"1 Billion","name":"Trillion Fingers","description":"Multiplies gain from thousand fingers by 20","picture":cursor,"visible":1,"secondItem":14,"unlockTwo":0,"addition":2}
   ])
   
   // const [mainStorePrices,setMainStorePrices]=useState[15,100,,12000,130000,1400000,20000000,330000000,5100000000,75000000000,1000000000000,14000000000000,170000000000000,2100000000000000]
@@ -132,6 +142,68 @@ if (mainStoreItems[13]["visible"]<2 && clicks >= 2100000000000000){
   setMainStoreItems(mainStoreItems.map((item)=>(item["index"]===13 ? {...item,visible:2} : item)))
 }
 
+//if there aren't enough of the first object then nothing
+//if there aren't enough of the second object then nothing 
+//if there's enough of both but not enough clicks to afford then visibility to 1
+//if there's enough of both and enough clicks then visibility to 2
+
+
+upgrades.forEach((thing)=>{
+  const itemOne = mainStoreItems[thing["index"]]
+  const itemTwo = thing["secondItem"]===14 ? 14 : mainStoreItems[thing["secondItem"]]
+  if (thing["visible"]===2){
+    return thing
+  }
+  else if (thing["visible"]===1){
+    if (clicks >= thing["price"]){
+      setUpgrades(upgrades.map((grade)=>{
+        if (grade["index"]===thing["index"])
+        {
+          return({...grade,visible:2})
+        }
+        else{
+          return grade
+        }}))
+    }
+  }
+
+  else {
+    if (itemOne["amount"] < thing["unlock"]){
+      return thing
+    }
+    else {
+      //if there is an item two
+      if (itemTwo!==14){
+        //if item two has not yet surpassed the unlock threshold
+        if (itemTwo["amount"] < thing["unlockTwo"]){
+          return thing
+        }
+        //if both items have surpassed the unlock threshold let's unlock it
+        else{
+          setUpgrades(upgrades.map((grade)=>{
+            if (grade["index"]===thing["index"])
+            {
+              return({...grade,visible:1})
+            }
+            else{
+              return grade
+            }}))
+        }
+      }
+      //if there is no item two let's unlock it
+      else{
+        setUpgrades(upgrades.map((grade)=>{
+          if (grade["index"]===thing["index"])
+          {
+            return({...grade,visible:1})
+          }
+          else{
+            return grade
+          }}))
+      }
+    }
+}
+})
 
 
 const clicksString=numberify(clicks)
