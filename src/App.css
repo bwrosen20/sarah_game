@@ -213,8 +213,12 @@ marquee{
     position:relative;
     cursor:pointer;
     border:3px solid rgb(30, 145, 30);
-    background-color:rgb(80, 80, 80)
+    background-color:rgb(80, 80, 80);
   } 
+    .upgradeTwo:hover{
+      transform:scale(1.05)
+    }
+
   .upgradeOne{
     position:relative;
     cursor:pointer;

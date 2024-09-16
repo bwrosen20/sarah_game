@@ -25,42 +25,43 @@ export const StoreItemsContext = React.createContext()
 
 function App() {
 
+  const [thousandFingersCount, setThousandFingersCount]=useState({"amount":0,"active":false,"addition":0})
   const [clicks, setClicks]=useState(0)
   const [clickValue, setClickValue]=useState(1)
   const [autoClicks, setAutoClicks]=useState(0)
   const [clickStarter,setClickStarter]=useState(false)
   const [soFar,setSoFar]=useState([
-    {"index":0,"soFar":0},
-    {"index":1,"soFar":0},
-    {"index":2,"soFar":0},
-    {"index":3,"soFar":0},
-    {"index":4,"soFar":0},
-    {"index":5,"soFar":0},
-    {"index":6,"soFar":0},
-    {"index":7,"soFar":0},
-    {"index":8,"soFar":0},
-    {"index":9,"soFar":0},
-    {"index":10,"soFar":0},
-    {"index":11,"soFar":0},
-    {"index":12,"soFar":0},
-    {"index":13,"soFar":0}
+    {"index":0,"soFar":0,"realValue":0},
+    {"index":1,"soFar":0,"realValue":0},
+    {"index":2,"soFar":0,"realValue":0},
+    {"index":3,"soFar":0,"realValue":0},
+    {"index":4,"soFar":0,"realValue":0},
+    {"index":5,"soFar":0,"realValue":0},
+    {"index":6,"soFar":0,"realValue":0},
+    {"index":7,"soFar":0,"realValue":0},
+    {"index":8,"soFar":0,"realValue":0},
+    {"index":9,"soFar":0,"realValue":0},
+    {"index":10,"soFar":0,"realValue":0},
+    {"index":11,"soFar":0,"realValue":0},
+    {"index":12,"soFar":0,"realValue":0},
+    {"index":13,"soFar":0,"realValue":0}
   ])
   // const [mainStoreItems, setMainStoreItems]=useState([])
   const [mainStoreItems,setMainStoreItems] = useState([
-  {"index":0,"item":"Cursor", "price":15, "clicks":0.1, "amount":0, "picture":cursor, "visible":1,"soFar":0}, 
-  {"index":1,"item":"Diet Coke", "price":100, "clicks":1, "amount":0, "picture":dietCoke, "visible":1},
-  {"index":2,"item":"Mid 2000's Pop Song", "price":1100, "clicks":8, "amount":0, "picture":musicNote, "visible":0},
-  {"index":3,"item":"Meat Substitute", "price":12000, "clicks":47, "amount":0, "picture":beyondMeat, "visible":0},
-  {"index":4,"item":"True Crime Video","price":130000, "clicks":260, "amount":0, "picture":trueCrime, "visible":0},
-  {"index":5,"item":"Family/Friend", "price":1400000, "clicks":1400, "amount":0, "picture":family, "visible":0},
-  {"index":6,"item":"Nature", "price":20000000, "clicks":7800, "amount":0, "picture":anime, "visible":0},
-  {"index":7,"item":"Anime", "price":330000000, "clicks":44000, "amount":0, "picture":nature, "visible":0},
-  {"index":8,"item":"Wine", "price":5100000000, "clicks":260000, "amount":0, "picture":wine, "visible":0},
-  {"index":9,"item":"Very Specific Movie", "price":75000000000, "clicks":1600000, "amount":0, "picture":movie, "visible":0},
-  {"index":10,"item":"Special Place", "price":1000000000000, "clicks":10000000, "amount":0, "picture":house, "visible":0},
-  {"index":11,"item":"Video Game", "price":14000000000000, "clicks":65000000, "amount":0, "picture":videoGame, "visible":0},
-  {"index":12,"item":"Boutique", "price":170000000000000, "clicks":430000000, "amount":0, "picture":boutique, "visible":0},
-  {"index":13,"item":"Brian", "price":2100000000000000, "clicks":2900000000, "amount":0, "picture":brian, "visible":0}])
+  {"index":0,"item":"Cursor", "price":15, "clicks":0.1, "amount":0, "picture":cursor, "visible":1,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]}, 
+  {"index":1,"item":"Diet Coke", "price":100, "clicks":1, "amount":0, "picture":dietCoke, "visible":1,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  {"index":2,"item":"Mid 2000's Pop Song", "price":1100, "clicks":8, "amount":0, "picture":musicNote, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  {"index":3,"item":"Meat Substitute", "price":12000, "clicks":47, "amount":0, "picture":beyondMeat, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  {"index":4,"item":"True Crime Video","price":130000, "clicks":260, "amount":0, "picture":trueCrime, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  {"index":5,"item":"Family/Friend", "price":1400000, "clicks":1400, "amount":0, "picture":family, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  {"index":6,"item":"Nature", "price":20000000, "clicks":7800, "amount":0, "picture":anime, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  {"index":7,"item":"Anime", "price":330000000, "clicks":44000, "amount":0, "picture":nature, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  {"index":8,"item":"Wine", "price":5100000000, "clicks":260000, "amount":0, "picture":wine, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  {"index":9,"item":"Very Specific Movie", "price":75000000000, "clicks":1600000, "amount":0, "picture":movie, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  {"index":10,"item":"Special Place", "price":1000000000000, "clicks":10000000, "amount":0, "picture":house, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  {"index":11,"item":"Video Game", "price":14000000000000, "clicks":65000000, "amount":0, "picture":videoGame, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  {"index":12,"item":"Boutique", "price":170000000000000, "clicks":430000000, "amount":0, "picture":boutique, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  {"index":13,"item":"Brian", "price":2100000000000000, "clicks":2900000000, "amount":0, "picture":brian, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]}])
 
 
   //14 is none
@@ -77,6 +78,7 @@ function App() {
   //3 is twice as efficient and +1% sps to item 2 per item 1 (diet coke)
   //4 +5% sps on item 1 for each item 2 and +0.1% on item 2 for each item 1
 
+
   const [upgrades,setUpgrades] = useState([
     {"index":0,"item":0,"unlock":1,"price":100,"wordPrice":100,"name":"Reinforced Index Finger","description":"Mouse and Cursor are twice as efficient","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":1,"item":0,"unlock":1,"price":500,"wordPrice":500,"name":"Carpal Tunnel Prevention Cream","description":"Mouse and Cursor are twice as efficient","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
@@ -84,16 +86,38 @@ function App() {
     {"index":3,"item":0,"unlock":25,"price":100000,"wordPrice":"100 Thousand","name":"Thousand Fingers","description":"Mouse and Cursors gain +0.1 Smiles for each non-cursor object owned","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
     {"index":4,"item":0,"unlock":50,"price":10000000,"wordPrice":"10 Million","name":"Million Fingers","description":"Multiplies gain from thousand fingers by 5","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
     {"index":5,"item":0,"unlock":100,"price":100000000,"wordPrice":"100 Million","name":"Billion Fingers","description":"Multiplies gain from thousand fingers by 10","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
-    {"index":6,"item":0,"unlock":150,"price":1000000000,"wordPrice":"1 Billion","name":"Trillion Fingers","description":"Multiplies gain from thousand fingers by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2}
+    {"index":6,"item":0,"unlock":150,"price":1000000000,"wordPrice":"1 Billion","name":"Trillion Fingers","description":"Multiplies gain from thousand fingers by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
+    {"index":39,"item":1,"unlock":1,"price":55000,"wordPrice":"55,000","name":"Pusha T Album","description":"Diet Coke is twice as efficient. Pop Songs gain +1% sps per Diet Coke","picture":cursor,"visible":0,"secondItem":2,"unlockTwo":15,"addition":3}
   ])
   
   // const [mainStorePrices,setMainStorePrices]=useState[15,100,,12000,130000,1400000,20000000,330000000,5100000000,75000000000,1000000000000,14000000000000,170000000000000,2100000000000000]
   // const [mainStoreClicks,setMainStoreClicks]=useState[0.1,1,8,47,260,1400,7800,44000,260000,1600000,10000000,65000000,430000000,2900000000]
+
+
+  //extra will have the value multiplied by the amount of the other item
+  //if pop song has 0.1 extra in slot 2([1] in array jargon) then it will multiply mainStoreItems[1]["amount"] by 0.1 and add it to the autoclicks
+  //will also need to adjust soFar array
+
   useEffect(()=>{
     const autoClicker = setTimeout(()=>{
-        setClicks(prev=>(prev+autoClicks))
+        //set real autoclick amount for each store item (total including all the additions from upgrades)
+        //add the real value to soFar
+        //send real value down to store to show user
+        //map through mainStoreItems where it finds the real values and make an array of them
+        let mainAutoClickValue = 0
+        const realValues = mainStoreItems.map((mainItem)=>{
+          let mainValue = 0
+          for (let i=0;i<14;i++){
+            mainValue = mainValue + mainItem["extra"][i]*mainStoreItems[i]["amount"]
+          }
+          mainValue = mainValue + mainItem["amount"]*mainItem["clicks"]
+          mainAutoClickValue = mainAutoClickValue + mainValue
+          return mainValue
+        })
+        console.log(mainAutoClickValue)
+        setClicks(prev=>(prev+autoClicks+(thousandFingersCount["addition"]*thousandFingersCount["amount"])))
         if (autoClicks > 0){
-          setSoFar(soFar.map((item)=>({...item,soFar:item["soFar"]+(mainStoreItems[parseFloat(item["index"])]["clicks"]*mainStoreItems[parseFloat(item["index"])]["amount"])})))
+          setSoFar(soFar.map((item)=>({...item,soFar:item["soFar"]+realValues[item["index"]]})))
           setClickStarter(!clickStarter)
         }
     },1000)
@@ -152,8 +176,18 @@ if (mainStoreItems[13]["visible"]<2 && clicks >= 2100000000000000){
 upgrades.forEach((thing)=>{
   const itemOne = mainStoreItems[thing["item"]]
   const itemTwo = thing["secondItem"]===14 ? 14 : mainStoreItems[thing["secondItem"]]
-  if ((thing["visible"]===2) || (thing["visible"]===3)){
+  if (((thing["visible"]===2) && (thing["price"] < clicks)) || (thing["visible"]===3) || (thousandFingersCount["active"]===false && thing["addition"]===2 && thing["index"]!==3)){
     return thing
+  }
+  else if (thing["visible"===2]){
+    setUpgrades(upgrades.map((grade)=>{
+      if (grade["index"]===thing["index"])
+      {
+        return({...grade,visible:1})
+      }
+      else{
+        return grade
+      }}))
   }
   else if (thing["visible"]===1){
     if (clicks >= thing["price"]){
@@ -207,15 +241,14 @@ upgrades.forEach((thing)=>{
 })
 
 
-const clicksString=numberify(clicks)
-const perSecondString=numberify(autoClicks)
-
-
 
 
   function clickOnFace(){
-    setClicks(clicks+clickValue)
+    setClicks(clicks+clickValue+(thousandFingersCount["addition"]*thousandFingersCount["amount"]))
   }
+
+  //problem: i need every time a diet coke is added, to change sps of others. Starting with pop songs
+  //diet cokes are added on buy main function
 
   function buyMain(event){
   const mainObject = mainStoreItems.filter((itemName)=>(itemName["index"]===parseInt(event.target.getAttribute('value'))))[0]
@@ -226,16 +259,71 @@ const perSecondString=numberify(autoClicks)
     setAutoClicks(autoClicks+mainObject["clicks"])
     setClicks(clicks-mainObject["price"])
     setMainStoreItems(mainStoreItems.map((item)=>(item["index"]===mainObject["index"] ? {...mainObject,price:Math.ceil(mainObject["price"]*1.15),amount:mainObject["amount"]+1}:item)))}
+    if(parseInt(event.target.getAttribute('value'))!==0){
+      setThousandFingersCount({...thousandFingersCount,amount:thousandFingersCount["amount"]+1})
+    }
   }
+
+  //additions: 
+  //1 is multiply clicks by 2
+  //2 is thousand fingers related
+  //3 is twice as efficient and +1% sps to item 2 per item 1 (diet coke)
+  //4 +5% sps on item 1 for each item 2 and +0.1% on item 2 for each item 1
+
+  //make a thousand fingers counter that counts non cursor items
 
   function getUpgrade(event){
     const itemID = event.target.getAttribute('value')
-    console.log(itemID)
+    const item = upgrades[itemID]
+    const itemAddition = item["addition"]
     if (upgrades[itemID]["price"] <= clicks){
       //upgrades.forEach((grade)=>(grade["index"]===itemID?console.log(grade["index"]):console.log("nope")))
       setUpgrades(upgrades.map((grade)=>(grade["index"]==itemID?{...grade,visible:3}:grade)))
+      if (item["secondItem"]===14){
+        if (itemAddition===1){
+          if (item["item"]===0){
+            setClickValue(clickValue*2)
+          }
+          setMainStoreItems(mainStoreItems.map((mainItem)=>(mainItem["index"]===item["item"]?{...mainItem,clicks:mainItem["clicks"]*2}:mainItem)))
+          let autoClickNumber = 0
+          mainStoreItems.forEach((thing)=>{
+            if (thing["index"]===item["index"]){
+              autoClickNumber = autoClickNumber + (thing["amount"]*thing["clicks"]*2)
+            }
+            else{
+              autoClickNumber = autoClickNumber + (thing["amount"]*thing["clicks"])
+            }})
+          setAutoClicks(autoClickNumber)
+        }
+        else if (itemAddition===2){
+          if (item["name"]==="Thousand Fingers"){
+            setThousandFingersCount({...thousandFingersCount,active:true,addition:0.1})
+
+            //3: thousand fingers +.1
+            //4" million fingers *5
+            //5: billion fingers *10
+            //6: trillion fingers *20
+            //the rest are by 20
+          }
+          else if (item["index"]===4){
+            setThousandFingersCount({...thousandFingersCount,amount:thousandFingersCount["amount"]*5})
+          }
+          else if (item["index"]===5){
+            setThousandFingersCount({...thousandFingersCount,amount:thousandFingersCount["amount"]*10})
+          }
+          else{
+            setThousandFingersCount({...thousandFingersCount,amount:thousandFingersCount["amount"]*20})
+          }
+        }
+        else if (itemAddition==3){
+
+        }
+    }
     }
   }
+
+  const clicksString=numberify(clicks)
+  const perSecondString=numberify(autoClicks+(thousandFingersCount["addition"]*thousandFingersCount["amount"]))
 
   return (
     <div className="App">

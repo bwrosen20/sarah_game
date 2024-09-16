@@ -21,7 +21,7 @@ const priceString=numberify(price)
                 <h1 className="storeWord" value={index}>{visible>1 ? item : "???"}</h1>
                 <h2 className="storePrice" value={index}>😊{priceString}</h2>
             </div>
-            <h1 className="storeAmount" onMouseEnter={(()=>{setStoreBlurb(visible>1?true:false)})} onMouseLeave={(()=>{setStoreBlurb(false)})}>{visible>1 ? amount : null}</h1>
+            <h1 className="storeAmount" onClick={buyMain} value={index} onMouseEnter={(()=>{setStoreBlurb(visible>1?true:false)})} onMouseLeave={(()=>{setStoreBlurb(false)})}>{visible>1 ? amount : null}</h1>
             <div className={storeBlurb ? "storeBlurb" : "noStoreBlurb"}>
                 <ul >
                     <li>Each {item} produces <span className="bold">{clicks} smiles</span></li>
