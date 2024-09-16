@@ -48,7 +48,7 @@ function App() {
   ])
   // const [mainStoreItems, setMainStoreItems]=useState([])
   const [mainStoreItems,setMainStoreItems] = useState([
-  {"index":0,"item":"Cursor", "price":15, "clicks":0.1, "amount":0, "picture":cursor, "visible":1,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]}, 
+  {"index":0,"item":"Cursor", "price":15, "clicks":0.1, "amount":0, "picture":cursor, "visible":1,"extra":0}, 
   {"index":1,"item":"Diet Coke", "price":100, "clicks":1, "amount":0, "picture":dietCoke, "visible":1,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
   {"index":2,"item":"Mid 2000's Pop Song", "price":1100, "clicks":8, "amount":0, "picture":musicNote, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
   {"index":3,"item":"Meat Substitute", "price":12000, "clicks":47, "amount":0, "picture":beyondMeat, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
@@ -104,20 +104,10 @@ function App() {
         //add the real value to soFar
         //send real value down to store to show user
         //map through mainStoreItems where it finds the real values and make an array of them
-        let mainAutoClickValue = 0
-        const realValues = mainStoreItems.map((mainItem)=>{
-          let mainValue = 0
-          for (let i=0;i<14;i++){
-            mainValue = mainValue + mainItem["extra"][i]*mainStoreItems[i]["amount"]
-          }
-          mainValue = mainValue + mainItem["amount"]*mainItem["clicks"]
-          mainAutoClickValue = mainAutoClickValue + mainValue
-          return mainValue
-        })
-        console.log(mainAutoClickValue)
+
         setClicks(prev=>(prev+autoClicks+(thousandFingersCount["addition"]*thousandFingersCount["amount"])))
         if (autoClicks > 0){
-          setSoFar(soFar.map((item)=>({...item,soFar:item["soFar"]+realValues[item["index"]]})))
+          setSoFar(soFar.map((item)=>({...item,soFar:item["soFar"]+(mainStoreItems[parseFloat(item["index"])]["clicks"]*mainStoreItems[parseFloat(item["index"])]["amount"])})))
           setClickStarter(!clickStarter)
         }
     },1000)
@@ -241,6 +231,10 @@ upgrades.forEach((thing)=>{
 })
 
 
+const clicksString=numberify(clicks)
+const perSecondString=numberify(autoClicks+(thousandFingersCount["addition"]*thousandFingersCount["amount"]))
+
+
 
 
   function clickOnFace(){
@@ -286,13 +280,7 @@ upgrades.forEach((thing)=>{
           }
           setMainStoreItems(mainStoreItems.map((mainItem)=>(mainItem["index"]===item["item"]?{...mainItem,clicks:mainItem["clicks"]*2}:mainItem)))
           let autoClickNumber = 0
-          mainStoreItems.forEach((thing)=>{
-            if (thing["index"]===item["index"]){
-              autoClickNumber = autoClickNumber + (thing["amount"]*thing["clicks"]*2)
-            }
-            else{
-              autoClickNumber = autoClickNumber + (thing["amount"]*thing["clicks"])
-            }})
+          mainStoreItems.forEach((thing)=>(thing["index"]===item["index"]?autoClickNumber = autoClickNumber + (thing["amount"]*thing["clicks"]*2):autoClickNumber = autoClickNumber + (thing["amount"]*thing["clicks"])))
           setAutoClicks(autoClickNumber)
         }
         else if (itemAddition===2){
@@ -321,9 +309,6 @@ upgrades.forEach((thing)=>{
     }
     }
   }
-
-  const clicksString=numberify(clicks)
-  const perSecondString=numberify(autoClicks+(thousandFingersCount["addition"]*thousandFingersCount["amount"]))
 
   return (
     <div className="App">
