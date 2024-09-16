@@ -48,7 +48,7 @@ function App() {
   ])
   // const [mainStoreItems, setMainStoreItems]=useState([])
   const [mainStoreItems,setMainStoreItems] = useState([
-  {"index":0,"item":"Cursor", "price":15, "clicks":0.1, "amount":0, "picture":cursor, "visible":1,"extra":0}, 
+  {"index":0,"item":"Cursor", "price":15, "clicks":0.1, "amount":0, "picture":cursor, "visible":1,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]}, 
   {"index":1,"item":"Diet Coke", "price":100, "clicks":1, "amount":0, "picture":dietCoke, "visible":1,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
   {"index":2,"item":"Mid 2000's Pop Song", "price":1100, "clicks":8, "amount":0, "picture":musicNote, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
   {"index":3,"item":"Meat Substitute", "price":12000, "clicks":47, "amount":0, "picture":beyondMeat, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
@@ -104,7 +104,7 @@ function App() {
         //add the real value to soFar
         //send real value down to store to show user
         //map through mainStoreItems where it finds the real values and make an array of them
-
+        
         setClicks(prev=>(prev+autoClicks+(thousandFingersCount["addition"]*thousandFingersCount["amount"])))
         if (autoClicks > 0){
           setSoFar(soFar.map((item)=>({...item,soFar:item["soFar"]+(mainStoreItems[parseFloat(item["index"])]["clicks"]*mainStoreItems[parseFloat(item["index"])]["amount"])})))
@@ -250,7 +250,16 @@ const perSecondString=numberify(autoClicks+(thousandFingersCount["addition"]*tho
     if (autoClicks===0){
       setClickStarter(!clickStarter)
     }
-    setAutoClicks(autoClicks+mainObject["clicks"])
+    let realAutoClickTotal = 0
+        mainStoreItems.forEach((mainItem)=>{
+          let currentAutoClickValue = 0
+          for (let i=0; i<14; i++){
+            currentAutoClickValue = currentAutoClickValue + (mainItem["extra"][i]*mainStoreItems[i]["amount"])
+          }
+          realAutoClickTotal = realAutoClickTotal + currentAutoClickValue + (mainItem["amount"]*mainItem["clicks"])
+          console.log(realAutoClickTotal)
+        })
+    setAutoClicks(realAutoClickTotal+mainObject["clicks"])
     setClicks(clicks-mainObject["price"])
     setMainStoreItems(mainStoreItems.map((item)=>(item["index"]===mainObject["index"] ? {...mainObject,price:Math.ceil(mainObject["price"]*1.15),amount:mainObject["amount"]+1}:item)))}
     if(parseInt(event.target.getAttribute('value'))!==0){
