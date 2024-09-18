@@ -40,6 +40,10 @@
   }
 } */
 
+#root{
+  background-color:rgb(213, 236, 240)
+}
+
 body{
   width:100%;
   height:100vh;
@@ -178,13 +182,13 @@ marquee{
     box-sizing:border-box;
     overflow-x:auto;
     overflow-y:hidden;
-    height:10vh;
+    height:5vh;
   }
 
   .automatedPicture{
-    width:3vw;
-    height:5vw;
-    padding:0 .04vw;
+    width:3vh;
+    height:3vh;
+    padding:0 .1vw;
     object-fit:cover;
     object-position:center;
     rotate:-7deg;

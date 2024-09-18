@@ -26,7 +26,7 @@ export const StoreItemsContext = React.createContext()
 function App() {
 
   const [thousandFingersCount, setThousandFingersCount]=useState({"amount":0,"active":false,"addition":0})
-  const [clicks, setClicks]=useState(80000)
+  const [clicks, setClicks]=useState(0)
   const [clickValue, setClickValue]=useState(1)
   const [autoClicks, setAutoClicks]=useState(0)
   const [clickStarter,setClickStarter]=useState(false)
@@ -49,8 +49,8 @@ function App() {
   // const [mainStoreItems, setMainStoreItems]=useState([])
   const [mainStoreItems,setMainStoreItems] = useState([
   {"index":0,"item":"Cursor", "price":15, "clicks":0.1, "amount":0, "picture":cursor, "visible":1,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]}, 
-  {"index":1,"item":"Diet Coke", "price":100, "clicks":1, "amount":2, "picture":dietCoke, "visible":1,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
-  {"index":2,"item":"Mid 2000's Pop Song", "price":1100, "clicks":8, "amount":17, "picture":musicNote, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  {"index":1,"item":"Diet Coke", "price":100, "clicks":1, "amount":0, "picture":dietCoke, "visible":1,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  {"index":2,"item":"Mid 2000's Pop Song", "price":1100, "clicks":8, "amount":0, "picture":musicNote, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
   {"index":3,"item":"Meat Substitute", "price":12000, "clicks":47, "amount":0, "picture":beyondMeat, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
   {"index":4,"item":"True Crime Video","price":130000, "clicks":260, "amount":0, "picture":trueCrime, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
   {"index":5,"item":"Family/Friend", "price":1400000, "clicks":1400, "amount":0, "picture":family, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
@@ -79,6 +79,9 @@ function App() {
   //4 +5% sps on item 1 for each item 2 and +0.1% on item 2 for each item 1
 
 
+//index 7 is actually 40
+//index 8 is actually 128
+
   const [upgrades,setUpgrades] = useState([
     {"index":0,"item":0,"unlock":1,"price":100,"wordPrice":100,"name":"Reinforced Index Finger","description":"Mouse and Cursor are twice as efficient","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1,"multiply":0},
     {"index":1,"item":0,"unlock":1,"price":500,"wordPrice":500,"name":"Carpal Tunnel Prevention Cream","description":"Mouse and Cursor are twice as efficient","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1,"multiply":0},
@@ -87,7 +90,8 @@ function App() {
     {"index":4,"item":0,"unlock":50,"price":10000000,"wordPrice":"10 Million","name":"Million Fingers","description":"Multiplies gain from thousand fingers by 5","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2,"multiply":0},
     {"index":5,"item":0,"unlock":100,"price":100000000,"wordPrice":"100 Million","name":"Billion Fingers","description":"Multiplies gain from thousand fingers by 10","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2,"multiply":0},
     {"index":6,"item":0,"unlock":150,"price":1000000000,"wordPrice":"1 Billion","name":"Trillion Fingers","description":"Multiplies gain from thousand fingers by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2,"multiply":0},
-    {"index":7,"item":1,"unlock":1,"price":55000,"wordPrice":"55,000","name":"Pusha T Album","description":"Diet Coke is twice as efficient. Pop Songs gain +1% sps per Diet Coke","picture":cursor,"visible":0,"secondItem":2,"unlockTwo":15,"addition":3,"multiply":1}
+    {"index":7,"item":1,"unlock":1,"price":55000,"wordPrice":"55,000","name":"Pusha T Album","description":"Diet Coke is twice as efficient. Pop Songs gain +1% sps per Diet Coke","picture":cursor,"visible":0,"secondItem":2,"unlockTwo":15,"addition":3,"multiply":1},
+    {"index":8,"item":2,"unlock":15,"price":2800000000000000000n,"wordPrice":"2.8 Quintillion","name":"Gustavo Santaolalla Does It Again","description":"Pop songs gain +5% sps per video game. Video games gain +0.1% sps per pop song","picture":cursor,"visible":0,"secondItem":11,"unlockTwo":15,"addition":4,"multiply":0}
   ])
   
   // const [mainStorePrices,setMainStorePrices]=useState[15,100,,12000,130000,1400000,20000000,330000000,5100000000,75000000000,1000000000000,14000000000000,170000000000000,2100000000000000]
@@ -252,7 +256,7 @@ upgrades.forEach((thing)=>{
       mainStoreItems.forEach((mainItem)=>{
         let currentAutoClickValue = 0
         for (let i=0; i<14; i++){
-          currentAutoClickValue = currentAutoClickValue + (mainItem["extra"][i]*mainStoreItems[i]["amount"])
+          currentAutoClickValue = currentAutoClickValue + (mainItem["extra"][i]*mainStoreItems[i]["amount"]*mainItem["amount"]*mainItem["clicks"]/100)
         }
         realAutoClickTotal = realAutoClickTotal + currentAutoClickValue + (mainItem["amount"]*mainItem["clicks"])
       })
@@ -284,10 +288,33 @@ upgrades.forEach((thing)=>{
           if (item["item"]===0){
             setClickValue(clickValue*2)
           }
-          setMainStoreItems(mainStoreItems.map((mainItem)=>(mainItem["index"]===item["item"]?{...mainItem,clicks:mainItem["clicks"]*2}:mainItem)))
-          let autoClickNumber = 0
-          mainStoreItems.forEach((thing)=>(thing["index"]===item["item"]?autoClickNumber = autoClickNumber + (thing["amount"]*thing["clicks"]*2):autoClickNumber = autoClickNumber + (thing["amount"]*thing["clicks"])))
-          setAutoClicks(autoClickNumber)
+          // setMainStoreItems(mainStoreItems.map((mainItem)=>(mainItem["index"]===item["item"]?{...mainItem,clicks:mainItem["clicks"]*2}:mainItem)))
+          // let autoClickNumber = 0
+          // mainStoreItems.forEach((thing)=>(thing["index"]===item["item"]?autoClickNumber = autoClickNumber + (thing["amount"]*thing["clicks"]*2):autoClickNumber = autoClickNumber + (thing["amount"]*thing["clicks"])))
+          
+          // setAutoClicks(autoClickNumber)
+          const theMainItem = mainStoreItems[item["item"]]
+          let realAutoClickTotal = 0
+          let newMainStoreItems=mainStoreItems.map((mainItem)=>{
+            let currentAutoClickValue = 0
+            if (mainItem["index"]===theMainItem["index"]){
+              mainItem["clicks"]=mainItem["clicks"]*2
+            }
+            for (let i=0; i<14; i++){
+              currentAutoClickValue = currentAutoClickValue + (mainItem["extra"][i]*mainStoreItems[i]["amount"]*mainItem["amount"]*mainItem["clicks"]/100)
+              
+            }
+            console.log(currentAutoClickValue)
+            realAutoClickTotal = realAutoClickTotal + currentAutoClickValue + (mainItem["amount"]*mainItem["clicks"])
+            return mainItem
+            
+          })
+  
+          console.log(newMainStoreItems)
+          setAutoClicks(realAutoClickTotal)
+          setMainStoreItems(newMainStoreItems)
+
+
         }
         else if (itemAddition===2){
           if (item["name"]==="Thousand Fingers"){
@@ -325,6 +352,34 @@ upgrades.forEach((thing)=>{
           }
           else if (mainItem["index"]===theMainItem["index"]){
             mainItem["clicks"]=mainItem["clicks"]*2
+          }
+          for (let i=0; i<14; i++){
+            currentAutoClickValue = currentAutoClickValue + (mainItem["extra"][i]*mainStoreItems[i]["amount"]*mainItem["amount"]*mainItem["clicks"]/100)
+            
+          }
+          console.log(currentAutoClickValue)
+          realAutoClickTotal = realAutoClickTotal + currentAutoClickValue + (mainItem["amount"]*mainItem["clicks"])
+          return mainItem
+          
+        })
+
+        console.log(newMainStoreItems)
+        setAutoClicks(realAutoClickTotal)
+        setMainStoreItems(newMainStoreItems)
+      }
+      else{
+        //mainItem will be first gaining 5%
+        //secondItem will be second gaining 0.1%
+        const theMainItem = mainStoreItems[item["item"]]
+        const secondMainItem = mainStoreItems[item["secondItem"]]
+        let realAutoClickTotal = 0
+        let newMainStoreItems=mainStoreItems.map((mainItem)=>{
+          let currentAutoClickValue = 0
+          if (secondMainItem["index"]===mainItem["index"]){
+            mainItem["extra"][theMainItem["index"]]=.1
+          }
+          else if (mainItem["index"]===theMainItem["index"]){
+            mainItem["extra"][secondMainItem["index"]]=5
           }
           for (let i=0; i<14; i++){
             currentAutoClickValue = currentAutoClickValue + (mainItem["extra"][i]*mainStoreItems[i]["amount"]*mainItem["amount"]*mainItem["clicks"]/100)
