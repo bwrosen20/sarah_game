@@ -26,7 +26,7 @@ export const StoreItemsContext = React.createContext()
 function App() {
 
   const [thousandFingersCount, setThousandFingersCount]=useState({"amount":0,"active":false,"addition":0})
-  const [clicks, setClicks]=useState(0)
+  const [clicks, setClicks]=useState(80000)
   const [clickValue, setClickValue]=useState(1)
   const [autoClicks, setAutoClicks]=useState(0)
   const [clickStarter,setClickStarter]=useState(false)
@@ -49,8 +49,8 @@ function App() {
   // const [mainStoreItems, setMainStoreItems]=useState([])
   const [mainStoreItems,setMainStoreItems] = useState([
   {"index":0,"item":"Cursor", "price":15, "clicks":0.1, "amount":0, "picture":cursor, "visible":1,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]}, 
-  {"index":1,"item":"Diet Coke", "price":100, "clicks":1, "amount":0, "picture":dietCoke, "visible":1,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
-  {"index":2,"item":"Mid 2000's Pop Song", "price":1100, "clicks":8, "amount":0, "picture":musicNote, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  {"index":1,"item":"Diet Coke", "price":100, "clicks":1, "amount":2, "picture":dietCoke, "visible":1,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  {"index":2,"item":"Mid 2000's Pop Song", "price":1100, "clicks":8, "amount":17, "picture":musicNote, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
   {"index":3,"item":"Meat Substitute", "price":12000, "clicks":47, "amount":0, "picture":beyondMeat, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
   {"index":4,"item":"True Crime Video","price":130000, "clicks":260, "amount":0, "picture":trueCrime, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
   {"index":5,"item":"Family/Friend", "price":1400000, "clicks":1400, "amount":0, "picture":family, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
@@ -80,14 +80,14 @@ function App() {
 
 
   const [upgrades,setUpgrades] = useState([
-    {"index":0,"item":0,"unlock":1,"price":100,"wordPrice":100,"name":"Reinforced Index Finger","description":"Mouse and Cursor are twice as efficient","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-    {"index":1,"item":0,"unlock":1,"price":500,"wordPrice":500,"name":"Carpal Tunnel Prevention Cream","description":"Mouse and Cursor are twice as efficient","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-    {"index":2,"item":0,"unlock":10,"price":10000,"wordPrice":"10 Thousand","name":"Ambidextrous","description":"Mouse and Cursor are twice as efficient","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-    {"index":3,"item":0,"unlock":25,"price":100000,"wordPrice":"100 Thousand","name":"Thousand Fingers","description":"Mouse and Cursors gain +0.1 Smiles for each non-cursor object owned","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
-    {"index":4,"item":0,"unlock":50,"price":10000000,"wordPrice":"10 Million","name":"Million Fingers","description":"Multiplies gain from thousand fingers by 5","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
-    {"index":5,"item":0,"unlock":100,"price":100000000,"wordPrice":"100 Million","name":"Billion Fingers","description":"Multiplies gain from thousand fingers by 10","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
-    {"index":6,"item":0,"unlock":150,"price":1000000000,"wordPrice":"1 Billion","name":"Trillion Fingers","description":"Multiplies gain from thousand fingers by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
-    {"index":39,"item":1,"unlock":1,"price":55000,"wordPrice":"55,000","name":"Pusha T Album","description":"Diet Coke is twice as efficient. Pop Songs gain +1% sps per Diet Coke","picture":cursor,"visible":0,"secondItem":2,"unlockTwo":15,"addition":3}
+    {"index":0,"item":0,"unlock":1,"price":100,"wordPrice":100,"name":"Reinforced Index Finger","description":"Mouse and Cursor are twice as efficient","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1,"multiply":0},
+    {"index":1,"item":0,"unlock":1,"price":500,"wordPrice":500,"name":"Carpal Tunnel Prevention Cream","description":"Mouse and Cursor are twice as efficient","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1,"multiply":0},
+    {"index":2,"item":0,"unlock":10,"price":10000,"wordPrice":"10 Thousand","name":"Ambidextrous","description":"Mouse and Cursor are twice as efficient","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1,"multiply":0},
+    {"index":3,"item":0,"unlock":25,"price":100000,"wordPrice":"100 Thousand","name":"Thousand Fingers","description":"Mouse and Cursors gain +0.1 Smiles for each non-cursor object owned","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2,"multiply":0},
+    {"index":4,"item":0,"unlock":50,"price":10000000,"wordPrice":"10 Million","name":"Million Fingers","description":"Multiplies gain from thousand fingers by 5","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2,"multiply":0},
+    {"index":5,"item":0,"unlock":100,"price":100000000,"wordPrice":"100 Million","name":"Billion Fingers","description":"Multiplies gain from thousand fingers by 10","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2,"multiply":0},
+    {"index":6,"item":0,"unlock":150,"price":1000000000,"wordPrice":"1 Billion","name":"Trillion Fingers","description":"Multiplies gain from thousand fingers by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2,"multiply":0},
+    {"index":7,"item":1,"unlock":1,"price":55000,"wordPrice":"55,000","name":"Pusha T Album","description":"Diet Coke is twice as efficient. Pop Songs gain +1% sps per Diet Coke","picture":cursor,"visible":0,"secondItem":2,"unlockTwo":15,"addition":3,"multiply":1}
   ])
   
   // const [mainStorePrices,setMainStorePrices]=useState[15,100,,12000,130000,1400000,20000000,330000000,5100000000,75000000000,1000000000000,14000000000000,170000000000000,2100000000000000]
@@ -231,8 +231,6 @@ upgrades.forEach((thing)=>{
 })
 
 
-const clicksString=numberify(clicks)
-const perSecondString=numberify(autoClicks+(thousandFingersCount["addition"]*thousandFingersCount["amount"]))
 
 
 
@@ -250,15 +248,14 @@ const perSecondString=numberify(autoClicks+(thousandFingersCount["addition"]*tho
     if (autoClicks===0){
       setClickStarter(!clickStarter)
     }
-    let realAutoClickTotal = 0
-        mainStoreItems.forEach((mainItem)=>{
-          let currentAutoClickValue = 0
-          for (let i=0; i<14; i++){
-            currentAutoClickValue = currentAutoClickValue + (mainItem["extra"][i]*mainStoreItems[i]["amount"])
-          }
-          realAutoClickTotal = realAutoClickTotal + currentAutoClickValue + (mainItem["amount"]*mainItem["clicks"])
-          console.log(realAutoClickTotal)
-        })
+      let realAutoClickTotal = 0
+      mainStoreItems.forEach((mainItem)=>{
+        let currentAutoClickValue = 0
+        for (let i=0; i<14; i++){
+          currentAutoClickValue = currentAutoClickValue + (mainItem["extra"][i]*mainStoreItems[i]["amount"])
+        }
+        realAutoClickTotal = realAutoClickTotal + currentAutoClickValue + (mainItem["amount"]*mainItem["clicks"])
+      })
     setAutoClicks(realAutoClickTotal+mainObject["clicks"])
     setClicks(clicks-mainObject["price"])
     setMainStoreItems(mainStoreItems.map((item)=>(item["index"]===mainObject["index"] ? {...mainObject,price:Math.ceil(mainObject["price"]*1.15),amount:mainObject["amount"]+1}:item)))}
@@ -289,7 +286,7 @@ const perSecondString=numberify(autoClicks+(thousandFingersCount["addition"]*tho
           }
           setMainStoreItems(mainStoreItems.map((mainItem)=>(mainItem["index"]===item["item"]?{...mainItem,clicks:mainItem["clicks"]*2}:mainItem)))
           let autoClickNumber = 0
-          mainStoreItems.forEach((thing)=>(thing["index"]===item["index"]?autoClickNumber = autoClickNumber + (thing["amount"]*thing["clicks"]*2):autoClickNumber = autoClickNumber + (thing["amount"]*thing["clicks"])))
+          mainStoreItems.forEach((thing)=>(thing["index"]===item["item"]?autoClickNumber = autoClickNumber + (thing["amount"]*thing["clicks"]*2):autoClickNumber = autoClickNumber + (thing["amount"]*thing["clicks"])))
           setAutoClicks(autoClickNumber)
         }
         else if (itemAddition===2){
@@ -312,12 +309,45 @@ const perSecondString=numberify(autoClicks+(thousandFingersCount["addition"]*tho
             setThousandFingersCount({...thousandFingersCount,amount:thousandFingersCount["amount"]*20})
           }
         }
-        else if (itemAddition==3){
+        
+      }
+      else if (itemAddition==3){
+        //need to run similar function as is in buyMain and multiply diet coke amount by 2
+        //when setting mainStoreItems include extras alteration on secondary item
+        //diet coke is main item
+        const theMainItem = mainStoreItems[item["item"]]
+        const secondMainItem = mainStoreItems[item["secondItem"]]
+        let realAutoClickTotal = 0
+        let newMainStoreItems=mainStoreItems.map((mainItem)=>{
+          let currentAutoClickValue = 0
+          if (secondMainItem["index"]===mainItem["index"]){
+            mainItem["extra"][1]=mainItem["extra"][1]+item["multiply"]
+          }
+          else if (mainItem["index"]===theMainItem["index"]){
+            mainItem["clicks"]=mainItem["clicks"]*2
+          }
+          for (let i=0; i<14; i++){
+            currentAutoClickValue = currentAutoClickValue + (mainItem["extra"][i]*mainStoreItems[i]["amount"]*mainItem["amount"]*mainItem["clicks"]/100)
+            
+          }
+          console.log(currentAutoClickValue)
+          realAutoClickTotal = realAutoClickTotal + currentAutoClickValue + (mainItem["amount"]*mainItem["clicks"])
+          return mainItem
+          
+        })
 
-        }
-    }
-    }
+        console.log(newMainStoreItems)
+        setAutoClicks(realAutoClickTotal)
+        setMainStoreItems(newMainStoreItems)
+      }
+      }
   }
+
+
+  const clicksString=numberify(clicks)
+  const perSecondString=numberify(autoClicks+(thousandFingersCount["addition"]*thousandFingersCount["amount"]))
+  const mouseString=numberify(clickValue)
+
 
   return (
     <div className="App">
@@ -334,7 +364,8 @@ const perSecondString=numberify(autoClicks+(thousandFingersCount["addition"]*tho
           <h2 className="userTitle">Sarah Smiler</h2>
             <div className="sarahCounter">
               <h1 className="smilesCounter">{clicksString} Smiles</h1>
-              <h3 className="perSecond">per second: {perSecondString}</h3>
+              <h3 className="perSecond">Per Second: {perSecondString}</h3>
+              <h3 className="perSecond">Clicks Gain {mouseString} Smiles</h3>
             </div>
               <SarahFace clickOnFace={clickOnFace} />
             </div>

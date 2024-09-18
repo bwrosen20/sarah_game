@@ -1,16 +1,26 @@
-import {useState} from 'react'
+import {useState,useContext} from 'react'
+import {StoreItemsContext} from '../App'
 import numberify from '../numberify'
 
-function StoreItem({mainClicks,soFar,clicks,visible,amount,item,index,buyMain,price,picture}){
+function StoreItem({mainClicks,extras,soFar,clicks,visible,amount,item,index,buyMain,price,picture}){
 
 const [storeBlurb,setStoreBlurb]=useState(false)
+const mainStoreItems = useContext(StoreItemsContext)
 
 
-let perSecond = clicks*amount
+let newClicks = clicks
+
+extras.forEach((extra,index)=>{
+    const storeItem = mainStoreItems[index]
+    newClicks = newClicks + (extra*storeItem["amount"]*clicks/100)
+})
+
+let perSecond = newClicks*amount
 
 const perSecondString=numberify(perSecond)
 const soFarString=numberify(soFar)
 const priceString=numberify(price)
+const newClicksString=numberify(newClicks)
 
 
 
@@ -24,7 +34,7 @@ const priceString=numberify(price)
             <h1 className="storeAmount" onClick={buyMain} value={index} onMouseEnter={(()=>{setStoreBlurb(visible>1?true:false)})} onMouseLeave={(()=>{setStoreBlurb(false)})}>{visible>1 ? amount : null}</h1>
             <div className={storeBlurb ? "storeBlurb" : "noStoreBlurb"}>
                 <ul >
-                    <li>Each {item} produces <span className="bold">{clicks} smiles</span></li>
+                    <li>Each {item} produces <span className="bold">{newClicksString} smiles</span></li>
                     <li>{amount} {item}s producing <span children className="bold">{perSecondString} smiles</span> per second</li>
                     <li><span className="bold">{soFarString} smiles</span> produced so far</li>
                 </ul>
