@@ -207,6 +207,8 @@ marquee{
 
   .upgradePicture{
     width:4.95vh;
+    height:4.95vh;
+    object-fit:unset;
     padding:.5vh;
     border-radius:1vh;
     margin:.25vh;
@@ -288,10 +290,10 @@ marquee{
   }
 
   .store{
-    overflow-y:scroll;
-    overflow:unset;
-    /*Might need to change this*/
+   overflow-y:auto;
   }
+
+  
 
   .storeItem{
     position:relative;
@@ -411,10 +413,10 @@ marquee{
 
   .storeBlurb{
     position:absolute;
-    bottom:0;
-    left:-360px;
+    top:-3vh;
+    right:35%;
     width:350px;
-    height:auto;
+    height:-25vh;
     padding:0;
     background-color:rgb(172, 158, 158);
     border-radius:2vw;
@@ -422,7 +424,7 @@ marquee{
   }
 
   .noStoreBlurb{
-    display:none
+   display:none
   }
 
   .bold{

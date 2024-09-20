@@ -48,20 +48,20 @@ function App() {
   ])
   // const [mainStoreItems, setMainStoreItems]=useState([])
   const [mainStoreItems,setMainStoreItems] = useState([
-  {"index":0,"item":"Cursor", "price":15, "clicks":0.1, "amount":0, "picture":cursor, "visible":1,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]}, 
-  {"index":1,"item":"Diet Coke", "price":100, "clicks":1, "amount":0, "picture":dietCoke, "visible":1,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
-  {"index":2,"item":"Mid 2000's Pop Song", "price":1100, "clicks":8, "amount":0, "picture":musicNote, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
-  {"index":3,"item":"Meat Substitute", "price":12000, "clicks":47, "amount":0, "picture":beyondMeat, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
-  {"index":4,"item":"True Crime Video","price":130000, "clicks":260, "amount":0, "picture":trueCrime, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
-  {"index":5,"item":"Family/Friend", "price":1400000, "clicks":1400, "amount":0, "picture":family, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
-  {"index":6,"item":"Nature", "price":20000000, "clicks":7800, "amount":0, "picture":anime, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
-  {"index":7,"item":"Anime", "price":330000000, "clicks":44000, "amount":0, "picture":nature, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
-  {"index":8,"item":"Wine", "price":5100000000, "clicks":260000, "amount":0, "picture":wine, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
-  {"index":9,"item":"Very Specific Movie", "price":75000000000, "clicks":1600000, "amount":0, "picture":movie, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
-  {"index":10,"item":"Special Place", "price":1000000000000, "clicks":10000000, "amount":0, "picture":house, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
-  {"index":11,"item":"Video Game", "price":14000000000000, "clicks":65000000, "amount":0, "picture":videoGame, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
-  {"index":12,"item":"Boutique", "price":170000000000000, "clicks":430000000, "amount":0, "picture":boutique, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
-  {"index":13,"item":"Brian", "price":2100000000000000, "clicks":2900000000, "amount":0, "picture":brian, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]}])
+  {"index":0,"item":"Cursor", "price":15, "clicks":0.1, "amount":0, "picture":cursor, "visible":2,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]}, 
+  {"index":1,"item":"Diet Coke", "price":100, "clicks":1, "amount":0, "picture":dietCoke, "visible":2,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  {"index":2,"item":"Mid 2000's Pop Song", "price":1100, "clicks":8, "amount":0, "picture":musicNote, "visible":2,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  {"index":3,"item":"Meat Substitute", "price":12000, "clicks":47, "amount":0, "picture":beyondMeat, "visible":2,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  {"index":4,"item":"True Crime Video","price":130000, "clicks":260, "amount":0, "picture":trueCrime, "visible":2,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  {"index":5,"item":"Family/Friend", "price":1400000, "clicks":1400, "amount":0, "picture":family, "visible":2,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  {"index":6,"item":"Nature", "price":20000000, "clicks":7800, "amount":0, "picture":anime, "visible":2,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  {"index":7,"item":"Anime", "price":330000000, "clicks":44000, "amount":0, "picture":nature, "visible":2,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  {"index":8,"item":"Wine", "price":5100000000, "clicks":260000, "amount":0, "picture":wine, "visible":2,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  {"index":9,"item":"Very Specific Movie", "price":75000000000, "clicks":1600000, "amount":0, "picture":movie, "visible":2,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  {"index":10,"item":"Special Place", "price":1000000000000, "clicks":10000000, "amount":0, "picture":house, "visible":2,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  {"index":11,"item":"Video Game", "price":14000000000000, "clicks":65000000, "amount":0, "picture":videoGame, "visible":2,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  {"index":12,"item":"Boutique", "price":170000000000000, "clicks":430000000, "amount":0, "picture":boutique, "visible":2,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  {"index":13,"item":"Brian", "price":2100000000000000, "clicks":2900000000, "amount":0, "picture":brian, "visible":2,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]}])
 
 
   //14 is none
@@ -83,16 +83,42 @@ function App() {
 //index 8 is actually 128
 
   const [upgrades,setUpgrades] = useState([
-    {"index":0,"item":0,"unlock":1,"price":100,"wordPrice":100,"name":"Reinforced Index Finger","description":"Mouse and Cursor are twice as efficient","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1,"multiply":0},
-    {"index":1,"item":0,"unlock":1,"price":500,"wordPrice":500,"name":"Carpal Tunnel Prevention Cream","description":"Mouse and Cursor are twice as efficient","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1,"multiply":0},
-    {"index":2,"item":0,"unlock":10,"price":10000,"wordPrice":"10 Thousand","name":"Ambidextrous","description":"Mouse and Cursor are twice as efficient","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1,"multiply":0},
-    {"index":3,"item":0,"unlock":25,"price":100000,"wordPrice":"100 Thousand","name":"Thousand Fingers","description":"Mouse and Cursors gain +0.1 Smiles for each non-cursor object owned","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2,"multiply":0},
-    {"index":4,"item":0,"unlock":50,"price":10000000,"wordPrice":"10 Million","name":"Million Fingers","description":"Multiplies gain from thousand fingers by 5","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2,"multiply":0},
-    {"index":5,"item":0,"unlock":100,"price":100000000,"wordPrice":"100 Million","name":"Billion Fingers","description":"Multiplies gain from thousand fingers by 10","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2,"multiply":0},
-    {"index":6,"item":0,"unlock":150,"price":1000000000,"wordPrice":"1 Billion","name":"Trillion Fingers","description":"Multiplies gain from thousand fingers by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2,"multiply":0},
-    {"index":7,"item":1,"unlock":1,"price":55000,"wordPrice":"55,000","name":"Pusha T Album","description":"Diet Coke is twice as efficient. Pop Songs gain +1% sps per Diet Coke","picture":cursor,"visible":0,"secondItem":2,"unlockTwo":15,"addition":3,"multiply":1},
-    {"index":8,"item":2,"unlock":15,"price":2800000000000000000n,"wordPrice":"2.8 Quintillion","name":"Gustavo Santaolalla Does It Again","description":"Pop songs gain +5% sps per video game. Video games gain +0.1% sps per pop song","picture":cursor,"visible":0,"secondItem":11,"unlockTwo":15,"addition":4,"multiply":0}
+    {"index":0,"item":0,"unlock":1,"price":100,"wordPrice":100,"name":"Reinforced Index Finger","description":"Mouse and Cursor are twice as efficient","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
+    {"index":1,"item":0,"unlock":1,"price":500,"wordPrice":500,"name":"Carpal Tunnel Prevention Cream","description":"Mouse and Cursor are twice as efficient","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
+    {"index":2,"item":0,"unlock":10,"price":10000,"wordPrice":"10 Thousand","name":"Ambidextrous","description":"Mouse and Cursor are twice as efficient","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
+    {"index":3,"item":0,"unlock":25,"price":100000,"wordPrice":"100 Thousand","name":"Thousand Fingers","description":"Mouse and Cursors gain +0.1 Smiles for each non-cursor object owned","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
+    {"index":4,"item":0,"unlock":50,"price":10000000,"wordPrice":"10 Million","name":"Million Fingers","description":"Multiplies gain from thousand fingers by 5","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
+    {"index":5,"item":0,"unlock":100,"price":100000000,"wordPrice":"100 Million","name":"Billion Fingers","description":"Multiplies gain from thousand fingers by 10","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
+    {"index":6,"item":0,"unlock":150,"price":1000000000,"wordPrice":"1 Billion","name":"Trillion Fingers","description":"Multiplies gain from thousand fingers by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
+    {"index":7,"item":1,"unlock":1,"price":1000,"wordPrice":"1 Thousand","name":"Two For One Bottles","description":"Diet Coke is twice as efficient","picture":dietCoke,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
+    {"index":8,"item":1,"unlock":5,"price":5000,"wordPrice":"5 Thousand","name":"Factory Tour","description":"Diet Coke is twice as efficient","picture":dietCoke,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
+    {"index":9,"item":1,"unlock":25,"price":50000,"wordPrice":"50 Thousand","name":"Caffeine Free! Sarah Can Drink At Night","description":"Diet Coke is twice as efficient","picture":dietCoke,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
+    {"index":10,"item":2,"unlock":1,"price":11000,"wordPrice":"11 Thousand","name":"Drops Of Jupiter By Train","description":"Pop Songs are twice as efficient","picture":musicNote,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
+    {"index":11,"item":2,"unlock":5,"price":55000,"wordPrice":"55 Thousand","name":"The She's The Man Soundtrack","description":"Pop Songs are twice as efficient","picture":musicNote,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
+    {"index":12,"item":2,"unlock":25,"price":550000,"wordPrice":"550 Thousand","name":"You Request Bottom's Up And They Play It","description":"Pop Songs are twice as efficient","picture":musicNote,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
+    {"index":13,"item":4,"unlock":1,"price":1300000,"wordPrice":"1.3 Million","name":"There's Been A Murder","description":"True Crime is twice as efficient","picture":trueCrime,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
+    {"index":14,"item":4,"unlock":5,"price":6500000,"wordPrice":"6.5 Million","name":"The Black Dalia's Been Caught","description":"True Crime is twice as efficient","picture":trueCrime,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
+    {"index":15,"item":4,"unlock":25,"price":65000000,"wordPrice":"6.5 Million","name":"Double Murder","description":"True Crime is twice as efficient","picture":trueCrime,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
+    {"index":16,"item":3,"unlock":1,"price":120000,"wordPrice":"120 Thousand","name":"Vegan Sausage For Breakfast","description":"Meat Subs are twice as efficient","picture":beyondMeat,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
+    {"index":17,"item":3,"unlock":5,"price":600000,"wordPrice":"600 Thousand","name":"Impossible Whopper","description":"Meat Subs are twice as efficient","picture":beyondMeat,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
+    {"index":18,"item":3,"unlock":25,"price":6000000,"wordPrice":"6 Million","name":"Salmon From Anixi","description":"Meat Subs are twice as efficient","picture":beyondMeat,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
+    {"index":19,"item":8,"unlock":1,"price":51000000000,"wordPrice":"51 Billion","name":"Port","description":"Wine is twice as efficient","picture":wine,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
+    {"index":20,"item":8,"unlock":5,"price":255000000000,"wordPrice":"255 Billion","name":"Chardonnay","description":"Wine is twice as efficient","picture":wine,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
+    {"index":21,"item":8,"unlock":25,"price":2550000000,"wordPrice":"2.55 Trillion","name":"Sauvignon Blanc","description":"Wine is twice as efficient","picture":wine,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
+    {"index":22,"item":9,"unlock":1,"price":750000000000,"wordPrice":"750 Billion","name":"Amanda Bynes Destroys The Fair","description":"Movies are twice as efficient","picture":movie,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
+    {"index":23,"item":9,"unlock":5,"price":3750000000000,"wordPrice":"3.75 Trillion","name":"Remember A Name By Saying It In A Deep Voice","description":"Movies are twice as efficient","picture":movie,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
+    {"index":24,"item":9,"unlock":25,"price":37500000000000,"wordPrice":"37.5 Trillion","name":"Away From The Things Of Man","description":"Movies are twice as efficient","picture":movie,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
+    {"index":25,"item":10,"unlock":1,"price":10000000000000,"wordPrice":"10 Trillion","name":"Riverside Park","description":"Special Places are twice as efficient","picture":house,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
+    {"index":26,"item":10,"unlock":5,"price":50000000000000,"wordPrice":"50 Trillion","name":"Blue Mountain Lake","description":"Special Places are twice as efficient","picture":house,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
+    {"index":27,"item":10,"unlock":25,"price":500000000000000,"wordPrice":"500 Trillion","name":"Abandoned Cement Factory","description":"Special Places are twice as efficient","picture":house,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
+    
+
+
+    
   ])
+
+  // {"index":40,"item":1,"unlock":1,"price":55000,"wordPrice":"55 Thousand","name":"Pusha T Album","description":"Diet Coke is twice as efficient. Pop Songs gain +1% sps per Diet Coke","picture":cursor,"visible":0,"secondItem":2,"unlockTwo":15,"addition":3,"multiply":1},
+  //   {"index":128,"item":2,"unlock":15,"price":2800000000000000000n,"wordPrice":"2.8 Quintillion","name":"Gustavo Santaolalla Does It Again","description":"Pop songs gain +5% sps per video game. Video games gain +0.1% sps per pop song","picture":cursor,"visible":0,"secondItem":11,"unlockTwo":15,"addition":4}
   
   // const [mainStorePrices,setMainStorePrices]=useState[15,100,,12000,130000,1400000,20000000,330000000,5100000000,75000000000,1000000000000,14000000000000,170000000000000,2100000000000000]
   // const [mainStoreClicks,setMainStoreClicks]=useState[0.1,1,8,47,260,1400,7800,44000,260000,1600000,10000000,65000000,430000000,2900000000]
