@@ -5,7 +5,6 @@ import numberify from '../numberify'
 function StoreItem({mainClicks,extras,soFar,clicks,visible,amount,item,index,buyMain,price,picture}){
 
 const [storeBlurb,setStoreBlurb]=useState(false)
-const [reRender,setReRender] = useState(false)
 const mainStoreItems = useContext(StoreItemsContext)
 
 
@@ -17,12 +16,12 @@ extras.forEach((extra,index)=>{
 })
 
 function handleMouseMove(e){
+    
     console.log(index)
     let cursor = document.getElementsByName('noStoreBlurb')[index]
     console.log(cursor)
     let y = e.clientY;
     cursor.style.top=(y-30)+"px"
-    setReRender(!reRender)
 }
 
 let perSecond = newClicks*amount
