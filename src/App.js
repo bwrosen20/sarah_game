@@ -26,7 +26,7 @@ export const StoreItemsContext = React.createContext()
 function App() {
 
   const [thousandFingersCount, setThousandFingersCount]=useState({"amount":0,"active":false,"addition":0})
-  const [clicks, setClicks]=useState(0)
+  const [clicks, setClicks]=useState(1013420)
   const [clickValue, setClickValue]=useState(1)
   const [autoClicks, setAutoClicks]=useState(0)
   const [clickStarter,setClickStarter]=useState(false)
@@ -155,10 +155,19 @@ function App() {
         //add the real value to soFar
         //send real value down to store to show user
         //map through mainStoreItems where it finds the real values and make an array of them
+        const fingersTotal = (thousandFingersCount["addition"]*thousandFingersCount["amount"])
         
-        setClicks(prev=>(prev+autoClicks+(thousandFingersCount["addition"]*thousandFingersCount["amount"])))
+        setClicks(prev=>(prev+autoClicks+(fingersTotal)))
         if (autoClicks > 0){
-          setSoFar(soFar.map((item)=>({...item,soFar:item["soFar"]+(mainStoreItems[parseFloat(item["index"])]["clicks"]*mainStoreItems[parseFloat(item["index"])]["amount"])})))
+          setSoFar(soFar.map((item)=>{
+            if (item["index"]===0){
+              return {...item,soFar:item["soFar"]+(mainStoreItems[parseFloat(item["index"])]["clicks"]*mainStoreItems[parseFloat(item["index"])]["amount"])+(mainStoreItems[parseFloat(item["index"])]["amount"]*fingersTotal)}
+            }
+            else{
+              return {...item,soFar:item["soFar"]+(mainStoreItems[parseFloat(item["index"])]["clicks"]*mainStoreItems[parseFloat(item["index"])]["amount"])}
+            }
+            
+          }))
           setClickStarter(!clickStarter)
         }
     },1000)
@@ -351,7 +360,6 @@ upgrades.forEach((thing)=>{
               currentAutoClickValue = currentAutoClickValue + (mainItem["extra"][i]*mainStoreItems[i]["amount"]*mainItem["amount"]*mainItem["clicks"]/100)
               
             }
-            console.log(currentAutoClickValue)
             realAutoClickTotal = realAutoClickTotal + currentAutoClickValue + (mainItem["amount"]*mainItem["clicks"])
             return mainItem
             
@@ -450,7 +458,7 @@ upgrades.forEach((thing)=>{
 
   const clicksString=numberify(clicks)
   const perSecondString=numberify(autoClicks+(thousandFingersCount["addition"]*thousandFingersCount["amount"]))
-  const mouseString=numberify(clickValue)
+  const mouseString=numberify(clickValue + ((thousandFingersCount["addition"]*thousandFingersCount["amount"])))
 
 
   return (
@@ -479,7 +487,7 @@ upgrades.forEach((thing)=>{
             <div className="store">
               <h1 className="storeTitle">Store</h1>
               <UpgradeStore getUpgrade={getUpgrade} upgrades={upgrades}/>
-              <Store soFar={soFar} buyMain={buyMain} mainClicks={clicks}/>
+              <Store soFar={soFar} buyMain={buyMain} mainClicks={clicks} thousandFingersCount={thousandFingersCount}/>
             </div>
           </div>
         </StoreItemsContext.Provider>

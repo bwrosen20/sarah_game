@@ -2,13 +2,19 @@ import {useState,useContext} from 'react'
 import {StoreItemsContext} from '../App'
 import numberify from '../numberify'
 
-function StoreItem({mainClicks,extras,soFar,clicks,visible,amount,item,index,buyMain,price,picture}){
+function StoreItem({mainClicks,extras,soFar,clicks,visible,amount,item,index,buyMain,price,picture,thousandFingersCount}){
 
 const [storeBlurb,setStoreBlurb]=useState(false)
 const mainStoreItems = useContext(StoreItemsContext)
 
+let newClicks = 0
 
-let newClicks = clicks
+if (index===0){
+    newClicks = clicks+((thousandFingersCount["addition"]*thousandFingersCount["amount"]))
+}
+else{
+    newClicks = clicks
+}
 
 extras.forEach((extra,index)=>{
     const storeItem = mainStoreItems[index]
@@ -16,10 +22,7 @@ extras.forEach((extra,index)=>{
 })
 
 function handleMouseMove(e){
-    
-    console.log(index)
     let cursor = document.getElementsByName('noStoreBlurb')[index]
-    console.log(cursor)
     let y = e.clientY;
     cursor.style.top=(y-30)+"px"
 }

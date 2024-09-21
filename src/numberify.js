@@ -14,13 +14,15 @@ if (soFar < 1000){
     soFarString = soFar.toString()
 }
 else if (1000 <= soFar && soFar <1000000){
+    
     let firstPart = soFarArray.slice(0,soFarArray.length-3).join().replace(',','').replace(',','')
     let secondPart = soFarArray.slice(-3).join().replace(',','').replace(',','')
     soFarString = `${firstPart},${secondPart}`
+
 }
 else if (1000000 <= soFar && soFar <1000000000){
     let firstPart = soFarArray.slice(0,soFarArray.length-6).join().replace(',','').replace(',','')
-    let secondPart = soFarArray.slice(-6,3)
+    let secondPart = soFarArray.slice(-6,4)
     for (let i=0; i<secondPart.length+1; i++){
         if (secondPart.slice(-1)[0]==='0'){
             secondPart.pop()
@@ -37,7 +39,7 @@ else if (1000000 <= soFar && soFar <1000000000){
 }
 else if (1000000000 <= soFar && soFar <1000000000000){
     let firstPart = soFarArray.slice(0,soFarArray.length-9).join().replace(',','').replace(',','')
-    let secondPart = soFarArray.slice(-9,3)
+    let secondPart = soFarArray.slice(-9,4)
     for (let i=0; i<secondPart.length+1; i++){
         if (secondPart.slice(-1)[0]==='0'){
             secondPart.pop()
@@ -55,7 +57,7 @@ else if (1000000000 <= soFar && soFar <1000000000000){
 }
 else if (1000000000000 <= soFar && soFar <1000000000000000){
     let firstPart = soFarArray.slice(0,soFarArray.length-12).join().replace(',','').replace(',','')
-    let secondPart = soFarArray.slice(-12,3)
+    let secondPart = soFarArray.slice(-12,4)
     for (let i=0; i<secondPart.length+1; i++){
         if (secondPart.slice(-1)[0]==='0'){
             secondPart.pop()
@@ -73,7 +75,7 @@ else if (1000000000000 <= soFar && soFar <1000000000000000){
 }
 else if (1000000000000000 <= soFar && soFar <1000000000000000000n){
     let firstPart = soFarArray.slice(0,soFarArray.length-15).join().replace(',','').replace(',','')
-    let secondPart = soFarArray.slice(-15,3)
+    let secondPart = soFarArray.slice(-15,4)
     for (let i=0; i<secondPart.length+1; i++){
         if (secondPart.slice(-1)[0]==='0'){
             secondPart.pop()
@@ -91,7 +93,7 @@ else if (1000000000000000 <= soFar && soFar <1000000000000000000n){
 }
 else if (1000000000000000000n <= soFar && soFar <1000000000000000000000n){
     let firstPart = soFarArray.slice(0,soFarArray.length-18).join().replace(',','').replace(',','')
-    let secondPart = soFarArray.slice(-18,3)
+    let secondPart = soFarArray.slice(-18,4)
     for (let i=0; i<secondPart.length+1; i++){
         if (secondPart.slice(-1)[0]==='0'){
             secondPart.pop()
@@ -109,7 +111,7 @@ else if (1000000000000000000n <= soFar && soFar <1000000000000000000000n){
 }
 else if (1000000000000000000000n <= soFar && soFar <1000000000000000000000000n){
     let firstPart = soFarArray.slice(0,soFarArray.length-21).join().replace(',','').replace(',','')
-    let secondPart = soFarArray.slice(-21,3)
+    let secondPart = soFarArray.slice(-21,4)
     for (let i=0; i<secondPart.length+1; i++){
         if (secondPart.slice(-1)[0]==='0'){
             secondPart.pop()
@@ -127,7 +129,7 @@ else if (1000000000000000000000n <= soFar && soFar <1000000000000000000000000n){
 }
 else if (1000000000000000000000000n <= soFar && soFar <1000000000000000000000000000n){
     let firstPart = soFarArray.slice(0,soFarArray.length-24).join().replace(',','').replace(',','')
-    let secondPart = soFarArray.slice(-24,3)
+    let secondPart = soFarArray.slice(-24,4)
     for (let i=0; i<secondPart.length+1; i++){
         if (secondPart.slice(-1)[0]==='0'){
             secondPart.pop()
