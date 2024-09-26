@@ -7,28 +7,26 @@ if (variable>10){
 }
 
 const soFar = variable%1!==0?Math.round(variable*10)/10:Math.round(variable)
-let soFarArray = soFar.toString().split('')
-let soFarString = "Hola"
 
-if (soFar < 1000){
-    soFarString = soFar.toString()
-}
-else if (1000 <= soFar && soFar <1000000){
+
+
+let soFarString = soFar.toString()
+
+if (1000 <= soFar && soFar <1000000){
     
-    let firstPart = soFarArray.slice(0,soFarArray.length-3).join().replace(',','').replace(',','')
-    let secondPart = soFarArray.slice(-3).join().replace(',','').replace(',','')
+    let firstPart = soFarString.slice(-6,-3)
+    let secondPart = soFarString.slice(-3)
     soFarString = `${firstPart},${secondPart}`
 
 }
 else if (1000000 <= soFar && soFar <1000000000){
-    let firstPart = soFarArray.slice(0,soFarArray.length-6).join().replace(',','').replace(',','')
-    let secondPart = soFarArray.slice(-6,4)
+    let firstPart = soFarString.slice(-9,-6)
+    let secondPart = soFarString.slice(-6,-3)
     for (let i=0; i<secondPart.length+1; i++){
         if (secondPart.slice(-1)[0]==='0'){
-            secondPart.pop()
+            secondPart = secondPart.slice(0,-1)
         }
     }
-    secondPart=secondPart.join().replace(',','').replace(',','')
     if (secondPart.length>0){
         soFarString = `${firstPart}.${secondPart} Million`
     }
@@ -38,111 +36,84 @@ else if (1000000 <= soFar && soFar <1000000000){
     
 }
 else if (1000000000 <= soFar && soFar <1000000000000){
-    let firstPart = soFarArray.slice(0,soFarArray.length-9).join().replace(',','').replace(',','')
-    let secondPart = soFarArray.slice(-9,4)
+    let firstPart = soFarString.slice(-12,-9)
+    let secondPart = soFarString.slice(-9,-6)
     for (let i=0; i<secondPart.length+1; i++){
         if (secondPart.slice(-1)[0]==='0'){
-            secondPart.pop()
+            secondPart = secondPart.slice(0,-1)
         }
     }
-    secondPart=secondPart.join().replace(',','').replace(',','')
     if (secondPart.length>0){
         soFarString = `${firstPart}.${secondPart} Billion`
     }
     else{
         soFarString = `${firstPart} Billion`
     }
-
     
 }
 else if (1000000000000 <= soFar && soFar <1000000000000000){
-    let firstPart = soFarArray.slice(0,soFarArray.length-12).join().replace(',','').replace(',','')
-    let secondPart = soFarArray.slice(-12,4)
+    let firstPart = soFarString.slice(-15,-12)
+    let secondPart = soFarString.slice(-12,-9)
     for (let i=0; i<secondPart.length+1; i++){
         if (secondPart.slice(-1)[0]==='0'){
-            secondPart.pop()
+            secondPart = secondPart.slice(0,-1)
         }
     }
-    secondPart=secondPart.join().replace(',','').replace(',','')
     if (secondPart.length>0){
         soFarString = `${firstPart}.${secondPart} Trillion`
     }
     else{
         soFarString = `${firstPart} Trillion`
     }
-
     
 }
 else if (1000000000000000 <= soFar && soFar <1000000000000000000n){
-    let firstPart = soFarArray.slice(0,soFarArray.length-15).join().replace(',','').replace(',','')
-    let secondPart = soFarArray.slice(-15,4)
+    let firstPart = soFarString.slice(-18,-15)
+    let secondPart = soFarString.slice(-15,-12)
     for (let i=0; i<secondPart.length+1; i++){
         if (secondPart.slice(-1)[0]==='0'){
-            secondPart.pop()
+            secondPart = secondPart.slice(0,-1)
         }
     }
-    secondPart=secondPart.join().replace(',','').replace(',','')
     if (secondPart.length>0){
         soFarString = `${firstPart}.${secondPart} Quadrillion`
     }
     else{
         soFarString = `${firstPart} Quadrillion`
     }
-
     
 }
 else if (1000000000000000000n <= soFar && soFar <1000000000000000000000n){
-    let firstPart = soFarArray.slice(0,soFarArray.length-18).join().replace(',','').replace(',','')
-    let secondPart = soFarArray.slice(-18,4)
+    let firstPart = soFarString.slice(-21,-18)
+    let secondPart = soFarString.slice(-18,-15)
     for (let i=0; i<secondPart.length+1; i++){
         if (secondPart.slice(-1)[0]==='0'){
-            secondPart.pop()
+            secondPart = secondPart.slice(0,-1)
         }
     }
-    secondPart=secondPart.join().replace(',','').replace(',','')
     if (secondPart.length>0){
         soFarString = `${firstPart}.${secondPart} Quintillion`
     }
     else{
         soFarString = `${firstPart} Quintillion`
     }
-
     
 }
 else if (1000000000000000000000n <= soFar && soFar <1000000000000000000000000n){
-    let firstPart = soFarArray.slice(0,soFarArray.length-21).join().replace(',','').replace(',','')
-    let secondPart = soFarArray.slice(-21,4)
+    let firstPart = soFarString.slice(-24,-21)
+    let secondPart = soFarString.slice(-21,-18)
     for (let i=0; i<secondPart.length+1; i++){
         if (secondPart.slice(-1)[0]==='0'){
-            secondPart.pop()
+            secondPart = secondPart.slice(0,-1)
         }
     }
-    secondPart=secondPart.join().replace(',','').replace(',','')
     if (secondPart.length>0){
         soFarString = `${firstPart}.${secondPart} Sextillion`
     }
     else{
         soFarString = `${firstPart} Sextillion`
     }
-
     
-}
-else if (1000000000000000000000000n <= soFar && soFar <1000000000000000000000000000n){
-    let firstPart = soFarArray.slice(0,soFarArray.length-24).join().replace(',','').replace(',','')
-    let secondPart = soFarArray.slice(-24,4)
-    for (let i=0; i<secondPart.length+1; i++){
-        if (secondPart.slice(-1)[0]==='0'){
-            secondPart.pop()
-        }
-    }
-    secondPart=secondPart.join().replace(',','').replace(',','')
-    if (secondPart.length>0){
-        soFarString = `${firstPart}.${secondPart} Septillion`
-    }
-    else{
-        soFarString = `${firstPart} Septillion`
-    }
-
 }
 else{
     soFarString = "Too Many"
