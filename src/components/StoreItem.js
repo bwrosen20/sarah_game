@@ -29,6 +29,7 @@ function handleMouseMove(e){
 
 let perSecond = newClicks*amount
 
+
 const perSecondString=numberify(perSecond)
 const soFarString=numberify(soFar)
 const priceString=numberify(price)
