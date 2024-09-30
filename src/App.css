@@ -194,6 +194,117 @@ marquee{
     rotate:-7deg;
   }
 
+
+  .goldenPicture{
+    width:8vw;
+    height:auto;
+    position:absolute;
+    animation-name: appear, spin;
+    animation-duration: 3s, 3s;
+    animation-iteration-count: 1, infinite;
+    animation-timing-function: linear; 
+    box-shadow:10px black;
+    z-index:10;
+    cursor:pointer;
+    }
+
+    .lucky{
+      opacity:0;
+      position:absolute;
+      bottom:10%;
+      left:45%;
+      z-index:5;
+      background-color:rgb(128, 174, 110);
+      box-shadow:.3vw .3vw .3vw grey;
+      padding:.1vw 1vw;
+      border-radius:1vw;
+      text-align:center;
+      animation-name:hi-and-bye,grow-and-go;
+      animation-duration:1.7s;
+      animation-timing-function:linear;
+    }
+
+    @keyframes drop{
+      
+      15%{
+        transform:translateY(0)
+      }
+      50%{
+        transform:translateY(-1vw)
+      }
+      75%{
+        transform:translateY(-3vw)
+      }
+      100%{
+        transform:translateY(-8vw)
+      }
+    }
+
+    @keyframes hi-and-bye{
+      0%{
+        opacity:0
+      } 
+      15%{
+        opacity:1;
+      }
+      50%{
+        opacity:0.66;
+      }
+      75%{
+        opacity:0.33;
+      }
+      100%{
+        opacity:0;
+      }
+    }
+
+    @keyframes grow-and-go{
+      0%{
+        transform:scale(1)
+      } 
+      15%{
+        transform:scale(1.2)
+      }
+      50%{
+        transform:scale(1.05)
+      }
+      75%{
+        transform:scale(0.9)
+      }
+      100%{
+        transform:scale(0.7)
+      }
+    }
+
+
+  @keyframes appear{
+    from{
+      opacity:0
+    } 
+    to{
+      opacity:1
+    }
+  }
+
+  @keyframes spin {
+    0% {
+        transform:rotate(0eg);
+    }
+    25% {
+        transform:rotate(-25deg);
+    }
+    50%{
+      transform:rotate(0deg);
+    }
+    75%{
+      transform:rotate(25deg);
+    }
+    100%{
+      transform:rotate(0deg)
+    }
+}
+  
+
   .upgradeStore{
     
   }
@@ -433,4 +544,14 @@ marquee{
 
   .bold{
     font-weight:bold;
+  }
+
+
+  .bottom{
+    position:absolute;
+    bottom:200px;
+  }
+
+  .goldenPictureOff{
+    display:none
   }

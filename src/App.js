@@ -20,13 +20,27 @@ import house from './mainStorePictures/house.png'
 import videoGame from './mainStorePictures/videoGame.png'
 import boutique from './mainStorePictures/boutique.png'
 import brian from './mainStorePictures/brian.png'
+import deathNote from './goldenPictures/deathNote.png'
+import survivor from './goldenPictures/survivor_jeff.png'
+import smileyFace from './goldenPictures/smileyFace.png'
+import sebastian from './goldenPictures/sebastian.jpg'
 
 
 export const StoreItemsContext = React.createContext()
 
 function App() {
 
+  //goldenSmile whichOne
+  //0:lucky (smileyFace)
+  //1:frenzy for a minute and 17 seconds.(survivor)
+  //1:juice 1 smile causer (mermaid)
+  //2:super frenzy for 30 seconds(Death Note)
+
+  //multipliers: first spot is lucky multiplier and next ones are specific smiler multipliers
+
+  const [goldenSmile,setGoldenSmile] = useState({"count":0,"onScreenCount":0,"activeCount":0,"on":false,"clickable":false,"version":0,"clickableTimeValue":14,"onTimeValue":0,"whichOne":0,"highTime":840,"lowTime":300,"multipliers":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]})
   const [thousandFingersCount, setThousandFingersCount]=useState({"amount":0,"active":false,"addition":0})
+  const [lucky,setLucky]=useState([false,0])
   const [clicks, setClicks]=useState(1010000)
   const [clickValue, setClickValue]=useState(1)
   const [autoClicks, setAutoClicks]=useState(0)
@@ -91,143 +105,93 @@ function App() {
     {"index":4,"item":0,"unlock":10,"price":10000,"wordPrice":"10 Thousand","name":"Ambidextrous","description":"Mouse and Cursor are twice as efficient","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":5,"item":2,"unlock":1,"price":11000,"wordPrice":"11 Thousand","name":"Drops Of Jupiter By Train","description":"Pop Songs are twice as efficient","picture":musicNote,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":6,"item":1,"unlock":25,"price":50000,"wordPrice":"50 Thousand","name":"Caffeine Free! Sarah Can Drink At Night","description":"Diet Coke is twice as efficient","picture":dietCoke,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-
     {"index":7,"item":2,"unlock":5,"price":55000,"wordPrice":"55 Thousand","name":"The She's The Man Soundtrack","description":"Pop Songs are twice as efficient","picture":musicNote,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-
     {"index":8,"item":1,"unlock":1,"price":55000,"wordPrice":"55 Thousand","name":"Pusha T Album","description":"Diet Coke is twice as efficient. Pop Songs gain +1% sps per Diet Coke","picture":dietCoke,"visible":0,"secondItem":2,"unlockTwo":15,"addition":3,"multiply":1},
-
-   
-   
-   
     {"index":9,"item":0,"unlock":25,"price":100000,"wordPrice":"100 Thousand","name":"Thousand Fingers","description":"Mouse and Cursors gain +0.1 Smiles for each non-cursor object owned","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
     {"index":10,"item":3,"unlock":1,"price":120000,"wordPrice":"120 Thousand","name":"Vegan Sausage For Breakfast","description":"Meat Subs are twice as efficient","picture":beyondMeat,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":11,"item":2,"unlock":25,"price":550000,"wordPrice":"550 Thousand","name":"You Request Bottom's Up And They Play It","description":"Pop Songs are twice as efficient","picture":musicNote,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-
     {"index":12,"item":3,"unlock":5,"price":600000,"wordPrice":"600 Thousand","name":"Impossible Whopper","description":"Meat Subs are twice as efficient","picture":beyondMeat,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":13,"item":1,"unlock":1,"price":600000,"wordPrice":"600 Thousand","name":"Lunch Time","description":"Diet Coke is twice as efficient. Meat Subs gain +1% sps per 2 Diet Cokes","picture":dietCoke,"visible":0,"secondItem":3,"unlockTwo":15,"addition":3,"multiply":0.5},
-
     {"index":14,"item":4,"unlock":1,"price":1300000,"wordPrice":"1.3 Million","name":"There's Been A Murder","description":"True Crime is twice as efficient","picture":trueCrime,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":15,"item":1,"unlock":50,"price":5000000,"wordPrice":"5 Million","name":"Recycling A Taco Bell Cup","description":"Diet Coke is twice as efficient","picture":dietCoke,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-
     {"index":16,"item":3,"unlock":25,"price":6000000,"wordPrice":"6 Million","name":"Salmon From Anixi","description":"Meat Subs are twice as efficient","picture":beyondMeat,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-
     {"index":17,"item":4,"unlock":5,"price":6500000,"wordPrice":"6.5 Million","name":"The Black Dalia's Been Caught","description":"True Crime is twice as efficient","picture":trueCrime,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-    {"index":18,"item":1,"unlock":1,"price":6500000,"wordPrice":"6.5 Million","name":"Some Fava Beans And A Nice Chianti","description":"Diet Coke is twice as efficient. True Crime gains +1% sps per 3 Diet Cokes","picture":dietCoke,"visible":0,"secondItem":3,"unlockTwo":15,"addition":3,"multiply":0.333},
-
+    {"index":18,"item":1,"unlock":1,"price":6500000,"wordPrice":"6.5 Million","name":"Some Fava Beans And A Nice Chianti","description":"Diet Coke is twice as efficient. True Crime gains +1% sps per 3 Diet Cokes","picture":dietCoke,"visible":0,"secondItem":4,"unlockTwo":15,"addition":3,"multiply":0.333},
     {"index":19,"item":0,"unlock":50,"price":10000000,"wordPrice":"10 Million","name":"Million Fingers","description":"Multiplies gain from thousand fingers by 5","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
     {"index":20,"item":5,"unlock":1,"price":14000000,"wordPrice":"14 Million","name":"Matt Gets Into Johns Hopkins","description":"Family/Friends are twice as efficient","picture":family,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-
     {"index":21,"item":2,"unlock":50,"price":55000000,"wordPrice":"55 Million","name":"Watermelon Sugar Low","description":"Pop Songs are twice as efficient","picture":musicNote,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-
     {"index":22,"item":4,"unlock":25,"price":65000000,"wordPrice":"65 Million","name":"Double Murder","description":"True Crime is twice as efficient","picture":trueCrime,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-
     {"index":23,"item":5,"unlock":5,"price":70000000,"wordPrice":"70 Million","name":"Rich Solves A Big Case","description":"Family/Friends are twice as efficient","picture":family,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":24,"item":1,"unlock":1,"price":70000000,"wordPrice":"70 Million","name":"Paula Orders You A Diet Coke With Dinner","description":"Diet Coke is twice as efficient. Family/Friends gain +1% sps per 4 Diet Cokes","picture":dietCoke,"visible":0,"secondItem":5,"unlockTwo":15,"addition":3,"multiply":0.25},
-
     {"index":25,"item":0,"unlock":100,"price":100000000,"wordPrice":"100 Million","name":"Billion Fingers","description":"Multiplies gain from thousand fingers by 10","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
     {"index":26,"item":6,"unlock":1,"price":200000000,"wordPrice":"200 Million","name":"A Fluffy Bear","description":"Nature is twice as efficient","picture":nature,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-
     {"index":27,"item":1,"unlock":100,"price":500000000,"wordPrice":"500 Million","name":"World's Biggest Cup Of Diet Coke","description":"Diet Coke is twice as efficient","picture":dietCoke,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":28,"item":3,"unlock":50,"price":600000000,"wordPrice":"600 Million","name":"We Find Out All Fish Are Ass Holes","description":"Meat Subs are twice as efficient","picture":beyondMeat,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":29,"item":5,"unlock":25,"price":700000000,"wordPrice":"700 Million","name":"Christmas Time","description":"Family/Friends are twice as efficient","picture":family,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-
     {"index":30,"item":0,"unlock":150,"price":1000000000,"wordPrice":"1 Billion","name":"Trillion Fingers","description":"Multiplies gain from thousand fingers by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
     {"index":31,"item":6,"unlock":5,"price":1000000000,"wordPrice":"1 Billion","name":"Swim Out To Rock Island","description":"Nature is twice as efficient","picture":nature,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":32,"item":1,"unlock":1,"price":1000000000,"wordPrice":"1 Billion","name":"You Find The Fabled Sugar Free Cola Falls","description":"Diet Coke is twice as efficient. Nature gains +1% sps per 5 Diet Cokes","picture":dietCoke,"visible":0,"secondItem":6,"unlockTwo":15,"addition":3,"multiply":0.2},
-
     {"index":33,"item":7,"unlock":1,"price":3300000000,"wordPrice":"3.3 Billion","name":"Naruto Without The Filler","description":"Anime is twice as efficient","picture":anime,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-
     {"index":34,"item":2,"unlock":100,"price":5500000000,"wordPrice":"5.5 Billion","name":"The DJ Plays Bottoms Up","description":"Pop Songs are twice as efficient","picture":musicNote,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-
     {"index":35,"item":4,"unlock":50,"price":6500000000,"wordPrice":"6.5 Billion","name":"Who Dunnit?","description":"True Crime is twice as efficient","picture":trueCrime,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-
     {"index":36,"item":0,"unlock":200,"price":10000000000,"wordPrice":"10 Billion","name":"Quadrillion Fingers","description":"Multiplies gain from thousand fingers by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
     {"index":37,"item":6,"unlock":25,"price":10000000000,"wordPrice":"10 Billion","name":"Breakneck Ridge","description":"Nature is twice as efficient","picture":nature,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":38,"item":7,"unlock":5,"price":16500000000,"wordPrice":"16.5 Billion","name":"You Find A Death Note. Wuh-oh","description":"Anime is twice as efficient","picture":anime,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":39,"item":1,"unlock":1,"price":16500000000,"wordPrice":"16.5 Billion","name":"ILL TAKE A CHIP AND EAT IT (With Some Diet Coke)","description":"Diet Coke is twice as efficient. Anime gains +1% sps per 6 Diet Cokes","picture":dietCoke,"visible":0,"secondItem":7,"unlockTwo":15,"addition":3,"multiply":0.1666667},
-
-   
     {"index":40,"item":1,"unlock":150,"price":50000000000,"wordPrice":"50 Billion","name":"Something To Wash Down Hummus In Bed","description":"Diet Coke is twice as efficient","picture":dietCoke,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":41,"item":8,"unlock":1,"price":51000000000,"wordPrice":"51 Billion","name":"Port","description":"Wine is twice as efficient","picture":wine,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":42,"item":3,"unlock":100,"price":60000000000,"wordPrice":"60 Billion","name":"50% Off At Stronghearts","description":"Meat Subs are twice as efficient","picture":beyondMeat,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":43,"item":5,"unlock":50,"price":70000000000,"wordPrice":"70 Billion","name":"Upgrades To The River House","description":"Family/Friends are twice as efficient","picture":family,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":44,"item":7,"unlock":25,"price":165000000000,"wordPrice":"165 Billion","name":"You Summon Exodia, Winning The Duel","description":"Anime is twice as efficient","picture":anime,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-
     {"index":45,"item":8,"unlock":5,"price":255000000000,"wordPrice":"255 Billion","name":"Chardonnay","description":"Wine is twice as efficient","picture":wine,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":46,"item":1,"unlock":1,"price":255000000000,"wordPrice":"255 Billion","name":"Caffeine + Alcohol = A Good Time","description":"Diet Coke is twice as efficient. Wine gains +1% sps per 7 Diet Cokes","picture":dietCoke,"visible":0,"secondItem":8,"unlockTwo":15,"addition":3,"multiply":0.14285714},
     {"index":47,"item":2,"unlock":150,"price":550000000000,"wordPrice":"550 Billion","name":"Justin Beiber Concert Number 4","description":"Pop Songs are twice as efficient","picture":musicNote,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-
     {"index":48,"item":4,"unlock":100,"price":650000000000,"wordPrice":"650 Billion","name":"Sarah Figures Out The Movie Halfway Through","description":"True Crime is twice as efficient","picture":trueCrime,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-
     {"index":49,"item":9,"unlock":1,"price":750000000000,"wordPrice":"750 Billion","name":"Amanda Bynes Destroys The Fair","description":"Movies are twice as efficient","picture":movie,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-
     {"index":50,"item":6,"unlock":50,"price":1000000000000,"wordPrice":"1 Trillion","name":"Cheez It The Mouse","description":"Nature is twice as efficient","picture":nature,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-
     {"index":51,"item":8,"unlock":25,"price":2550000000000,"wordPrice":"2.55 Trillion","name":"Sauvignon Blanc","description":"Wine is twice as efficient","picture":wine,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-   
     {"index":52,"item":9,"unlock":5,"price":3750000000000,"wordPrice":"3.75 Trillion","name":"Remember A Name By Saying It In A Deep Voice","description":"Movies are twice as efficient","picture":movie,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":53,"item":1,"unlock":1,"price":3750000000000,"wordPrice":"3.75 Trillion","name":"Poorly Disguised Ad","description":"Diet Coke is twice as efficient. Movies gain +1% sps per 8 Diet Cokes","picture":dietCoke,"visible":0,"secondItem":9,"unlockTwo":15,"addition":3,"multiply":0.125},
-
     {"index":54,"item":3,"unlock":150,"price":6000000000000,"wordPrice":"6 Trillion","name":"You Convert A Meat Eater","description":"Meat Subs are twice as efficient","picture":beyondMeat,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":55,"item":5,"unlock":100,"price":7000000000000,"wordPrice":"7 Trillion","name":"Visit From Jules","description":"Family/Friends are twice as efficient","picture":family,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-
     {"index":56,"item":10,"unlock":1,"price":10000000000000,"wordPrice":"10 Trillion","name":"Riverside Park","description":"Special Places are twice as efficient","picture":house,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":57,"item":0,"unlock":250,"price":10000000000000,"wordPrice":"10 Trillion","name":"Quintllion Fingers","description":"Multiplies gain from thousand fingers by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
     {"index":58,"item":7,"unlock":50,"price":16500000000000,"wordPrice":"16.5 Trillion","name":"You Get A New Quirk","description":"Anime is twice as efficient","picture":anime,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-
-   
     {"index":59,"item":9,"unlock":25,"price":37500000000000,"wordPrice":"37.5 Trillion","name":"Away From The Things Of Man","description":"Movies are twice as efficient","picture":movie,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":60,"item":10,"unlock":5,"price":50000000000000,"wordPrice":"50 Trillion","name":"Blue Mountain Lake","description":"Special Places are twice as efficient","picture":house,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":61,"item":1,"unlock":1,"price":50000000000000,"wordPrice":"50 Trillion","name":"Lunch At Honeywell","description":"Diet Coke is twice as efficient. Special Places gain +1% sps per 9 Diet Cokes","picture":dietCoke,"visible":0,"secondItem":10,"unlockTwo":15,"addition":3,"multiply":0.11111111},
     {"index":62,"item":1,"unlock":200,"price":50000000000000,"wordPrice":"50 Trillion","name":"You Win A Lifetime Supply Of Diet Coke","description":"Diet Coke is twice as efficient","picture":dietCoke,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-
     {"index":63,"item":4,"unlock":150,"price":65000000000000,"wordPrice":"65 Trillion","name":"Somehting To Watch While Doing Your Makeup","description":"True Crime is twice as efficient","picture":trueCrime,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":64,"item":3,"unlock":15,"price":66024000000000,"wordPrice":"66.024 Trillion","name":"Vegan Sushi","description":"Meat Subs gain +5% sps per Anime. Anime gains +0.1% sps per Meat Sub","picture":beyondMeat,"visible":0,"secondItem":7,"unlockTwo":15,"addition":4},
-
     {"index":65,"item":6,"unlock":100,"price":100000000000000,"wordPrice":"100 Trillion","name":"A Whale In The Hudson","description":"Nature is twice as efficient","picture":nature,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-
     {"index":66,"item":11,"unlock":1,"price":140000000000000,"wordPrice":"140 Trillion","name":"Clicker Attack","description":"Video Games are twice as efficient","picture":videoGame,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":67,"item":8,"unlock":50,"price":255000000000000,"wordPrice":"255 Trillion","name":"Tipsy Skis","description":"Wine is twice as efficient","picture":wine,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-
     {"index":68,"item":10,"unlock":25,"price":500000000000000,"wordPrice":"500 Trillion","name":"Abandoned Cement Factory","description":"Special Places are twice as efficient","picture":house,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":69,"item":2,"unlock":200,"price":550000000000000,"wordPrice":"550 Trillion","name":"Lana At Primavera","description":"Pop Songs are twice as efficient","picture":musicNote,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-
     {"index":70,"item":11,"unlock":5,"price":700000000000000,"wordPrice":"700 Trillion","name":"Sora Takes Down Maleficent","description":"Video Games are twice as efficient","picture":videoGame,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":71,"item":1,"unlock":1,"price":700000000000000,"wordPrice":"700 Trillion","name":"Mini Frige Stacked For Smash Tournament","description":"Diet Coke is twice as efficient. Video Games gain +1% sps per 10 Diet Cokes","picture":dietCoke,"visible":0,"secondItem":11,"unlockTwo":15,"addition":3,"multiply":0.1},
     {"index":72,"item":5,"unlock":150,"price":700000000000000,"wordPrice":"700 Trillion","name":"Timmy, Kathy, Karen, Lorraine, Patty, Robert, Carolyn, Richard, Margaret","description":"Family/Friends are twice as efficient","picture":family,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-   
-   
     {"index":73,"item":3,"unlock":15,"price":1020000000000000,"wordPrice":"1.02 Quadrillion","name":"Most Of Our Dinners","description":"Meat Subs gain +5% sps per Wine. Wine gains +0.1% sps per Meat Sub","picture":beyondMeat,"visible":0,"secondItem":8,"unlockTwo":15,"addition":4},
-
     {"index":74,"item":7,"unlock":100,"price":1650000000000000,"wordPrice":"1.65 Quadrillion","name":"Your Sandshrew Learned Swift","description":"Anime is twice as efficient","picture":anime,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-
     {"index":75,"item":12,"unlock":1,"price":1700000000000000,"wordPrice":"1.7 Quadrillion","name":"White Shoes From Asos","description":"Boutiques are twice as efficient","picture":boutique,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":76,"item":9,"unlock":50,"price":3750000000000000,"wordPrice":"3.75 Quadrillion","name":"Solar Plexus, Instep, Nose, Groin","description":"Movies are twice as efficient","picture":movie,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":77,"item":3,"unlock":200,"price":6000000000000000,"wordPrice":"6 Quadrillion","name":"A Cow Learns To Speak And Thanks You","description":"Nature is twice as efficient","picture":beyondMeat,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-
     {"index":78,"item":11,"unlock":25,"price":7000000000000000,"wordPrice":"7 Quadrillion","name":"A Lesser Version Of This Game Involving Cookies","description":"Video Games are twice as efficient","picture":videoGame,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":79,"item":12,"unlock":5,"price":8500000000000000,"wordPrice":"8.5 Quadrillion","name":"The Perfect Thrift Find","description":"Boutiques are twice as efficient","picture":boutique,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":80,"item":1,"unlock":1,"price":8500000000000000,"wordPrice":"8.5 Quadrillion","name":"Sarah Gets Caffeinated And Shops For 3 Hours","description":"Diet Coke is twice as efficient. Boutiques gain +1% sps per 11 Diet Cokes","picture":dietCoke,"visible":0,"secondItem":12,"unlockTwo":15,"addition":3,"multiply":0.090909},
     {"index":81,"item":0,"unlock":300,"price":10000000000000000,"wordPrice":"10 Quadrillion","name":"Sextillion Fingers","description":"Multiplies gain from thousand fingers by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
     {"index":82,"item":6,"unlock":150,"price":10000000000000000,"wordPrice":"10 Quadrillion","name":"Floating Donut In The River","description":"Nature is twice as efficient","picture":nature,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-    
     {"index":83,"item":3,"unlock":15,"price":15000000000000000,"wordPrice":"15 Quadrillion","name":"Fish Are Friends, Not Food","description":"Meat Subs gain +5% sps per Movie. Movies gain +0.1% sps per Meat Sub","picture":beyondMeat,"visible":0,"secondItem":9,"unlockTwo":15,"addition":4},
-
     {"index":84,"item":7,"unlock":15,"price":15660000000000000,"wordPrice":"15.66 Quadrillion","name":"Miyazaki Marathon","description":"Anime gains +5% sps per Movie. Movies gain +0.1% sps per Anime","picture":movie,"visible":0,"secondItem":9,"unlockTwo":15,"addition":4},
-
     {"index":85,"item":13,"unlock":1,"price":21000000000000000,"wordPrice":"21 Quadrillion","name":"Haircut. You're Flustered But Excited","description":"Brians are twice as efficient","picture":brian,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":86,"item":8,"unlock":100,"price":25500000000000000,"wordPrice":"25.5 Quadrillion","name":"A Lovely Cote-De-Rhone","description":"Wine is twice as efficient","picture":wine,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-
     {"index":87,"item":10,"unlock":50,"price":50000000000000000,"wordPrice":"50 Quadrillion","name":"The Fourth At The River","description":"Special Places are twice as efficient","picture":house,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":88,"item":1,"unlock":250,"price":50000000000000000,"wordPrice":"50 Quadrillion","name":"Zeus Bestows Upon Man The Great Nector","description":"Diet Coke is twice as efficient","picture":dietCoke,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-
     {"index":89,"item":4,"unlock":200,"price":65000000000000000,"wordPrice":"65 Quadrillion","name":"The Butler Did It","description":"True Crime is twice as efficient","picture":trueCrime,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-
     {"index":90,"item":12,"unlock":25,"price":85000000000000000,"wordPrice":"85 Quadrillion","name":"Colleen's Adds TV To Boyfriend Area. Can Stay For Hours Now","description":"Boutiques are twice as efficient","picture":boutique,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":91,"item":13,"unlock":5,"price":105000000000000000,"wordPrice":"105 Quadrillion","name":"You Know The Creator?","description":"Brians are twice as efficient","picture":brian,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":92,"item":1,"unlock":1,"price":105000000000000000,"wordPrice":"105 Quadrillion","name":"The Fridge Is Stocked","description":"Diet Coke is twice as efficient. Brians gain +1% sps per 12 Diet Cokes","picture":dietCoke,"visible":0,"secondItem":13,"unlockTwo":15,"addition":3,"multiply":0.0833333},
     {"index":93,"item":7,"unlock":150,"price":165000000000000000,"wordPrice":"165 Quadrillion","name":"The Titans Attacked But You Attacked Back","description":"Anime is twice as efficient","picture":anime,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-    
     {"index":94,"item":2,"unlock":15,"price":200000000000000000,"wordPrice":"200 Quadrillion","name":"Bob Marley On The Boat","description":"Pop Songs gain +5% sps per Special Place. Special Places gain +0.1% sps per Pop Song","picture":musicNote,"visible":0,"secondItem":10,"unlockTwo":15,"addition":4},
 
     {"index":95,"item":5,"unlock":15,"price":200003000000000000,"wordPrice":"200.003 Quadrillion","name":"Bolt Castle","description":"Family/Friends gain +5% sps per Special Place. Special Places gain +0.1% sps per Family/Friend","picture":family,"visible":0,"secondItem":10,"unlockTwo":15,"addition":4},
@@ -427,10 +391,95 @@ function App() {
         //add the real value to soFar
         //send real value down to store to show user
         //map through mainStoreItems where it finds the real values and make an array of them
+
         const fingersTotal = (mainStoreItems[0]["amount"]*thousandFingersCount["addition"]*thousandFingersCount["amount"])
+
+        //find the real autoclick value with extras arrays
+        let realAutoClickTotal = 0
+
+        mainStoreItems.forEach((mainItem)=>{
+          let currentAutoClickValue = 0
+          for (let i=0; i<14; i++){
+            currentAutoClickValue = currentAutoClickValue + (mainItem["extra"][i]*mainStoreItems[i]["amount"]*mainItem["amount"]*mainItem["clicks"]/100)
+            
+          }
+          realAutoClickTotal = realAutoClickTotal + currentAutoClickValue + (mainItem["amount"]*mainItem["clicks"])
+        })
+
         
-        setClicks(prev=>(prev+autoClicks+fingersTotal))
+        setClicks(prev=>(prev+(goldenSmile["multipliers"][0]*(realAutoClickTotal+fingersTotal))))
         if (autoClicks > 0){
+
+          //set variables
+          let goldValue = goldenSmile
+          let goldCounter = 0
+
+          //place goldenSmile clicker in random spot on screen
+          //independent of anything else
+          if (goldenSmile["clickable"]===false){
+
+          
+            let goldenPicture = document.getElementsByName("golden")[0]
+
+            const randomLeftValue = Number.parseInt((Math.random() * 80)+10);
+            const randomTopValue =  Number.parseInt((Math.random() * 80)+10);
+
+
+            goldenPicture.style.top = `${randomLeftValue}%`;
+            goldenPicture.style.left = `${randomTopValue}%`;
+          }
+
+
+          //golden smiler count
+          if (goldenSmile["on"]===true){
+            if (goldenSmile["activeCount"]<goldenSmile["clickableValue"]){
+              setGoldenSmile({...goldenSmile,activeCount:goldenSmile["activeCount"]+1})
+            }
+            else{
+              setGoldenSmile({...goldenSmile,on:false,activeCount:0})
+            }
+          }
+          else{
+           goldCounter = goldenSmile["count"]+1
+
+           //45% chance of lucky (justy adds a bunch of smiles) between 10 and 10.89 (goldenSmile)
+           //40% chance of frenzy (multiplies total multiplier by 7) between 10.91 and 11.69 (survivor)
+           //10% chance of building special (multiplies certain building by 10) between 11.7 and 11.89 (mermaid)
+           //5% chance of click frenzy (multiplies total by 777)between 11.9 and 12 (deathNote)
+
+
+           //make an if statement for when goldenSmile is on, 
+           //run through all possiblities
+           //make a timer key in the goldenSmile state
+           //First if statement is if that timer is at 0, turn it off and don't go through the rest of the if statements
+    
+            // if (goldenSmile["lowValue"] <= goldValue && goldValue <goldenSmile["highValue"]){
+              if (goldenSmile[["lowTime"]] <= goldCounter && goldCounter <goldenSmile["highTime"]){
+                const mathValue = Math.random()*240
+                console.log(mathValue)
+              if (10<=mathValue && 12>=mathValue){
+
+                //death note is 2
+                //survivor is 1
+                if (mathValue < 30){
+                  // setGoldenSmile({...goldenSmile,"activeCount":1,on:true})
+                  console.log("Less than")
+                  goldValue["clickable"]=true
+                  goldValue["whichOne"]=1
+                }
+                else{
+                  console.log("Greater Than")
+                  // setGoldenSmile({...goldenSmile,"activeCount":1,on:true})
+                  goldValue["clickable"]=true
+                  goldValue["whichOne"]=2
+                }
+                
+              }
+            }
+          }
+
+
+
           setSoFar(soFar.map((item)=>{
             if (item["index"]===0){
               return {...item,soFar:item["soFar"]+(mainStoreItems[parseFloat(item["index"])]["clicks"]*mainStoreItems[parseFloat(item["index"])]["amount"])+(mainStoreItems[parseFloat(item["index"])]["amount"]*fingersTotal)}
@@ -440,11 +489,14 @@ function App() {
             }
             
           }))
+          goldValue["count"]=goldCounter
+          setGoldenSmile(goldValue)
           setClickStarter(!clickStarter)
         }
     },1000)
 
   },[clickStarter])
+
 
 if (mainStoreItems[0]["visible"]<2 && clicks >= 15){
   setMainStoreItems(mainStoreItems.map((item)=>(item["index"]===0 ? {...item,visible:2} : item["index"]===2 ? {...item,visible:1} : item)))
@@ -568,7 +620,7 @@ upgrades.forEach((thing)=>{
 
 
   function clickOnFace(){
-    setClicks(clicks+clickValue+(thousandFingersCount["addition"]*thousandFingersCount["amount"]))
+    setClicks(clicks+(goldenSmile["multipliers"][0]*(clickValue+(thousandFingersCount["addition"]*thousandFingersCount["amount"]))))
   }
 
   //problem: i need every time a diet coke is added, to change sps of others. Starting with pop songs
@@ -689,7 +741,6 @@ upgrades.forEach((thing)=>{
             currentAutoClickValue = currentAutoClickValue + (mainItem["extra"][i]*mainStoreItems[i]["amount"]*mainItem["amount"]*mainItem["clicks"]/100)
             
           }
-          console.log(currentAutoClickValue)
           realAutoClickTotal = realAutoClickTotal + currentAutoClickValue + (mainItem["amount"]*mainItem["clicks"])
           return mainItem
           
@@ -730,17 +781,55 @@ upgrades.forEach((thing)=>{
       }
   }
 
-  function doTheThing(){
-    setClicks(10000000000000000000)
-    setAutoClicks(10000000000000000000000)
+  let realAutoClickTotal = 0
+
+  mainStoreItems.forEach((mainItem)=>{
+    let currentAutoClickValue = 0
+    for (let i=0; i<14; i++){
+      currentAutoClickValue = currentAutoClickValue + (mainItem["extra"][i]*mainStoreItems[i]["amount"]*mainItem["amount"]*mainItem["clicks"]/100)
+      
+    }
+    realAutoClickTotal = realAutoClickTotal + currentAutoClickValue + (mainItem["amount"]*mainItem["clicks"])
+  })
+
+  function handleGoldenClick(){
+    //need to set clickable to true
+    //depending on whichOne change a multiplier
+
+     //goldenSmile whichOne
+    //0:lucky (smileyFace)
+    //1:frenzy for a minute and 17 seconds.(survivor)
+    //1:juice 1 smile causer (mermaid)
+    //2:super frenzy for 30 seconds(Death Note)
+    let goldSmileVar = goldenSmile
+
+    if (goldSmileVar["whichOne"]===0){
+      const lumpSum = ((realAutoClickTotal+(mainStoreItems[0]["amount"]*thousandFingersCount["addition"]*thousandFingersCount["amount"]))*900)+13
+      setClicks(clicks+lumpSum)
+      setLucky(true,lumpSum)
+    }
+
+    setGoldenSmile({...goldenSmile,on:true,clickable:false})
   }
+
+  function doTheThing(){
+    // setClicks(10000000000000000000)
+    // setAutoClicks(10000000000000000000000)
+    setLucky([true,1000])
+  }
+
+  function endAnimation(){
+    setLucky([false,0])
+  }
+
+ 
 
 
   const clicksString=numberify(clicks)
-  const perSecondString=numberify(autoClicks+(mainStoreItems[0]["amount"]*thousandFingersCount["addition"]*thousandFingersCount["amount"]))
-  const mouseString=numberify(clickValue + (mainStoreItems[0]["amount"]*thousandFingersCount["addition"]*thousandFingersCount["amount"]))
+  const perSecondString=numberify(goldenSmile["multipliers"][0]*realAutoClickTotal+(mainStoreItems[0]["amount"]*thousandFingersCount["addition"]*thousandFingersCount["amount"]))
+  const mouseString=numberify(goldenSmile["multipliers"][0]*(clickValue + (mainStoreItems[0]["amount"]*thousandFingersCount["addition"]*thousandFingersCount["amount"])))
   
-
+  console.log(goldenSmile)
 
   return (
     <div className="App">
@@ -752,7 +841,7 @@ upgrades.forEach((thing)=>{
         </header>
 
         <StoreItemsContext.Provider value={mainStoreItems}>
-          <div className="mainGame">
+          <div className="mainGame" name={"mainGame"}>
           <div className="sarahClicker">
           <h2 className="userTitle">Sarah Smiler</h2>
             <div className="sarahCounter">
@@ -760,17 +849,21 @@ upgrades.forEach((thing)=>{
               <h3 className="perSecond">Per Second: {perSecondString}</h3>
               <h3 className="perSecond">Clicks Gain {mouseString} Smiles</h3>
             </div>
-              <SarahFace clickOnFace={clickOnFace} />
+              <SarahFace clickOnFace={clickOnFace} goldenSmile={goldenSmile}/>
             </div>
             <div className="automatedClicks">
               <AutomatedClicks doTheThing={doTheThing}/>
+              <img src={goldenSmile["whichOne"]===1?survivor:goldenSmile["whichOne"]===2?sebastian:goldenSmile["whichOne"]===3?deathNote:smileyFace} onClick={handleGoldenClick} className={goldenSmile["clickable"]===true?"goldenPicture":"goldenPictureOff"} name="golden"/>
+              <h1 className={lucky[0]===true?"lucky":"goldenPictureOff"} onAnimationEnd={endAnimation}>+{lucky[1]}</h1>
             </div>
             <div className="store">
               <h1 className="storeTitle">Store</h1>
               <UpgradeStore getUpgrade={getUpgrade} upgrades={upgrades}/>
               <Store soFar={soFar} buyMain={buyMain} mainClicks={clicks} thousandFingersCount={thousandFingersCount}/>
             </div>
+            
           </div>
+          
         </StoreItemsContext.Provider>
     </div>
   );
