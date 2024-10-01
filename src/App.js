@@ -38,7 +38,7 @@ function App() {
 
   //multipliers: first spot is lucky multiplier and next ones are specific smiler multipliers
 
-  const [goldenSmile,setGoldenSmile] = useState({"count":0,"onScreenCount":0,"activeCount":0,"on":false,"clickable":false,"version":0,"clickableTimeValue":14,"onTimeValue":0,"whichOne":0,"highTime":840,"lowTime":300,"multipliers":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]})
+  const [goldenSmile,setGoldenSmile] = useState({"count":0,"onScreenCount":0,"activeCount":0,"on":false,"clickable":false,"version":0,"clickableTimeValue":14,"onValue":0,"whichOne":0,"highTime":840,"lowTime":10,"multipliers":[1,1,1,1,1,1,1,1,1,1,1,1,1,1]})
   const [thousandFingersCount, setThousandFingersCount]=useState({"amount":0,"active":false,"addition":0})
   const [lucky,setLucky]=useState([false,0])
   const [clicks, setClicks]=useState(1010000)
@@ -457,21 +457,28 @@ function App() {
               if (goldenSmile[["lowTime"]] <= goldCounter && goldCounter <goldenSmile["highTime"]){
                 const mathValue = Math.random()*240
                 console.log(mathValue)
-              if (10<=mathValue && 12>=mathValue){
+              if (10<=mathValue && 14>=mathValue){
 
                 //death note is 2
                 //survivor is 1
-                if (mathValue < 30){
+                if (mathValue < 11.8){
                   // setGoldenSmile({...goldenSmile,"activeCount":1,on:true})
-                  console.log("Less than")
+                  goldValue["clickable"]=true
+                  goldValue["whichOne"]=0
+                }
+                else if (mathValue < 13.4){
+                  // setGoldenSmile({...goldenSmile,"activeCount":1,on:true})
                   goldValue["clickable"]=true
                   goldValue["whichOne"]=1
                 }
-                else{
-                  console.log("Greater Than")
+                else if (mathValue < 13.8){
                   // setGoldenSmile({...goldenSmile,"activeCount":1,on:true})
                   goldValue["clickable"]=true
                   goldValue["whichOne"]=2
+                }
+                else{
+                  goldValue["clickable"]=true
+                  goldValue["whichOne"]=3
                 }
                 
               }
@@ -799,17 +806,47 @@ upgrades.forEach((thing)=>{
      //goldenSmile whichOne
     //0:lucky (smileyFace)
     //1:frenzy for a minute and 17 seconds.(survivor)
-    //1:juice 1 smile causer (mermaid)
-    //2:super frenzy for 30 seconds(Death Note)
+    //2:juice 1 smile causer (mermaid)
+    //3:super frenzy for 30 seconds(Death Note)
     let goldSmileVar = goldenSmile
 
     if (goldSmileVar["whichOne"]===0){
       const lumpSum = ((realAutoClickTotal+(mainStoreItems[0]["amount"]*thousandFingersCount["addition"]*thousandFingersCount["amount"]))*900)+13
       setClicks(clicks+lumpSum)
-      setLucky(true,lumpSum)
+      setLucky([true,lumpSum])
+      setGoldenSmile({...goldenSmile,clickable:false})
     }
 
-    setGoldenSmile({...goldenSmile,on:true,clickable:false})
+    if (goldSmileVar["whichOne"]===1){
+      goldSmileVar["multipliers"][0]=7
+      goldSmileVar["clickable"]=false
+      goldSmileVar["onValue"]=77
+      setGoldenSmile(goldSmileVar)
+    }
+
+    if (goldSmileVar["whichOne"]===2){
+      let smilerArray = []
+      const newMainStoreItems = mainStoreItems.slice(1)
+      newMainStoreItems.forEach((mainItem)=>{
+        if (mainItem["amount"]>=10){
+          smilerArray.push(mainItem)
+        }
+      })
+      let item = smilerArray[Math.floor(Math.random()*smilerArray.length)]
+      goldSmileVar["multipliers"][item["index"]]=10
+      goldSmileVar["clickable"]=false
+      goldSmileVar["onValue"]=30
+      setGoldenSmile(goldSmileVar)
+    }
+
+
+    if (goldSmileVar["whichOne"]===3){
+      goldSmileVar["multipliers"][0]=777
+      goldSmileVar["clickable"]=false
+      goldSmileVar["onValue"]=13
+      setGoldenSmile(goldSmileVar)
+    }
+    
   }
 
   function doTheThing(){

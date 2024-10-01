@@ -352,7 +352,7 @@ marquee{
     width:350px;
     top:12vh;
     height:auto;
-    padding:0;
+    padding:0.1vw 0.3vw;
     background-color:rgb(172, 158, 158);
     border-radius:2vw;
   }
