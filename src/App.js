@@ -408,18 +408,26 @@ function App() {
 
         //find the real autoclick value with extras arrays
         let realAutoClickTotal = 0
+        let multiplier = 0
+
+        console.log(goldenSmile["multipliers"])
 
         mainStoreItems.forEach((mainItem)=>{
+          if (mainItem["index"]===0){
+            multiplier = 1
+          }
+          else{
+            multiplier = goldenSmile["multipliers"][mainItem["index"]]
+          }
           let currentAutoClickValue = 0
           for (let i=0; i<14; i++){
-            currentAutoClickValue = currentAutoClickValue + (mainItem["extra"][i]*mainStoreItems[i]["amount"]*mainItem["amount"]*mainItem["clicks"]/100)
+            
+            currentAutoClickValue = currentAutoClickValue + (multiplier*(mainItem["extra"][i]*mainStoreItems[i]["amount"]*mainItem["amount"]*mainItem["clicks"]/100))
             
           }
-          realAutoClickTotal = realAutoClickTotal + currentAutoClickValue + (mainItem["amount"]*mainItem["clicks"])
+          realAutoClickTotal = realAutoClickTotal + currentAutoClickValue + multiplier*[mainItem["index"]]*(mainItem["amount"]*mainItem["clicks"])
         })
-
-        
-        setClicks(prev=>(prev+(goldenSmile["multipliers"][0]*(realAutoClickTotal+fingersTotal))))
+      
         if (autoClicks > 0){
 
           //set variables
@@ -442,75 +450,124 @@ function App() {
           }
 
 
-          //golden smiler count
-          if (goldenSmile["on"]===true){
-            if (goldenSmile["activeCount"]>goldenSmile["count"]){
-              const newGoldenSmile = goldenSmile
-              newGoldenSmile["activeCount"]=newGoldenSmile["activeCount"]+1
-              setGoldenSmile(newGoldenSmile)
+
+
+
+//count: seconds the golden smile can show up on screen
+  //onScreenCount: time the golden smile is clickable
+  //activeCount: Time the multiplier is active
+  //on: the multiplier is active
+  //clickable: the golden smile is on screen
+  //clickableTimeValue: Max time the golden smile is clickable
+  //onValue: amount of time the multiplier will be active
+  //whichOne: which golden smile it is
+  //highTime: Longest you can go waiting for a golden smile to show up
+  //lowTime: Shortest you can wait for a golden smile to show up
+  //multipliers: first spot is lucky multiplier and next ones are specific smiler multipliers
+
+
+
+      //when golden smile is clicked, count is set to 0, only increase count if clickable and on are false
+
+
+          //check if golden smile is clickable
+            //if clickable, increase onScreenCount
+              //if onScreenCount===clickableTimeValue, turn clickable off and reset count to 0
+            //else, move on and check if on
+
+              //if on===false, increase count
+              //else increase activeCount
+                //if activeCount===onScreenCount
+
+
+          if (goldenSmile["clickable"]===true){
+            const goldValue = goldenSmile
+            if (goldenSmile["clickableTimeValue"]===goldenSmile["onScreenCount"]+1){
+              goldValue["onScreenCount"]=0
+              goldValue["clickable"]=false
             }
             else{
-              const newGoldenSmile = goldenSmile
-              newGoldenSmile["on"]=false
-              newGoldenSmile["activeCount"]=0
-              newGoldenSmile["multipliers"]=[1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-              setGoldenSmile()
+              goldValue["onScreenCount"]=goldenSmile["onScreenCount"]+1
+            }
+          }      
+          else if (goldenSmile["on"]===true){
+            const goldValue = goldenSmile
+            if (goldenSmile["activeCount"]+1===goldenSmile["onValue"]){
+              goldValue["on"]=false
+              goldValue["activeCount"]=0
+              goldValue["multipliers"]=[1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+            }
+            else{
+              goldValue["activeCount"]=goldenSmile["activeCount"]+1
             }
           }
           else{
-           goldCounter = goldenSmile["count"]+1
+
+          //make an if statement for when goldenSmile is on, 
+           //run through all possiblities
+           //make a timer key in the goldenSmile state
+           //First if statement is if that timer is at 0, turn it off and don't go through the rest of the if statements
+    
+           let mathValue = 0
+           // if (goldenSmile["lowValue"] <= goldValue && goldValue <goldenSmile["highValue"]){
+             if (goldenSmile["count"]===goldenSmile["highTime"]-2){
+               mathValue = Math.random()*4+10
+             }
+             else{
+               mathValue = Math.random()*240
+             }
+
+             goldCounter = goldenSmile["count"]+1
+
+             if (goldenSmile[["lowTime"]] <= goldCounter && goldCounter <goldenSmile["highTime"] && goldValue["clickable"]===false){
+               
+              // if (10<=mathValue && 14>=mathValue){
+
+              //   //death note is 2
+              //   //survivor is 1
+              //   if (mathValue < 11.8){
+              //     // setGoldenSmile({...goldenSmile,"activeCount":1,on:true})
+              //     goldValue["clickable"]=true
+              //     goldValue["whichOne"]=0
+              //   }
+              //   else if (mathValue < 13.4){
+              //     // setGoldenSmile({...goldenSmile,"activeCount":1,on:true})
+              //     goldValue["clickable"]=true
+              //     goldValue["whichOne"]=1
+              //   }
+              //   else if (mathValue < 13.8){
+              //     // setGoldenSmile({...goldenSmile,"activeCount":1,on:true})
+              //     goldValue["clickable"]=true
+              //     goldValue["whichOne"]=2
+              //   }
+              //   else{
+              //     goldValue["clickable"]=true
+              //     goldValue["whichOne"]=3
+              //   }
+                
+              // }
+
+
+                //TEST DATA
+
+                //death note is 2
+                //survivor is 1
+                
+                  goldValue["clickable"]=true
+                  goldValue["whichOne"]=3
+                
+                
+              
+           }
+           
+         }
+
+
 
            //45% chance of lucky (justy adds a bunch of smiles) between 10 and 10.89 (goldenSmile)
            //40% chance of frenzy (multiplies total multiplier by 7) between 10.91 and 11.69 (survivor)
            //10% chance of building special (multiplies certain building by 10) between 11.7 and 11.89 (mermaid)
            //5% chance of click frenzy (multiplies total by 777)between 11.9 and 12 (deathNote)
-
-
-           //make an if statement for when goldenSmile is on, 
-           //run through all possiblities
-           //make a timer key in the goldenSmile state
-           //First if statement is if that timer is at 0, turn it off and don't go through the rest of the if statements
-    
-              let mathValue = 0
-            // if (goldenSmile["lowValue"] <= goldValue && goldValue <goldenSmile["highValue"]){
-              if (goldenSmile["count"]===goldenSmile["highTime"]-2){
-                mathValue = Math.random()*4+10
-              }
-              else{
-                mathValue = Math.random()*240
-              }
-
-              if (goldenSmile[["lowTime"]] <= goldCounter && goldCounter <goldenSmile["highTime"] && goldValue["clickable"]===false){
-                
-                console.log(mathValue)
-              if (10<=mathValue && 14>=mathValue){
-
-                //death note is 2
-                //survivor is 1
-                if (mathValue < 11.8){
-                  // setGoldenSmile({...goldenSmile,"activeCount":1,on:true})
-                  goldValue["clickable"]=true
-                  goldValue["whichOne"]=0
-                }
-                else if (mathValue < 13.4){
-                  // setGoldenSmile({...goldenSmile,"activeCount":1,on:true})
-                  goldValue["clickable"]=true
-                  goldValue["whichOne"]=1
-                }
-                else if (mathValue < 13.8){
-                  // setGoldenSmile({...goldenSmile,"activeCount":1,on:true})
-                  goldValue["clickable"]=true
-                  goldValue["whichOne"]=2
-                }
-                else{
-                  goldValue["clickable"]=true
-                  goldValue["whichOne"]=3
-                }
-                
-              }
-            }
-          }
-
 
 
           setSoFar(soFar.map((item)=>{
@@ -524,6 +581,8 @@ function App() {
           }))
           goldValue["count"]=goldCounter
           setGoldenSmile(goldValue)
+          setAutoClicks(realAutoClickTotal)
+          setClicks(prev=>(prev+(goldenSmile["multipliers"][0]*(realAutoClickTotal+fingersTotal))))
           setClickStarter(!clickStarter)
         }
     },1000)
@@ -815,15 +874,24 @@ upgrades.forEach((thing)=>{
   }
 
   let realAutoClickTotal = 0
+  let multiplier = 0
 
   mainStoreItems.forEach((mainItem)=>{
+    if (mainItem["index"]===0){
+      multiplier = 1
+    }
+    else{
+      multiplier = goldenSmile["multipliers"][mainItem["index"]]
+    }
     let currentAutoClickValue = 0
     for (let i=0; i<14; i++){
-      currentAutoClickValue = currentAutoClickValue + (mainItem["extra"][i]*mainStoreItems[i]["amount"]*mainItem["amount"]*mainItem["clicks"]/100)
+      
+      currentAutoClickValue = currentAutoClickValue + (multiplier*(mainItem["extra"][i]*mainStoreItems[i]["amount"]*mainItem["amount"]*mainItem["clicks"]/100))
       
     }
-    realAutoClickTotal = realAutoClickTotal + currentAutoClickValue + (mainItem["amount"]*mainItem["clicks"])
+    realAutoClickTotal = realAutoClickTotal + currentAutoClickValue + multiplier*[mainItem["index"]]*(mainItem["amount"]*mainItem["clicks"])
   })
+  console.log(realAutoClickTotal*goldenSmile["multipliers"][0])
 
   function handleGoldenClick(){
     //need to set clickable to true
@@ -866,6 +934,8 @@ upgrades.forEach((thing)=>{
         }
       })
       let item = smilerArray[Math.floor(Math.random()*smilerArray.length)]
+      console.log(smilerArray)
+      console.log(item)
       goldSmileVar["multipliers"][item["index"]]=10
       goldSmileVar["clickable"]=false
       goldSmileVar["onValue"]=30
@@ -896,8 +966,6 @@ upgrades.forEach((thing)=>{
     setLucky([false,0])
   }
 
- 
-  console.log(goldenSmile["count"])
 
   const clicksString=numberify(clicks)
   const perSecondString=numberify(goldenSmile["multipliers"][0]*realAutoClickTotal+(mainStoreItems[0]["amount"]*thousandFingersCount["addition"]*thousandFingersCount["amount"]))
