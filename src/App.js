@@ -53,7 +53,7 @@ function App() {
   const [goldenSmile,setGoldenSmile] = useState({"count":0,"onScreenCount":0,"activeCount":0,"on":false,"clickable":false,"clickableTimeValue":14,"onValue":0,"whichOne":0,"highTime":840,"lowTime":10,"multipliers":[1,1,1,1,1,1,1,1,1,1,1,1,1,1]})
   const [thousandFingersCount, setThousandFingersCount]=useState({"amount":0,"active":false,"addition":0})
   const [lucky,setLucky]=useState([false,0])
-  const [clicks, setClicks]=useState(1010000)
+  const [clicks, setClicks]=useState(0)
   const [clickValue, setClickValue]=useState(1)
   const [autoClicks, setAutoClicks]=useState(0)
   const [clickStarter,setClickStarter]=useState(false)
@@ -410,7 +410,7 @@ function App() {
         let realAutoClickTotal = 0
         let multiplier = 0
 
-        console.log(goldenSmile["multipliers"])
+        // console.log(goldenSmile["multipliers"])
 
         mainStoreItems.forEach((mainItem)=>{
           if (mainItem["index"]===0){
@@ -425,10 +425,13 @@ function App() {
             currentAutoClickValue = currentAutoClickValue + (multiplier*(mainItem["extra"][i]*mainStoreItems[i]["amount"]*mainItem["amount"]*mainItem["clicks"]/100))
             
           }
-          realAutoClickTotal = realAutoClickTotal + currentAutoClickValue + multiplier*[mainItem["index"]]*(mainItem["amount"]*mainItem["clicks"])
+          realAutoClickTotal = realAutoClickTotal + currentAutoClickValue + multiplier*(mainItem["amount"]*mainItem["clicks"])
         })
+
+        console.log(mainStoreItems[0])
       
         if (autoClicks > 0){
+
 
           //set variables
           let goldValue = goldenSmile
@@ -718,9 +721,15 @@ upgrades.forEach((thing)=>{
   //problem: i need every time a diet coke is added, to change sps of others. Starting with pop songs
   //diet cokes are added on buy main function
 
+
+
   function buyMain(event){
   const mainObject = mainStoreItems.filter((itemName)=>(itemName["index"]===parseInt(event.target.getAttribute('value'))))[0]
+
+  console.log(mainObject)
+  
   if (mainObject["price"] <= clicks){
+
     if (autoClicks===0){
       setClickStarter(!clickStarter)
     }
@@ -739,6 +748,8 @@ upgrades.forEach((thing)=>{
       setThousandFingersCount({...thousandFingersCount,amount:thousandFingersCount["amount"]+1})
     }
   }
+
+  console.log(mainStoreItems)
 
   //additions: 
   //1 is multiply clicks by 2
@@ -889,9 +900,8 @@ upgrades.forEach((thing)=>{
       currentAutoClickValue = currentAutoClickValue + (multiplier*(mainItem["extra"][i]*mainStoreItems[i]["amount"]*mainItem["amount"]*mainItem["clicks"]/100))
       
     }
-    realAutoClickTotal = realAutoClickTotal + currentAutoClickValue + multiplier*[mainItem["index"]]*(mainItem["amount"]*mainItem["clicks"])
+    realAutoClickTotal = realAutoClickTotal + currentAutoClickValue + multiplier*(mainItem["amount"]*mainItem["clicks"])
   })
-  console.log(realAutoClickTotal*goldenSmile["multipliers"][0])
 
   function handleGoldenClick(){
     //need to set clickable to true
@@ -965,7 +975,9 @@ upgrades.forEach((thing)=>{
   function endAnimation(){
     setLucky([false,0])
   }
+  
 
+  console.log(goldenSmile["multipliers"][0]*realAutoClickTotal+(mainStoreItems[0]["amount"]*thousandFingersCount["addition"]*thousandFingersCount["amount"]))
 
   const clicksString=numberify(clicks)
   const perSecondString=numberify(goldenSmile["multipliers"][0]*realAutoClickTotal+(mainStoreItems[0]["amount"]*thousandFingersCount["addition"]*thousandFingersCount["amount"]))

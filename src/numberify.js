@@ -2,11 +2,15 @@
 
 function numberify(variable){
 
+let soFar = 0
+
 if (variable>10){
     variable=Math.round(variable)
+    soFar = variable%1!==0?Math.round(variable*10)/10:Math.round(variable)
 }
-
-const soFar = variable%1!==0?Math.round(variable*10)/10:Math.round(variable)
+else{
+    soFar = variable%1!==0?variable.toFixed(1):variable
+}
 
 
 
