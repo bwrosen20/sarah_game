@@ -23,7 +23,7 @@ import brian from './mainStorePictures/brian.png'
 import deathNote from './goldenPictures/deathNote.png'
 import survivor from './goldenPictures/survivor_jeff.png'
 import smileyFace from './goldenPictures/smileyFace.png'
-import sebastian from './goldenPictures/sebastian.jpg'
+import sebastian from './goldenPictures/sebastian.png'
 
 
 export const StoreItemsContext = React.createContext()
@@ -57,6 +57,7 @@ function App() {
   const [clickValue, setClickValue]=useState(1)
   const [autoClicks, setAutoClicks]=useState(0)
   const [clickStarter,setClickStarter]=useState(false)
+  const [clicksSoFar,setClicksSoFar]=useState(0)
   const [soFar,setSoFar]=useState([
     {"index":0,"soFar":0,"realValue":0},
     {"index":1,"soFar":0,"realValue":0},
@@ -524,31 +525,31 @@ function App() {
 
              if (goldenSmile[["lowTime"]] <= goldCounter && goldCounter <goldenSmile["highTime"] && goldValue["clickable"]===false){
                
-              // if (10<=mathValue && 14>=mathValue){
+              if (10<=mathValue && 14>=mathValue){
 
-              //   //death note is 2
-              //   //survivor is 1
-              //   if (mathValue < 11.8){
-              //     // setGoldenSmile({...goldenSmile,"activeCount":1,on:true})
-              //     goldValue["clickable"]=true
-              //     goldValue["whichOne"]=0
-              //   }
-              //   else if (mathValue < 13.4){
-              //     // setGoldenSmile({...goldenSmile,"activeCount":1,on:true})
-              //     goldValue["clickable"]=true
-              //     goldValue["whichOne"]=1
-              //   }
-              //   else if (mathValue < 13.8){
-              //     // setGoldenSmile({...goldenSmile,"activeCount":1,on:true})
-              //     goldValue["clickable"]=true
-              //     goldValue["whichOne"]=2
-              //   }
-              //   else{
-              //     goldValue["clickable"]=true
-              //     goldValue["whichOne"]=3
-              //   }
+                //death note is 2
+                //survivor is 1
+                if (mathValue < 11.8){
+                  setGoldenSmile({...goldenSmile,"activeCount":1,on:true})
+                  goldValue["clickable"]=true
+                  goldValue["whichOne"]=0
+                }
+                else if (mathValue < 13.4){
+                  setGoldenSmile({...goldenSmile,"activeCount":1,on:true})
+                  goldValue["clickable"]=true
+                  goldValue["whichOne"]=1
+                }
+                else if (mathValue < 13.8){
+                  setGoldenSmile({...goldenSmile,"activeCount":1,on:true})
+                  goldValue["clickable"]=true
+                  goldValue["whichOne"]=2
+                }
+                else{
+                  goldValue["clickable"]=true
+                  goldValue["whichOne"]=3
+                }
                 
-              // }
+              }
 
 
                 //TEST DATA
@@ -556,8 +557,8 @@ function App() {
                 //death note is 2
                 //survivor is 1
                 
-                  goldValue["clickable"]=true
-                  goldValue["whichOne"]=3
+                  // goldValue["clickable"]=true
+                  // goldValue["whichOne"]=3
                 
                 
               
@@ -716,6 +717,7 @@ upgrades.forEach((thing)=>{
 
   function clickOnFace(){
     setClicks(clicks+(goldenSmile["multipliers"][0]*(clickValue+(thousandFingersCount["addition"]*thousandFingersCount["amount"]))))
+    setClicksSoFar(clicksSoFar+clickValue)
   }
 
   //problem: i need every time a diet coke is added, to change sps of others. Starting with pop songs
@@ -916,12 +918,24 @@ upgrades.forEach((thing)=>{
 
     if (goldenSmile["whichOne"]===0){
       const lumpSum = ((realAutoClickTotal+(mainStoreItems[0]["amount"]*thousandFingersCount["addition"]*thousandFingersCount["amount"]))*900)+13
+      let percentage = 0
+      soFar.forEach((single)=>{
+        percentage = percentage + single["soFar"]
+      })
+      percentage = (clicksSoFar+percentage) * 0.15
       goldSmileVar["clickable"]=false
       goldSmileVar["count"]=0
       goldSmileVar["onScreenCount"]=0
       setGoldenSmile(goldSmileVar)
-      setClicks(clicks+lumpSum)
-      setLucky([true,lumpSum])
+      if (percentage < lumpSum){
+        setClicks(clicks+percentage)
+        setLucky([true,percentage])
+      }
+      else{
+        setClicks(clicks+lumpSum)
+        setLucky([true,lumpSum])
+      }
+      
       
     }
 
@@ -1006,7 +1020,7 @@ upgrades.forEach((thing)=>{
             <div className="automatedClicks">
               <AutomatedClicks doTheThing={doTheThing}/>
               <img src={goldenSmile["whichOne"]===1?survivor:goldenSmile["whichOne"]===2?sebastian:goldenSmile["whichOne"]===3?deathNote:smileyFace} onClick={handleGoldenClick} className={goldenSmile["clickable"]===true?"goldenPicture":"goldenPictureOff"} name="golden"/>
-              <h1 className={lucky[0]===true?"lucky":"goldenPictureOff"} onAnimationEnd={endAnimation}>+{lucky[1]}</h1>
+              <h1 className={lucky[0]===true?"lucky":"goldenPictureOff"} onAnimationEnd={endAnimation}>+{numberify(lucky[1])}</h1>
             </div>
             <div className="store">
               <h1 className="storeTitle">Store</h1>

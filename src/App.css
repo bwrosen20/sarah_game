@@ -405,6 +405,7 @@ marquee{
 
   .store{
    overflow-y:auto;
+   overflow-x:hidden;
   }
 
   
