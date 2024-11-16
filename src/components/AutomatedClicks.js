@@ -2,11 +2,10 @@ import AutomatedClickItem from './AutomatedClickItem'
 import {StoreItemsContext} from '../App'
 import {useContext} from 'react'
 
-function AutomatedClicks({doTheThing}){
+function AutomatedClicks(){
     const mainStoreItems = useContext(StoreItemsContext)
 
     return<div className="automatedClicks">
-        <button onClick={doTheThing}></button>
         {mainStoreItems.map((item)=>(
             <AutomatedClickItem item={item}/>
         ))}

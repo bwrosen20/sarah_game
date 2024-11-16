@@ -4,7 +4,9 @@ import AutomatedClicks from './components/AutomatedClicks'
 import UpgradeStore from './components/UpgradeStore'
 import JSBI from 'jsbi'
 import './App.css';
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
+import { CookiesProvider, useCookies, } from 'react-cookie'
+import Cookies from 'js-cookie'
 import numberify from './numberify'
 import cursor from "./mainStorePictures/cursor.png"
 import dietCoke from './mainStorePictures/dietCoke.png'
@@ -49,11 +51,14 @@ function App() {
   //lowTime: Shortest you can wait for a golden smile to show up
   //multipliers: first spot is lucky multiplier and next ones are specific smiler multipliers
 
+  const [cookieCounter,setCookieCounter]=useState(0)
+  const [cookies, setCookie] = useCookies(['everything'])
 
-  const [goldenSmile,setGoldenSmile] = useState({"count":0,"onScreenCount":0,"activeCount":0,"on":false,"clickable":false,"clickableTimeValue":14,"onValue":0,"whichOne":0,"highTime":840,"lowTime":10,"multipliers":[1,1,1,1,1,1,1,1,1,1,1,1,1,1]})
+
+  const [goldenSmile,setGoldenSmile] = useState({"count":0,"onScreenCount":0,"activeCount":0,"on":false,"clickable":false,"clickableTimeValue":14,"onValue":0,"whichOne":0,"highTime":840,"lowTime":300,"multipliers":[1,1,1,1,1,1,1,1,1,1,1,1,1,1]})
   const [thousandFingersCount, setThousandFingersCount]=useState({"amount":0,"active":false,"addition":0})
   const [lucky,setLucky]=useState([false,0])
-  const [clicks, setClicks]=useState(0)
+  const [clicks, setClicks]=useState(cookies.everything? cookies.everything : 0 )
   const [clickValue, setClickValue]=useState(1)
   const [autoClicks, setAutoClicks]=useState(0)
   const [clickStarter,setClickStarter]=useState(false)
@@ -386,7 +391,7 @@ function App() {
     {"index":204,"item":13,"unlock":450,"price":105000000000000000000000000000000000000000000,"wordPrice":"105 Tredecillion","name":"I love You Sarah. Merry Christmakah!","description":"Brians are twice as efficient","picture":brian,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
 
   ])
-
+  
   // 
   //   
   
@@ -404,6 +409,19 @@ function App() {
         //add the real value to soFar
         //send real value down to store to show user
         //map through mainStoreItems where it finds the real values and make an array of them
+
+
+        //cookie counter saves cookie every 10 seconds
+
+        setCookieCounter(cookieCounter+1)
+
+        console.log(cookieCounter)
+
+        if (cookieCounter==10){
+          console.log("Hi")
+          setCookie('everything', clicks, { path: '/' })
+          setCookieCounter(0)
+        }
 
         const fingersTotal = (mainStoreItems[0]["amount"]*thousandFingersCount["addition"]*thousandFingersCount["amount"])
 
@@ -429,7 +447,7 @@ function App() {
           realAutoClickTotal = realAutoClickTotal + currentAutoClickValue + multiplier*(mainItem["amount"]*mainItem["clicks"])
         })
 
-        console.log(mainStoreItems[0])
+        // console.log(mainStoreItems[0])
       
         if (autoClicks > 0){
 
@@ -751,7 +769,7 @@ upgrades.forEach((thing)=>{
     }
   }
 
-  console.log(mainStoreItems)
+  // console.log(mainStoreItems)
 
   //additions: 
   //1 is multiply clicks by 2
@@ -982,16 +1000,16 @@ upgrades.forEach((thing)=>{
     
   }
 
-  function doTheThing(){
-    setLucky([true,1000])
-  }
-
   function endAnimation(){
     setLucky([false,0])
   }
+
+  function restart(){
+    Cookies.remove('everything', { path: '/' })
+  }
   
 
-  console.log(goldenSmile["multipliers"][0]*realAutoClickTotal+(mainStoreItems[0]["amount"]*thousandFingersCount["addition"]*thousandFingersCount["amount"]))
+  // console.log(goldenSmile["multipliers"][0]*realAutoClickTotal+(mainStoreItems[0]["amount"]*thousandFingersCount["addition"]*thousandFingersCount["amount"]))
 
   const clicksString=numberify(clicks)
   const perSecondString=numberify(goldenSmile["multipliers"][0]*realAutoClickTotal+(mainStoreItems[0]["amount"]*thousandFingersCount["addition"]*thousandFingersCount["amount"]))
@@ -1005,7 +1023,7 @@ upgrades.forEach((thing)=>{
           <marquee behavior="alternate" scrollamount="30" direction="down">Hi</marquee>
         </marquee> */}
         </header>
-
+        <CookiesProvider>
         <StoreItemsContext.Provider value={mainStoreItems}>
           <div className="mainGame" name={"mainGame"}>
           <div className="sarahClicker">
@@ -1018,7 +1036,8 @@ upgrades.forEach((thing)=>{
               <SarahFace clickOnFace={clickOnFace} goldenSmile={goldenSmile}/>
             </div>
             <div className="automatedClicks">
-              <AutomatedClicks doTheThing={doTheThing}/>
+              <AutomatedClicks />
+              <button onClick={restart}>Restart</button>
               <img src={goldenSmile["whichOne"]===1?survivor:goldenSmile["whichOne"]===2?sebastian:goldenSmile["whichOne"]===3?deathNote:smileyFace} onClick={handleGoldenClick} className={goldenSmile["clickable"]===true?"goldenPicture":"goldenPictureOff"} name="golden"/>
               <h1 className={lucky[0]===true?"lucky":"goldenPictureOff"} onAnimationEnd={endAnimation}>+{numberify(lucky[1])}</h1>
             </div>
@@ -1031,6 +1050,7 @@ upgrades.forEach((thing)=>{
           </div>
           
         </StoreItemsContext.Provider>
+        </CookiesProvider>
     </div>
   );
 }

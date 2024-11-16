@@ -9,7 +9,7 @@ if (variable>10){
     soFar = variable%1!==0?Math.round(variable*10)/10:Math.round(variable)
 }
 else{
-    soFar = variable%1!==0?variable.toFixed(1):variable
+    try{ soFar = variable%1!==0?variable.toFixed(1):variable} catch(e) { console.log(e); console.log(variable); }
 }
 
 
