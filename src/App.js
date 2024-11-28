@@ -52,18 +52,21 @@ function App() {
   //multipliers: first spot is lucky multiplier and next ones are specific smiler multipliers
 
   const [cookieCounter,setCookieCounter]=useState(0)
-  const [cookies, setCookie] = useCookies(['everything'])
+  const [cookies, setCookie] = useCookies(['everything','mainStoreItems','upgrades'])
+
+  //[clicks,goldenSmile,thousandFingersCount,lucky,clickValue,autoClicks,clicksSoFar,soFar,mainStoreItems,upgrades]
 
 
-  const [goldenSmile,setGoldenSmile] = useState({"count":0,"onScreenCount":0,"activeCount":0,"on":false,"clickable":false,"clickableTimeValue":14,"onValue":0,"whichOne":0,"highTime":840,"lowTime":300,"multipliers":[1,1,1,1,1,1,1,1,1,1,1,1,1,1]})
-  const [thousandFingersCount, setThousandFingersCount]=useState({"amount":0,"active":false,"addition":0})
-  const [lucky,setLucky]=useState([false,0])
-  const [clicks, setClicks]=useState(cookies.everything? cookies.everything : 0 )
-  const [clickValue, setClickValue]=useState(1)
-  const [autoClicks, setAutoClicks]=useState(0)
+  const [goldenSmile,setGoldenSmile] = useState(cookies.everything? cookies.everything[1]:{"count":0,"onScreenCount":0,"activeCount":0,"on":false,"clickable":false,"clickableTimeValue":14,"onValue":0,"whichOne":0,"highTime":840,"lowTime":300,"multipliers":[1,1,1,1,1,1,1,1,1,1,1,1,1,1]})
+  const [thousandFingersCount, setThousandFingersCount]=useState(cookies.everything? cookies.everything[2]:{"amount":0,"active":false,"addition":0})
+  const [lucky,setLucky]=useState(cookies.everything? cookies.everything[3]:[false,0])
+  const [clicks, setClicks]=useState(cookies.everything? cookies.everything[0] : 0 )
+  const [clickValue, setClickValue]=useState(cookies.everything? cookies.everything[4]:1)
+  const [youSure, setYouSure]=useState(false)
+  const [autoClicks, setAutoClicks]=useState(cookies.everything? cookies.everything[5]:0)
   const [clickStarter,setClickStarter]=useState(false)
-  const [clicksSoFar,setClicksSoFar]=useState(0)
-  const [soFar,setSoFar]=useState([
+  const [clicksSoFar,setClicksSoFar]=useState(cookies.everything? cookies.everything[6]:0)
+  const [soFar,setSoFar]=useState(cookies.everything? cookies.everything[7]:[
     {"index":0,"soFar":0,"realValue":0},
     {"index":1,"soFar":0,"realValue":0},
     {"index":2,"soFar":0,"realValue":0},
@@ -79,8 +82,24 @@ function App() {
     {"index":12,"soFar":0,"realValue":0},
     {"index":13,"soFar":0,"realValue":0}
   ])
-  // const [mainStoreItems, setMainStoreItems]=useState([])
-  const [mainStoreItems,setMainStoreItems] = useState([
+
+  const [mainStoreItems,setMainStoreItems] = useState(cookies.mainStoreItems?[
+    {"index":0,"item":"Cursor", "price":cookies.mainStoreItems[0], "clicks":cookies.mainStoreItems[1], "amount":cookies.mainStoreItems[2], "picture":cursor, "visible":cookies.mainStoreItems[3],"extra":cookies.mainStoreItems[4]}, 
+  {"index":1,"item":"Diet Coke", "price":cookies.mainStoreItems[5], "clicks":cookies.mainStoreItems[6], "amount":cookies.mainStoreItems[7], "picture":dietCoke, "visible":cookies.mainStoreItems[8],"extra":cookies.mainStoreItems[9]},
+  {"index":2,"item":"Mid 2000's Pop Song", "price":cookies.mainStoreItems[10], "clicks":cookies.mainStoreItems[11], "amount":cookies.mainStoreItems[12], "picture":musicNote, "visible":cookies.mainStoreItems[13],"extra":cookies.mainStoreItems[14]},
+  {"index":3,"item":"Meat Substitute", "price":cookies.mainStoreItems[15], "clicks":cookies.mainStoreItems[16], "amount":cookies.mainStoreItems[17], "picture":beyondMeat, "visible":cookies.mainStoreItems[18],"extra":cookies.mainStoreItems[19]},
+  {"index":4,"item":"True Crime Video","price":cookies.mainStoreItems[20], "clicks":cookies.mainStoreItems[21], "amount":cookies.mainStoreItems[22], "picture":trueCrime, "visible":cookies.mainStoreItems[23],"extra":cookies.mainStoreItems[24]},
+  {"index":5,"item":"Family/Friend", "price":cookies.mainStoreItems[25], "clicks":cookies.mainStoreItems[26], "amount":cookies.mainStoreItems[27], "picture":family, "visible":cookies.mainStoreItems[28],"extra":cookies.mainStoreItems[29]},
+  {"index":6,"item":"Nature", "price":cookies.mainStoreItems[30], "clicks":cookies.mainStoreItems[32], "amount":cookies.mainStoreItems[32], "picture":nature, "visible":cookies.mainStoreItems[33],"extra":cookies.mainStoreItems[34]},
+  {"index":7,"item":"Anime", "price":cookies.mainStoreItems[35], "clicks":cookies.mainStoreItems[36], "amount":cookies.mainStoreItems[37], "picture":anime, "visible":cookies.mainStoreItems[38],"extra":cookies.mainStoreItems[39]},
+  {"index":8,"item":"Wine","price":cookies.mainStoreItems[40], "clicks":cookies.mainStoreItems[41], "amount":cookies.mainStoreItems[42], "picture":wine, "visible":cookies.mainStoreItems[43],"extra":cookies.mainStoreItems[44]},
+  {"index":9,"item":"Very Specific Movie", "price":cookies.mainStoreItems[45], "clicks":cookies.mainStoreItems[46], "amount":cookies.mainStoreItems[47], "picture":movie, "visible":cookies.mainStoreItems[48],"extra":cookies.mainStoreItems[49]},
+  {"index":10,"item":"Special Place", "price":cookies.mainStoreItems[50], "clicks":cookies.mainStoreItems[51], "amount":cookies.mainStoreItems[52], "picture":house, "visible":cookies.mainStoreItems[53],"extra":cookies.mainStoreItems[54]},
+  {"index":11,"item":"Video Game", "price":cookies.mainStoreItems[55], "clicks":cookies.mainStoreItems[56], "amount":cookies.mainStoreItems[57], "picture":videoGame, "visible":cookies.mainStoreItems[58],"extra":cookies.mainStoreItems[59]},
+  {"index":12,"item":"Boutique", "price":cookies.mainStoreItems[60], "clicks":cookies.mainStoreItems[61], "amount":cookies.mainStoreItems[62], "picture":boutique, "visible":cookies.mainStoreItems[63],"extra":cookies.mainStoreItems[64]},
+  {"index":13,"item":"Brian", "price":cookies.mainStoreItems[65], "clicks":cookies.mainStoreItems[66], "amount":cookies.mainStoreItems[67], "picture":brian, "visible":cookies.mainStoreItems[68],"extra":cookies.mainStoreItems[69]}
+  ]:
+    [
   {"index":0,"item":"Cursor", "price":15, "clicks":0.1, "amount":0, "picture":cursor, "visible":1,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]}, 
   {"index":1,"item":"Diet Coke", "price":100, "clicks":1, "amount":0, "picture":dietCoke, "visible":1,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
   {"index":2,"item":"Mid 2000's Pop Song", "price":1100, "clicks":8, "amount":0, "picture":musicNote, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
@@ -95,6 +114,23 @@ function App() {
   {"index":11,"item":"Video Game", "price":14000000000000, "clicks":65000000, "amount":0, "picture":videoGame, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
   {"index":12,"item":"Boutique", "price":170000000000000, "clicks":430000000, "amount":0, "picture":boutique, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
   {"index":13,"item":"Brian", "price":2100000000000000, "clicks":2900000000, "amount":0, "picture":brian, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]}])
+
+  // const [mainStoreItems,setMainStoreItems] = useState(
+  //   [
+  // {"index":0,"item":"Cursor", "price":15, "clicks":0.1, "amount":0, "picture":cursor, "visible":1,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]}, 
+  // {"index":1,"item":"Diet Coke", "price":100, "clicks":1, "amount":0, "picture":dietCoke, "visible":1,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  // {"index":2,"item":"Mid 2000's Pop Song", "price":1100, "clicks":8, "amount":0, "picture":musicNote, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  // {"index":3,"item":"Meat Substitute", "price":12000, "clicks":47, "amount":0, "picture":beyondMeat, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  // {"index":4,"item":"True Crime Video","price":130000, "clicks":260, "amount":0, "picture":trueCrime, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  // {"index":5,"item":"Family/Friend", "price":1400000, "clicks":1400, "amount":0, "picture":family, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  // {"index":6,"item":"Nature", "price":20000000, "clicks":7800, "amount":0, "picture":nature, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  // {"index":7,"item":"Anime", "price":330000000, "clicks":44000, "amount":0, "picture":anime, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  // {"index":8,"item":"Wine", "price":5100000000, "clicks":260000, "amount":0, "picture":wine, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  // {"index":9,"item":"Very Specific Movie", "price":75000000000, "clicks":1600000, "amount":0, "picture":movie, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  // {"index":10,"item":"Special Place", "price":1000000000000, "clicks":10000000, "amount":0, "picture":house, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  // {"index":11,"item":"Video Game", "price":14000000000000, "clicks":65000000, "amount":0, "picture":videoGame, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  // {"index":12,"item":"Boutique", "price":170000000000000, "clicks":430000000, "amount":0, "picture":boutique, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+  // {"index":13,"item":"Brian", "price":2100000000000000, "clicks":2900000000, "amount":0, "picture":brian, "visible":0,"extra":[0,0,0,0,0,0,0,0,0,0,0,0,0,0]}])
 
 
   //14 is none
@@ -114,6 +150,8 @@ function App() {
 
 //index 7 is actually 40
 //index 8 is actually 128
+
+  console.log(mainStoreItems)
 
   const [upgrades,setUpgrades] = useState([
     {"index":0,"item":0,"unlock":1,"price":100,"wordPrice":100,"name":"Reinforced Index Finger","description":"Mouse and Cursor are twice as efficient","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
@@ -419,7 +457,8 @@ function App() {
 
         if (cookieCounter==10){
           console.log("Hi")
-          setCookie('everything', clicks, { path: '/' })
+          setCookie('everything', [clicks,goldenSmile,thousandFingersCount,lucky,clickValue,autoClicks,clicksSoFar,soFar], { path: '/' })
+          setCookie('mainStoreItems',[mainStoreItems[0]["price"],mainStoreItems[0]["clicks"],mainStoreItems[0]["amount"],mainStoreItems[0]["visible"],mainStoreItems[0]["extra"],mainStoreItems[1]["price"],mainStoreItems[1]["clicks"],mainStoreItems[1]["amount"],mainStoreItems[1]["visible"],mainStoreItems[1]["extra"],mainStoreItems[2]["price"],mainStoreItems[2]["clicks"],mainStoreItems[2]["amount"],mainStoreItems[2]["visible"],mainStoreItems[2]["extra"],mainStoreItems[3]["price"],mainStoreItems[3]["clicks"],mainStoreItems[3]["amount"],mainStoreItems[3]["visible"],mainStoreItems[3]["extra"],mainStoreItems[4]["price"],mainStoreItems[4]["clicks"],mainStoreItems[4]["amount"],mainStoreItems[4]["visible"],mainStoreItems[4]["extra"],mainStoreItems[5]["price"],mainStoreItems[5]["clicks"],mainStoreItems[5]["amount"],mainStoreItems[5]["visible"],mainStoreItems[5]["extra"],mainStoreItems[6]["price"],mainStoreItems[6]["clicks"],mainStoreItems[6]["amount"],mainStoreItems[6]["visible"],mainStoreItems[6]["extra"],mainStoreItems[7]["price"],mainStoreItems[7]["clicks"],mainStoreItems[7]["amount"],mainStoreItems[7]["visible"],mainStoreItems[7]["extra"],mainStoreItems[8]["price"],mainStoreItems[8]["clicks"],mainStoreItems[8]["amount"],mainStoreItems[8]["visible"],mainStoreItems[8]["extra"],mainStoreItems[9]["price"],mainStoreItems[9]["clicks"],mainStoreItems[9]["amount"],mainStoreItems[9]["visible"],mainStoreItems[9]["extra"],mainStoreItems[10]["price"],mainStoreItems[10]["clicks"],mainStoreItems[10]["amount"],mainStoreItems[10]["visible"],mainStoreItems[10]["extra"],mainStoreItems[11]["price"],mainStoreItems[11]["clicks"],mainStoreItems[11]["amount"],mainStoreItems[11]["visible"],mainStoreItems[11]["extra"],mainStoreItems[12]["price"],mainStoreItems[12]["clicks"],mainStoreItems[12]["amount"],mainStoreItems[12]["visible"],mainStoreItems[12]["extra"],mainStoreItems[13]["price"],mainStoreItems[13]["clicks"],mainStoreItems[13]["amount"],mainStoreItems[13]["visible"],mainStoreItems[13]["extra"]],{path: '/'})
           setCookieCounter(0)
         }
 
@@ -1005,7 +1044,12 @@ upgrades.forEach((thing)=>{
   }
 
   function restart(){
-    Cookies.remove('everything', { path: '/' })
+    Cookies.remove('mainStoreItems', { path: '/' })
+    setYouSure(false)
+  }
+
+  function youSureFunc(){
+    setYouSure(!youSure)
   }
   
 
@@ -1025,7 +1069,11 @@ upgrades.forEach((thing)=>{
         </header>
         <CookiesProvider>
         <StoreItemsContext.Provider value={mainStoreItems}>
+          
           <div className="mainGame" name={"mainGame"}>
+          <div className={youSure?"youSureMessage":"noYouSure"}>
+            <h1>Are you sure you'd like to restart? You will lose all progress:        <button onClick={restart}>Yes</button>        <button onClick={youSureFunc}>No</button></h1>
+            </div>
           <div className="sarahClicker">
           <h2 className="userTitle">Sarah Smiler</h2>
             <div className="sarahCounter">
@@ -1036,8 +1084,9 @@ upgrades.forEach((thing)=>{
               <SarahFace clickOnFace={clickOnFace} goldenSmile={goldenSmile}/>
             </div>
             <div className="automatedClicks">
+            <button onClick={youSureFunc}>Restart</button>
+            
               <AutomatedClicks />
-              <button onClick={restart}>Restart</button>
               <img src={goldenSmile["whichOne"]===1?survivor:goldenSmile["whichOne"]===2?sebastian:goldenSmile["whichOne"]===3?deathNote:smileyFace} onClick={handleGoldenClick} className={goldenSmile["clickable"]===true?"goldenPicture":"goldenPictureOff"} name="golden"/>
               <h1 className={lucky[0]===true?"lucky":"goldenPictureOff"} onAnimationEnd={endAnimation}>+{numberify(lucky[1])}</h1>
             </div>

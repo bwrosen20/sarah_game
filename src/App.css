@@ -53,6 +53,15 @@ body{
   overflow:hidden;
 }
 
+button{
+  background-color:rgb(159, 211, 159);
+  cursor:pointer;
+}
+
+  button:hover{
+    transform:scale(1.1)
+  }
+
 marquee{
   height:100vh;
 }
@@ -113,6 +122,22 @@ marquee{
   border:black 2px solid;
 } */
 
+
+.noYouSure{
+ display:none
+}
+
+.youSureMessage{
+  position:fixed;
+  justify-content:center;
+  border:1px solid black;
+  left:15%;
+  right:15%;
+  margin-top:5vh;
+  padding:0 1vh;
+  z-index:15;
+  background-color:grey;
+}
 
 .sarahClicker{
   text-align:center;
