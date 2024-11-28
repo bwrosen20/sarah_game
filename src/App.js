@@ -8,6 +8,7 @@ import React, {useState, useEffect, useRef} from 'react'
 import { CookiesProvider, useCookies, } from 'react-cookie'
 import Cookies from 'js-cookie'
 import numberify from './numberify'
+import settings from ".//settings.png"
 import cursor from "./mainStorePictures/cursor.png"
 import dietCoke from './mainStorePictures/dietCoke.png'
 import musicNote from './mainStorePictures/musicNote.png'
@@ -1069,6 +1070,7 @@ upgrades.forEach((thing)=>{
 
   return (
     <div className="App">
+      
         <header>
         {/* <img src={logo} className="app-logo" alt="logo" /> */}
         {/* <marquee behavior="alternate" scrollamount="30">
@@ -1077,6 +1079,7 @@ upgrades.forEach((thing)=>{
         </header>
         <CookiesProvider>
         <StoreItemsContext.Provider value={mainStoreItems}>
+        
           
           <div className="mainGame" name={"mainGame"}>
           <div className={youSure?"youSureMessage":"noYouSure"}>
@@ -1092,8 +1095,8 @@ upgrades.forEach((thing)=>{
               <SarahFace clickOnFace={clickOnFace} goldenSmile={goldenSmile}/>
             </div>
             <div className="automatedClicks">
-            <button onClick={youSureFunc}>Restart</button>
-            
+            {/* <button onClick={youSureFunc}>Restart</button> */}
+            <img src={settings} alt="settings" className="settings"/>
               <AutomatedClicks />
               <img src={goldenSmile["whichOne"]===1?survivor:goldenSmile["whichOne"]===2?sebastian:goldenSmile["whichOne"]===3?deathNote:smileyFace} onClick={handleGoldenClick} className={goldenSmile["clickable"]===true?"goldenPicture":"goldenPictureOff"} name="golden"/>
               <h1 className={lucky[0]===true?"lucky":"goldenPictureOff"} onAnimationEnd={endAnimation}>+{numberify(lucky[1])}</h1>
