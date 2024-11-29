@@ -196,13 +196,19 @@ marquee{
 .upgradeGrid{
   display:flex;
   flex-wrap:wrap;
-  height:60%;
+  height:55%;
   overflow-y:auto;
+  margin:auto;
+  justify-content:center;
 }
 
 .gridImage{
-  height:3vw;
+  height:3.5vw;
+  width:3.5vw;
   padding:1vw 0.7vw;
+  margin:1.4px;
+  background-color:rgb(170, 206, 171);
+  border-radius:1vw;
 }
 
 .parenth{
