@@ -1,5 +1,7 @@
 import SarahFace from './components/SarahFace'
 import Store from './components/Store'
+import Settings from './components/Settings'
+import Statistics from "./components/Statistics"
 import AutomatedClicks from './components/AutomatedClicks'
 import UpgradeStore from './components/UpgradeStore'
 import JSBI from 'jsbi'
@@ -9,6 +11,7 @@ import { CookiesProvider, useCookies, } from 'react-cookie'
 import Cookies from 'js-cookie'
 import numberify from './numberify'
 import settings from ".//settings.png"
+import statistics from './/statistics.png'
 import cursor from "./mainStorePictures/cursor.png"
 import dietCoke from './mainStorePictures/dietCoke.png'
 import musicNote from './mainStorePictures/musicNote.png'
@@ -64,6 +67,8 @@ function App() {
   const [clicks, setClicks]=useState(cookies.everything? cookies.everything[0] : 0 )
   const [clickValue, setClickValue]=useState(cookies.everything? cookies.everything[4]:1)
   const [youSure, setYouSure]=useState(false)
+  const [openSettings, setOpenSettings]=useState(false)
+  const [openStatistics,setOpenStatistics]=useState(false)
   const [autoClicks, setAutoClicks]=useState(cookies.everything? cookies.everything[5]:0)
   const [clickStarter,setClickStarter]=useState(false)
   const [clicksSoFar,setClicksSoFar]=useState(cookies.everything? cookies.everything[6]:0)
@@ -151,8 +156,6 @@ function App() {
 
 //index 7 is actually 40
 //index 8 is actually 128
-
-  console.log(mainStoreItems)
 
   const [upgrades,setUpgrades] = useState([
     {"index":0,"item":0,"unlock":1,"price":100,"wordPrice":100,"name":"Reinforced Index Finger","description":"Mouse and Cursor are twice as efficient","picture":cursor,"visible":cookies.upgrades? cookies.upgrades[0]:0,"secondItem":14,"unlockTwo":0,"addition":1},
@@ -454,7 +457,7 @@ function App() {
 
         setCookieCounter(cookieCounter+1)
 
-        console.log(cookieCounter)
+        // console.log(cookieCounter)
 
         if (cookieCounter==10){
           console.log("Hi")
@@ -1048,6 +1051,16 @@ upgrades.forEach((thing)=>{
     setLucky([false,0])
   }
 
+  function openSettingsFunc(){
+    setOpenSettings(!openSettings)
+    setOpenStatistics(false)
+  }
+
+  function openStatisticsFunc(){
+    setOpenStatistics(!openStatistics)
+    setOpenSettings(false)
+  }
+
   function restart(){
     Cookies.remove('mainStoreItems', { path: '/' })
     Cookies.remove('upgrades', { path: '/' })
@@ -1055,6 +1068,7 @@ upgrades.forEach((thing)=>{
     Cookies.remove('upgrades_three', { path: '/' })
     Cookies.remove('everything', { path: '/' })
     setYouSure(false)
+    window.location.reload()
   }
 
   function youSureFunc(){
@@ -1096,8 +1110,9 @@ upgrades.forEach((thing)=>{
             </div>
             <div className="automatedClicks">
             {/* <button onClick={youSureFunc}>Restart</button> */}
-            <img src={settings} alt="settings" className="settings"/>
-              <AutomatedClicks />
+            <img src={settings} alt="settings" className="settings" onClick={openSettingsFunc}/>
+            <img src={statistics} alt="stats" className="statistics" onClick={openStatisticsFunc}/>
+              {openSettings ? <Settings/>:openStatistics ? <Statistics upgrades={upgrades}/>:<AutomatedClicks />}
               <img src={goldenSmile["whichOne"]===1?survivor:goldenSmile["whichOne"]===2?sebastian:goldenSmile["whichOne"]===3?deathNote:smileyFace} onClick={handleGoldenClick} className={goldenSmile["clickable"]===true?"goldenPicture":"goldenPictureOff"} name="golden"/>
               <h1 className={lucky[0]===true?"lucky":"goldenPictureOff"} onAnimationEnd={endAnimation}>+{numberify(lucky[1])}</h1>
             </div>
