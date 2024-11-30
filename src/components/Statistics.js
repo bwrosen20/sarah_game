@@ -16,8 +16,8 @@ function Statistics({upgrades}){
         <h5>Smile Makers Owned: </h5>
         
        
-        <h3>Upgrades <span className="parenth">(scroll down)</span>:</h3>
-        <h6>Upgrades unlocked: {amount}/{upgrades.length}</h6>
+        <h3 className="bigWords">Upgrades: <span className="parenth">(scroll down)</span></h3>
+        <h6 className="littleWords">Upgrades unlocked: {amount}/{upgrades.length}</h6>
         <div className="upgradeGrid">
             {upgrades.map((grade)=>(<UpgradeItem grade={grade}/>))}
         </div>

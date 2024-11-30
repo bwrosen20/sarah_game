@@ -209,10 +209,22 @@ marquee{
   margin:1.4px;
   background-color:rgb(170, 206, 171);
   border-radius:1vw;
+  cursor:pointer;
+}
+
+  .gridImage:hover{
+    background-color:rgb(136, 200, 138);
+  }
+
+.bigWords{
+  margin-bottom:-25px;
+}
+.littleWords{
+  margin-bottom:-5px;
 }
 
 .parenth{
-  font-size:2vw;
+  font-size:10px;
 }
 
 .sarahClicker{
@@ -650,6 +662,37 @@ marquee{
     background-color:rgb(172, 158, 158);
     border-radius:2vw;
     
+  }
+
+  .blurb{
+    position:absolute;
+    top:-3vh;
+    right:35%;
+    width:fit-content;
+    max-width:60%;
+    height:-25vh;
+    color:white;
+    background-color:rgb(33, 104, 67);
+    border-radius:2vw;
+    margin-bottom:5px;
+    z-index:20;
+  }
+
+  .lilBlurbTitle{
+    margin-top:1vw;
+    margin-bottom:0.1vw;
+    margin-right:.5vw;
+    padding:1vw;
+    text-decoration:underline;
+  }
+
+  .lilBlurbDescribe{
+    font-size:10px;
+    margin-top:1px;
+    margin-bottom:3px;
+    margin-right:10px;
+    margin-left:3vw;
+    padding:10px;
   }
 
   .noStoreBlurb{
