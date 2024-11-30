@@ -193,6 +193,21 @@ marquee{
     transform:scale(1.1)
   }
 
+.offSettingsButton{
+  border:1px solid black;
+  border-radius:1px;
+  width:80%;
+  padding: .1vw 1vw .5vw 1vw;
+  background-color:rgb(55, 62, 58);
+  color:rgb(168, 217, 178);
+  cursor:pointer;
+  font-size:2vw
+}
+
+.offSettingsButton:hover{
+  transform:scale(1.1)
+}
+
 .upgradeGrid{
   display:flex;
   flex-wrap:wrap;
@@ -215,6 +230,16 @@ marquee{
   .gridImage:hover{
     background-color:rgb(136, 200, 138);
   }
+
+.preGridImage{
+  height:3.5vw;
+  width:3.5vw;
+  padding:1vw 0.7vw;
+  margin:1.4px;
+  background-color:rgb(159, 171, 160);
+  border-radius:1vw;
+  cursor:pointer;
+}
 
 .bigWords{
   margin-bottom:-25px;
@@ -677,8 +702,22 @@ marquee{
     width:fit-content;
     max-width:60%;
     height:-25vh;
-    color:white;
+    color:rgb(168, 217, 178);
     background-color:rgb(33, 104, 67);
+    border-radius:2vw;
+    margin-bottom:5px;
+    z-index:20;
+  }
+
+  .preBlurb{
+    position:absolute;
+    top:-3vh;
+    right:35%;
+    width:fit-content;
+    max-width:60%;
+    height:-25vh;
+    color:rgb(168, 217, 178);
+    background-color:rgb(85, 96, 90);
     border-radius:2vw;
     margin-bottom:5px;
     z-index:20;
@@ -718,3 +757,24 @@ marquee{
   .goldenPictureOff{
     display:none
   }
+
+
+  .instructionsScreen{
+    padding:2vw;
+    align-items:center;
+    display:flex;
+    flex-wrap:wrap;
+    height:90%;
+    overflow-y:auto;
+    margin:auto;
+    justify-content:left; 
+  }
+
+  .saved{
+    position:fixed;
+    top:-15px;
+    right:10px;
+    color:rgb(19, 73, 19);
+  }
+
+ 

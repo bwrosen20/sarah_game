@@ -1,21 +1,43 @@
+import {useState} from 'react'
+import Instructions from './Instructions'
 
+function Settings({handleShowAutoSave,autoSaveOnScreen,autoSaveAtAll,handleAutoSaveAtAll}){
 
-function Settings(){
+    const [instruct,setInstruct]=useState(false)
+
+    function handleInstrucClick(){
+        setInstruct(!instruct)
+    }
+
+    function onShowAutoSave(){
+        handleShowAutoSave()
+    }
+
+    function onAutoSaveAtAll(){
+        handleAutoSaveAtAll()
+    }
 
     return<div className="settingsScreen">
+        {instruct? <Instructions />:
+        <div>
         <h1 className="heading">SETTINGS</h1>
+        <div className="settingsLevel" onClick={handleInstrucClick}>
+            <h2 className="settingsButton">Instructions</h2>
+        </div>
         <div className="settingsLevel">
             <h2 className="settingsButton">Reset</h2>
         </div>
         <div className="settingsLevel">
             <h2 className="settingsButton">Save</h2>
         </div>
-        <div className="settingsLevel">
-            <h2 className="settingsButton">AutoSave</h2>
+        <div className="settingsLevel" onClick={onAutoSaveAtAll}>
+            <h2 className={autoSaveAtAll? "settingsButton": "offSettingsButton"}>AutoSave</h2>
         </div>
-        <div className="settingsLevel">
-            <h2 className="settingsButton">Show AutoSaves</h2>
+        <div className="settingsLevel" onClick={onShowAutoSave}>
+            <h2 className={autoSaveAtAll? (autoSaveOnScreen? "settingsButton": "offSettingsButton"):"offSettingsButton"}>Show AutoSaves</h2>
         </div>
+        </div>}
+        
     </div>
 }
 

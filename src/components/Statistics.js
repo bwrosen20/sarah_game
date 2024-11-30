@@ -10,7 +10,7 @@ function Statistics({upgrades,clicksSoFar,soFar,clicks}){
     let amount = 0
     let smileMakers = 0
     upgrades.forEach((up)=>{
-        if (up["visible"]===3){
+        if (up["visible"]>0){
             amount = amount+1
         }
     })
