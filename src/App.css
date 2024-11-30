@@ -180,8 +180,8 @@ marquee{
 
 .settingsButton{
   border:1px solid black;
-  border-radius:2vw;
-  width:fit-content;
+  border-radius:1px;
+  width:80%;
   padding: .1vw 1vw .5vw 1vw;
   background-color:rgb(16, 85, 42);
   color:rgb(168, 217, 178);
@@ -218,13 +218,19 @@ marquee{
 
 .bigWords{
   margin-bottom:-25px;
+  margin-left:1.5px;
 }
 .littleWords{
   margin-bottom:-5px;
+  padding-left:2px;
 }
 
 .parenth{
   font-size:10px;
+}
+
+.lilStatsHeading{
+  margin-left:1.5px;
 }
 
 .sarahClicker{
@@ -682,17 +688,17 @@ marquee{
     margin-top:1vw;
     margin-bottom:0.1vw;
     margin-right:.5vw;
-    padding:1vw;
+    padding:1px 1px 0 6px;
     text-decoration:underline;
   }
 
   .lilBlurbDescribe{
     font-size:10px;
     margin-top:1px;
-    margin-bottom:3px;
+    margin-bottom:1px;
     margin-right:10px;
     margin-left:3vw;
-    padding:10px;
+    padding:10px 10px 1.5px 12px;
   }
 
   .noStoreBlurb{
