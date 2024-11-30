@@ -118,6 +118,13 @@ marquee{
   margin:auto;
 }
 
+.notePic{
+  max-width:90%;
+  max-height:10vh;
+  margin-top:10px;
+  margin-bottom:-25px;
+}
+
 /* .mainGame > div{
   border:black 2px solid;
 } */

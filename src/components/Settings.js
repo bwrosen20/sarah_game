@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import Instructions from './Instructions'
 
-function Settings({handleShowAutoSave,autoSaveOnScreen,autoSaveAtAll,handleAutoSaveAtAll}){
+function Settings({handleShowAutoSave,autoSaveOnScreen,autoSaveAtAll,handleAutoSaveAtAll,youSureFunc}){
 
     const [instruct,setInstruct]=useState(false)
 
@@ -24,7 +24,7 @@ function Settings({handleShowAutoSave,autoSaveOnScreen,autoSaveAtAll,handleAutoS
         <div className="settingsLevel" onClick={handleInstrucClick}>
             <h2 className="settingsButton">Instructions</h2>
         </div>
-        <div className="settingsLevel">
+        <div className="settingsLevel" onClick={youSureFunc}>
             <h2 className="settingsButton">Reset</h2>
         </div>
         <div className="settingsLevel">
