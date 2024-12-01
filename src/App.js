@@ -656,10 +656,7 @@ function App() {
 
              goldCounter = goldenSmile["count"]+1
 
-             //DELETE AFTER
-
-             goldValue["clickable"]=true
-                  goldValue["whichOne"]=1
+             
 
              if (goldenSmile[["lowTime"]] <= goldCounter && goldCounter <goldenSmile["highTime"] && goldValue["clickable"]===false){
                
