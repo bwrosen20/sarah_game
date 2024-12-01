@@ -704,11 +704,12 @@ marquee{
 
   .blurb{
     position:absolute;
+    min-height:min-content;
     top:-3vh;
-    right:35%;
+    right:20%;
     width:fit-content;
     max-width:60%;
-    height:-25vh;
+    height:fit-content;
     color:rgb(168, 217, 178);
     background-color:rgb(33, 104, 67);
     border-radius:2vw;
@@ -719,10 +720,10 @@ marquee{
   .preBlurb{
     position:absolute;
     top:-3vh;
-    right:35%;
+    right:20%;
     width:fit-content;
     max-width:60%;
-    height:-25vh;
+    height:fit-content;
     color:rgb(168, 217, 178);
     background-color:rgb(85, 96, 90);
     border-radius:2vw;

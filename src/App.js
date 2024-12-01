@@ -459,10 +459,8 @@ function App() {
 
         // console.log(cookieCounter)
 
-        console.log(autoSaveAtAll)
 
         if (cookieCounter==10){
-          console.log("Hi")
           if (autoSaveAtAll){
             localStorage.setItem('clicks', clicks.toString())
             localStorage.setItem('clickValue', clickValue.toString())
@@ -802,8 +800,6 @@ upgrades.forEach((thing)=>{
 
   function buyMain(event){
   const mainObject = mainStoreItems.filter((itemName)=>(itemName["index"]===parseInt(event.target.getAttribute('value'))))[0]
-
-  console.log(mainObject)
   
   if (mainObject["price"] <= clicks){
 
@@ -1411,7 +1407,7 @@ upgrades.forEach((thing)=>{
 
   const clicksString=numberify(clicks)
   const perSecondString=numberify(goldenSmile["multipliers"][0]*realAutoClickTotal+(mainStoreItems[0]["amount"]*thousandFingersCount["addition"]*thousandFingersCount["amount"]))
-  const mouseString=numberify(goldenSmile["multipliers"][0]*(clickValue + (mainStoreItems[0]["amount"]*thousandFingersCount["addition"]*thousandFingersCount["amount"])))
+  const mouseString=numberify((clickValue + thousandFingersCount["addition"]*thousandFingersCount["amount"]))
 
   return (
     <div className="App">
