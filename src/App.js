@@ -591,12 +591,40 @@ function App() {
               seconds = `0${seconds}`;
             }
 
-            const timeFrac = time/goldenSmile["onValue"]
+            let timeFrac = time/goldenSmile["onValue"]
+            timeFrac = timeFrac - (1/goldenSmile["onValue"])*(1-timeFrac)
 
-            const dash = `${(timeFrac*283).toFixed(0)} 283`
+            const COLOR_CODES = {
+              info: {
+                color: "green"
+              },
+              warning: {
+                color: "orange",
+              },
+              alert: {
+                color: "red",
+              }
+            };
 
-            console.log(dash)
-            console.log(typeof(dash))
+            const {alert,warning,info} = COLOR_CODES
+
+            if (time<=5){
+                document
+                .getElementById("base-timer-path-remaining")
+                .classList.remove(warning.color);
+              document
+                .getElementById("base-timer-path-remaining")
+                .classList.add(alert.color);
+            }
+            else if (time<=10){
+              document
+              .getElementById("base-timer-path-remaining")
+              .classList.remove(info.color);
+            document
+              .getElementById("base-timer-path-remaining")
+              .classList.add(warning.color);
+                    }
+
 
               const circleDasharray = `${(
                 timeFrac * 283
@@ -628,10 +656,6 @@ function App() {
 
              goldCounter = goldenSmile["count"]+1
 
-             //DELETE AFTER
-
-             goldValue["clickable"]=true
-                  goldValue["whichOne"]=1
 
              if (goldenSmile[["lowTime"]] <= goldCounter && goldCounter <goldenSmile["highTime"] && goldValue["clickable"]===false){
                
@@ -1486,7 +1510,7 @@ upgrades.forEach((thing)=>{
             
             <img src={settings} alt="settings" className="settings" onClick={openSettingsFunc}/>
             <img src={statistics} alt="stats" className="statistics" onClick={openStatisticsFunc}/>
-            <div class="base-timer">
+            <div class={goldenSmile["on"]?"base-timer":"noTimer"}>
               <svg className="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                 <g className="base-timer__circle">
                   <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45" />
@@ -1503,7 +1527,7 @@ upgrades.forEach((thing)=>{
                   ></path>
                 </g>
               </svg>
-              <span id="base-timer-label" class="base-timer__label">
+              <span id="base-timer-label" class={goldenSmile["on"]?"base-timer__label":"noTimer"}>
                 {realTime}
               </span>
             </div>
