@@ -74,6 +74,7 @@ function App() {
     {"count":0,"onScreenCount":0,"activeCount":0,"on":false,"clickable":false,"clickableTimeValue":14,"onValue":0,"whichOne":0,"highTime":840,"lowTime":300,"multipliers":[1,1,1,1,1,1,1,1,1,1,1,1,1,1]})
   const [thousandFingersCount, setThousandFingersCount]=useState(localStorage.thousand? JSON.parse(localStorage.getItem('thousand')):{"amount":0,"active":false,"addition":0})
   const [lucky,setLucky]=useState(localStorage.lucky? JSON.parse(localStorage.getItem('lucky')):[false,0])
+  const [realTime,setRealTime]=useState(0)
   const [clicks, setClicks]=useState(localStorage.clicks? parseFloat(localStorage.getItem('clicks')) : 0 )
   const [clickValue, setClickValue]=useState(localStorage.clickValue? parseFloat(localStorage.getItem('clickValue')):1)
   const [youSure, setYouSure]=useState(false)
@@ -451,7 +452,6 @@ function App() {
 
 
         //cookie counter saves cookie every 10 seconds
-
         setCookieCounter(cookieCounter+1)
         if (autoSave){
           setAutoSave(false)
@@ -577,6 +577,38 @@ function App() {
             else{
               goldValue["activeCount"]=goldenSmile["activeCount"]+1
             }
+
+
+            const time = Math.floor(goldenSmile["onValue"]-goldenSmile["activeCount"])
+
+            const minutes = Math.floor(time / 60);
+    
+            // Seconds are the remainder of the time divided by 60 (modulus operator)
+            let seconds = Math.floor(time % 60);
+            
+            // If the value of seconds is less than 10, then display seconds with a leading zero
+            if (seconds < 10) {
+              seconds = `0${seconds}`;
+            }
+
+            const timeFrac = time/goldenSmile["onValue"]
+
+            const dash = `${(timeFrac*283).toFixed(0)} 283`
+
+            console.log(dash)
+            console.log(typeof(dash))
+
+              const circleDasharray = `${(
+                timeFrac * 283
+              ).toFixed(0)} 283`;
+              document
+                .getElementById("base-timer-path-remaining")
+                .setAttribute("stroke-dasharray", circleDasharray);
+          
+            // The output in MM:SS format
+           setRealTime(`${minutes}:${seconds}`);
+
+
           }
           else{
 
@@ -595,6 +627,11 @@ function App() {
              }
 
              goldCounter = goldenSmile["count"]+1
+
+             //DELETE AFTER
+
+             goldValue["clickable"]=true
+                  goldValue["whichOne"]=1
 
              if (goldenSmile[["lowTime"]] <= goldCounter && goldCounter <goldenSmile["highTime"] && goldValue["clickable"]===false){
                
@@ -1403,6 +1440,17 @@ upgrades.forEach((thing)=>{
     setAutoSaveAtAll(!autoSaveAtAll)
   }
 
+
+  const COLOR_CODES = {
+    info: {
+      color: "green"
+    }
+  };
+  
+  let remainingPathColor = COLOR_CODES.info.color;
+
+  
+
   // console.log(goldenSmile["multipliers"][0]*realAutoClickTotal+(mainStoreItems[0]["amount"]*thousandFingersCount["addition"]*thousandFingersCount["amount"]))
 
   const clicksString=numberify(clicks)
@@ -1432,13 +1480,41 @@ upgrades.forEach((thing)=>{
             </div>
               <SarahFace clickOnFace={clickOnFace} goldenSmile={goldenSmile}/>
             </div>
+
             <div className="automatedClicks">
+            <div className="menuBar">
+            
             <img src={settings} alt="settings" className="settings" onClick={openSettingsFunc}/>
             <img src={statistics} alt="stats" className="statistics" onClick={openStatisticsFunc}/>
+            <div class="base-timer">
+              <svg className="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <g className="base-timer__circle">
+                  <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45" />
+                  <path
+                    id="base-timer-path-remaining"
+                    stroke-dasharray="283"
+                    className={`base-timer__path-remaining ${remainingPathColor}`}
+                    d="
+                      M 50, 50
+                      m -45, 0
+                      a 45,45 0 1,0 90,0
+                      a 45,45 0 1,0 -90,0
+                    "
+                  ></path>
+                </g>
+              </svg>
+              <span id="base-timer-label" class="base-timer__label">
+                {realTime}
+              </span>
+            </div>
+            </div>
               {openSettings ? <Settings handleShowAutoSave={handleShowAutoSave} autoSaveOnScreen={autoSaveOnScreen} handleAutoSaveAtAll={handleAutoSaveAtAll} autoSaveAtAll={autoSaveAtAll} youSureFunc={youSureFunc}/>:openStatistics ? <Statistics upgrades={upgrades} clicksSoFar={clicksSoFar} soFar={soFar} clicks={clicks}/>:<AutomatedClicks />}
               <img src={goldenSmile["whichOne"]===1?survivor:goldenSmile["whichOne"]===2?sebastian:goldenSmile["whichOne"]===3?deathNote:smileyFace} onClick={handleGoldenClick} className={goldenSmile["clickable"]===true?"goldenPicture":"goldenPictureOff"} name="golden"/>
               <h1 className={lucky[0]===true?"lucky":"goldenPictureOff"} onAnimationEnd={endAnimation}>+{numberify(lucky[1])}</h1>
+            
             </div>
+
+
             <div className="store">
             <h6 className="saved">{autoSave?"Saved":""}</h6>  
               <h1 className="storeTitle">Store</h1>
