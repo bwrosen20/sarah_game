@@ -10,7 +10,6 @@ function UpgradeItem({grade}){
 
     function handleMouseMove(e){
             let cursor = document.getElementsByName('noBlurb')[grade.index]
-            console.log(cursor)
             let y = e.clientY;
             let x = e.clientX;
             cursor.style.top=(y-130)+"px"

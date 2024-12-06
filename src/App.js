@@ -71,7 +71,7 @@ function App() {
 
 
   const [goldenSmile,setGoldenSmile] = useState(localStorage.goldenSmile? JSON.parse(localStorage.getItem('goldenSmile')):
-    {"count":0,"onScreenCount":0,"activeCount":0,"on":false,"clickable":false,"clickableTimeValue":14,"onValue":0,"whichOne":0,"highTime":840,"lowTime":300,"multipliers":[1,1,1,1,1,1,1,1,1,1,1,1,1,1]})
+    {"count":0,"onScreenCount":0,"activeCount":0,"effectTimesMult":1,"on":false,"clickable":false,"clickableTimeValue":14,"onValue":0,"whichOne":0,"highTime":840,"lowTime":300,"goldensClicked":0,"multipliers":[1,1,1,1,1,1,1,1,1,1,1,1,1,1]})
   const [thousandFingersCount, setThousandFingersCount]=useState(localStorage.thousand? JSON.parse(localStorage.getItem('thousand')):{"amount":0,"active":false,"addition":0})
   const [lucky,setLucky]=useState(localStorage.lucky? JSON.parse(localStorage.getItem('lucky')):[false,0])
   const [realTime,setRealTime]=useState(0)
@@ -431,7 +431,25 @@ function App() {
     {"index":202,"item":11,"unlock":450,"price":700000000000000000000000000000000000000000,"wordPrice":"700 Duodecillion","name":"You Have Officially Won The Sarah Smiler Prize For Getting This Far","description":"Video Games are twice as efficient","picture":videoGame,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":203,"item":12,"unlock":450,"price":8500000000000000000000000000000000000000000,"wordPrice":"8.5 Tredecillion","name":"You Made It To The Second Most Expensive Upgrade. Impressive","description":"Boutiques are twice as efficient","picture":boutique,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":204,"item":13,"unlock":450,"price":105000000000000000000000000000000000000000000,"wordPrice":"105 Tredecillion","name":"I love You Sarah. Merry Christmakah!","description":"Brians are twice as efficient","picture":brian,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
+    {"index":205,"item":14,"unlock":7,"price":777778000,"wordPrice":"777.778 Million","name":"Hotel Has A Jacuzzi","description":"Power Ups appear twice as often and last twice as long on screen","picture":smileyFace,"visible":0,"secondItem":14,"unlockTwo":0,"addition":5},
+    {"index":206,"item":14,"unlock":27,"price":77777800000,"wordPrice":"77.778 Billion","name":"The Jets Win The SuperBowl!","description":"Power Ups appear twice as often and last twice as long on screen","picture":smileyFace,"visible":0,"secondItem":14,"unlockTwo":0,"addition":5},
+    {"index":207,"item":14,"unlock":77,"price":77777800000000,"wordPrice":"77.778 Trllion","name":"Wake Up To A Dunkin Cappuccino","description":"Power Up effects last twice as long","picture":smileyFace,"visible":0,"secondItem":14,"unlockTwo":0,"addition":5},
+    {"index":208,"item":0,"unlock":1000,"price":50000,"wordPrice":"50 Thousand","name":"Cheez It The Mouse","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+    {"index":209,"item":0,"unlock":100000,"price":5000000,"wordPrice":"5 Million","name":"Dinner At Honey Well","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+    {"index":210,"item":0,"unlock":10000000,"price":500000000,"wordPrice":"500 Million","name":"We Get Into The Pink Pony Club","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+    {"index":211,"item":0,"unlock":1000000000,"price":50000000000,"wordPrice":"50 Billion","name":"The Perfect Campfire","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+    {"index":212,"item":0,"unlock":100000000000,"price":5000000000000,"wordPrice":"5 Trillion","name":"Dim Lighting With A Candle Burning","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+    {"index":213,"item":0,"unlock":10000000000000,"price":500000000000000,"wordPrice":"500 Trillion","name":"Laughing So Hard The Asthma Comes Back","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+    {"index":214,"item":0,"unlock":1000000000000000,"price":50000000000000000,"wordPrice":"50 Quadrillion","name":"Somehow Playing 103% of Skyrim","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+    {"index":215,"item":0,"unlock":100000000000000000,"price":5000000000000000000,"wordPrice":"5 Quintillion","name":"The World's Best Brussels","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+    {"index":215,"item":0,"unlock":10000000000000000000,"price":500000000000000000000,"wordPrice":"500 Quintillion","name":"Master Artist Sarah","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+    {"index":216,"item":0,"unlock":1000000000000000000000,"price":50000000000000000000000,"wordPrice":"50 Sextillion","name":"Veggie Power Bowl","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+    {"index":217,"item":0,"unlock":100000000000000000000000,"price":5000000000000000000000000,"wordPrice":"5 Septillion","name":"100 Squats","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+    {"index":218,"item":0,"unlock":10000000000000000000000000,"price":500000000000000000000000000,"wordPrice":"500 Septillion","name":"Lovely","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+    {"index":219,"item":0,"unlock":1000000000000000000000000000,"price":50000000000000000000000000000,"wordPrice":"5 Octillion","name":"Cornhole Pro Sarah","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
 
+  
+  
   ])
   
   
@@ -644,7 +662,9 @@ function App() {
            //run through all possiblities
            //make a timer key in the goldenSmile state
            //First if statement is if that timer is at 0, turn it off and don't go through the rest of the if statements
-    
+
+           
+
            let mathValue = 0
            // if (goldenSmile["lowValue"] <= goldValue && goldValue <goldenSmile["highValue"]){
              if (goldenSmile["count"]===goldenSmile["highTime"]-2){
@@ -656,7 +676,11 @@ function App() {
 
              goldCounter = goldenSmile["count"]+1
 
-             
+
+          
+
+            //  goldValue["clickable"]=true
+            //  goldValue["whichOne"]=3
 
              if (goldenSmile[["lowTime"]] <= goldCounter && goldCounter <goldenSmile["highTime"] && goldValue["clickable"]===false){
                
@@ -779,7 +803,11 @@ if (mainStoreItems[13]["visible"]<2 && clicks >= 2100000000000000){
 
 
 upgrades.forEach((thing)=>{
-  const itemOne = mainStoreItems[thing["item"]]
+  let itemOne={"amount":goldenSmile["goldensClicked"]}
+  if (thing["item"]!==14){
+    itemOne = mainStoreItems[thing["item"]]
+  }
+  
   const itemTwo = thing["secondItem"]===14 ? 14 : mainStoreItems[thing["secondItem"]]
   if (((thing["visible"]===2) && (thing["price"] < clicks)) || (thing["visible"]===3) || (thousandFingersCount["active"]===false && thing["addition"]===2 && thing["index"]!==9)){
     return thing
@@ -891,13 +919,15 @@ upgrades.forEach((thing)=>{
   //2 is thousand fingers related
   //3 is twice as efficient and +1% sps to item 2 per item 1 (diet coke)
   //4 +5% sps on item 1 for each item 2 and +0.1% on item 2 for each item 1
+  //5 is golden smiles related
 
   //make a thousand fingers counter that counts non cursor items
 
   function getUpgrade(event){
     const itemID = event.target.getAttribute('value')
-    const item = upgrades[itemID]
+    const item = upgrades.filter((grade)=>(grade["index"]===parseInt(itemID)))[0]
     const itemAddition = item["addition"]
+   
     if (upgrades[itemID]["price"] <= clicks){
       //upgrades.forEach((grade)=>(grade["index"]===itemID?console.log(grade["index"]):console.log("nope")))
       setUpgrades(upgrades.map((grade)=>(grade["index"]==itemID?{...grade,visible:3}:grade)))
@@ -956,6 +986,25 @@ upgrades.forEach((thing)=>{
             setThousandFingersCount({...thousandFingersCount,amount:thousandFingersCount["amount"]*20})
           }
           setClicks(clicks-item["price"])
+        }
+        
+        else if (itemAddition===5){
+
+          //goldenSmile upgrades
+
+          let goldSmileVar=goldenSmile
+          
+          if (item["index"]===207){
+            goldSmileVar["effectTimesMult"]=2
+            setGoldenSmile(goldSmileVar)
+          }
+
+          else{
+            goldSmileVar["lowTime"]=goldSmileVar["lowTime"]/2
+            goldSmileVar["highTime"]=goldSmileVar["highTime"]/2
+            goldSmileVar["clickableTimeValue"]=goldSmileVar["clickableTimeValue"]*2
+            setGoldenSmile(goldSmileVar)
+          }
         }
        
         
@@ -1058,6 +1107,7 @@ upgrades.forEach((thing)=>{
       percentage = (clicksSoFar+percentage) * 0.15
       goldSmileVar["clickable"]=false
       goldSmileVar["count"]=0
+      goldSmileVar["goldensClicked"]=goldSmileVar["goldensClicked"]+1
       goldSmileVar["onScreenCount"]=0
       setGoldenSmile(goldSmileVar)
       if (percentage < lumpSum){
@@ -1075,9 +1125,10 @@ upgrades.forEach((thing)=>{
     if (goldenSmile["whichOne"]===1){
       goldSmileVar["multipliers"][0]=7
       goldSmileVar["clickable"]=false
-      goldSmileVar["onValue"]=77
+      goldSmileVar["onValue"]=77*goldenSmile["effectTimesMult"]
       goldSmileVar["on"]=true
       goldSmileVar["count"]=0
+      goldSmileVar["goldensClicked"]=goldSmileVar["goldensClicked"]+1
       goldSmileVar["onScreenCount"]=0
       setGoldenSmile(goldSmileVar)
     }
@@ -1095,9 +1146,10 @@ upgrades.forEach((thing)=>{
       console.log(item)
       goldSmileVar["multipliers"][item["index"]]=10
       goldSmileVar["clickable"]=false
-      goldSmileVar["onValue"]=30
+      goldSmileVar["onValue"]=30*goldenSmile["effectTimesMult"]
       goldSmileVar["on"]=true
       goldSmileVar["count"]=0
+      goldSmileVar["goldensClicked"]=goldSmileVar["goldensClicked"]+1
       goldSmileVar["onScreenCount"]=0
       setGoldenSmile(goldSmileVar)
     }
@@ -1106,9 +1158,10 @@ upgrades.forEach((thing)=>{
     if (goldenSmile["whichOne"]===3){
       goldSmileVar["multipliers"][0]=777
       goldSmileVar["clickable"]=false
-      goldSmileVar["onValue"]=13
+      goldSmileVar["onValue"]=13*goldenSmile["effectTimesMult"]
       goldSmileVar["on"]=true
       goldSmileVar["count"]=0
+      goldSmileVar["goldensClicked"]=goldSmileVar["goldensClicked"]+1
       goldSmileVar["onScreenCount"]=0
       setGoldenSmile(goldSmileVar)
     }
@@ -1131,7 +1184,7 @@ upgrades.forEach((thing)=>{
 
   function restart(){
     localStorage.clear()
-    setGoldenSmile({"count":0,"onScreenCount":0,"activeCount":0,"on":false,"clickable":false,"clickableTimeValue":14,"onValue":0,"whichOne":0,"highTime":840,"lowTime":300,"multipliers":[1,1,1,1,1,1,1,1,1,1,1,1,1,1]})
+    setGoldenSmile({"count":0,"onScreenCount":0,"activeCount":0,"on":false,"clickable":false,"clickableTimeValue":14,"onValue":0,"whichOne":0,"highTime":840,"lowTime":300,"goldensClicked":0,"multipliers":[1,1,1,1,1,1,1,1,1,1,1,1,1,1]})
     setThousandFingersCount({"amount":0,"active":false,"addition":0})
     setLucky([false,0])
     setClicks(0)
@@ -1480,7 +1533,7 @@ upgrades.forEach((thing)=>{
 
   const clicksString=numberify(clicks)
   const perSecondString=numberify(goldenSmile["multipliers"][0]*realAutoClickTotal+(mainStoreItems[0]["amount"]*thousandFingersCount["addition"]*thousandFingersCount["amount"]))
-  const mouseString=numberify((clickValue + thousandFingersCount["addition"]*thousandFingersCount["amount"]))
+  const mouseString=numberify(goldenSmile["multipliers"][0]*((clickValue + thousandFingersCount["addition"]*thousandFingersCount["amount"])))
 
   return (
     <div className="App">
