@@ -200,6 +200,10 @@ marquee{
     transform:scale(1.1)
   }
 
+  .settingsButton:active{
+    transform:scale(0.9)
+  }
+
 .offSettingsButton{
   border:1px solid black;
   border-radius:1px;
@@ -263,6 +267,8 @@ marquee{
 
 .lilStatsHeading{
   margin-left:1.5px;
+  margin-top:0px;
+  margin-bottom:8px;
 }
 
 .sarahClicker{
@@ -790,6 +796,7 @@ marquee{
     color:rgb(19, 73, 19);
   }
 
+  
 
 
   /* timer styles*/

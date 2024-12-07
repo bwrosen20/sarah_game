@@ -9,18 +9,21 @@ function UpgradeItem({grade}){
 
 
     function handleMouseMove(e){
-            let cursor = document.getElementsByName('noBlurb')[grade.index]
+            let blurbScreen = document.getElementsByName(`noBlurb_${grade["index"]}`)[0]
+            console.log(blurbScreen)
+            console.log(grade["index"])
+            
             let y = e.clientY;
             let x = e.clientX;
-            cursor.style.top=(y-130)+"px"
-            cursor.style.left=(x-80)+"px"
+            blurbScreen.style.top=(y-130)+"px"
+            blurbScreen.style.left=(x-80)+"px"
     }
 
     return<div>
         <div onMouseMove={handleMouseMove} onMouseEnter={(()=>{setBlurb(hidden>0?true:false)})} onMouseLeave={(()=>{setBlurb(false)})}>
             <img className={hidden<3?"preGridImage":"gridImage"} name="gridImage" src={picture} onClick={()=>(console.log(grade["index"]))}/>
         </div>
-        <div id = {"cursor"} name="noBlurb" className={blurb ? (hidden<3? "preBlurb":"blurb") : "noBlurb"}>
+        <div id = {"blurbScreen"} name={`noBlurb_${grade["index"]}`}  className={blurb ? (hidden<3? "preBlurb":"blurb") : "noBlurb"}>
  
             <h5 className="lilBlurbTitle">{grade["name"]}</h5>
             <h6 className="lilBlurbDescribe">{grade["description"]}</h6>

@@ -5,6 +5,8 @@ import {StoreItemsContext} from '../App'
 
 function Statistics({upgrades,clicksSoFar,soFar,clicks}){
 
+    upgrades.sort((a,b)=>a["price"]>b["price"] ? 1 : b["price"]>a["price"] ? -1 : 0)
+
     const mainStoreItems = useContext(StoreItemsContext)
 
     let amount = 0
@@ -28,11 +30,13 @@ function Statistics({upgrades,clicksSoFar,soFar,clicks}){
     totalSoFar = numberify(totalSoFar + clicksSoFar)
     const clickStringValue = numberify(clicks)
     const smileMakerValue = numberify(smileMakers)
+    const manualString = numberify(clicksSoFar)
 
     return<div className="settingsScreen">
         <h1 className="heading">STATS</h1>
         <h4 className="lilStatsHeading" >Smiles In Bank: {clickStringValue}</h4>
         <h4 className="lilStatsHeading">Smiles Made: {totalSoFar}</h4>
+        <h4 className="lilStatsHeading">Manual Smiles: {manualString}</h4>
         <h5 className="lilStatsHeading">Smile Makers Owned: {smileMakerValue}</h5>
         
        
