@@ -10,9 +10,9 @@ function Instructions(){
             you collect, the more she'll smile!
         </p>
 
-        <h4>Clicking Sarah's Face</h4>
-        <p>Clicking on Sarah's face will award you the given
-            amount of smiles. You can earn more smiles per click
+        <h4>Booping Sarah</h4>
+        <p>Clicking/Booping Sarah's face will award you the given
+            amount of smiles. You can earn more smiles per boop
             in the store.
         </p>
         <h4>Smile Makers</h4>

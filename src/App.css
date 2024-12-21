@@ -51,6 +51,9 @@ body{
   margin:auto;
   box-sizing:border-box;
   overflow:hidden;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 
 button{
@@ -219,6 +222,7 @@ marquee{
   transform:scale(1.1)
 }
 
+
 .upgradeGrid{
   display:flex;
   flex-wrap:wrap;
@@ -226,6 +230,12 @@ marquee{
   overflow-y:auto;
   margin:auto;
   justify-content:center;
+}
+
+.spoilerMode{
+  margin:1vw;
+  scale:0.5;
+  border:none;
 }
 
 .gridImage{
@@ -330,15 +340,14 @@ marquee{
   .menuBar{
     display:flex;
     height:8vh;
+    padding-bottom:1vh;
   }
 
   .automatedClicks{
     overflow-y:visible;
   }
 
-  .automatedNone{
 
-  }
 
   .automatedClickItem{
     padding:0.3vh;
@@ -479,9 +488,6 @@ marquee{
 }
   
 
-  .upgradeStore{
-    
-  }
 
   .upgradeItems{
     display:flex;
@@ -778,6 +784,8 @@ marquee{
   }
 
 
+  upgradesList
+
   .instructionsScreen{
     padding:2vw;
     align-items:center;
@@ -794,6 +802,10 @@ marquee{
     top:-15px;
     right:10px;
     color:rgb(19, 73, 19);
+  }
+
+  .spoilerMode{
+    margin-top:2vh;
   }
 
   

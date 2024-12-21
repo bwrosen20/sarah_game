@@ -69,7 +69,7 @@ function App() {
 
   //[clicks,goldenSmile,thousandFingersCount,lucky,clickValue,autoClicks,clicksSoFar,soFar,mainStoreItems,upgrades]
 
-  //thousand fingers clicksMult has nothing to do with thousand fingers. It's for click upgrades (addition 5)
+  //thousand boops clicksMult has nothing to do with thousand boops. It's for click upgrades (addition 5)
 
 
   const [goldenSmile,setGoldenSmile] = useState(localStorage.goldenSmile? JSON.parse(localStorage.getItem('goldenSmile')):
@@ -151,7 +151,7 @@ function App() {
 
   //additions: 
   //1 is multiply clicks by 2
-  //2 is thousand fingers related
+  //2 is thousand boops related
   //3 is twice as efficient and +1% sps to item 2 per item 1 (diet coke)
   //4 +5% sps on item 1 for each item 2 and +0.1% on item 2 for each item 1
 
@@ -169,7 +169,7 @@ function App() {
     {"index":6,"item":1,"unlock":25,"price":50000,"wordPrice":"50 Thousand","name":"Caffeine Free! Sarah Can Drink At Night","description":"Diet Coke is twice as efficient","picture":dietCoke,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":7,"item":2,"unlock":5,"price":55000,"wordPrice":"55 Thousand","name":"The She's The Man Soundtrack","description":"Pop Songs are twice as efficient","picture":musicNote,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":8,"item":1,"unlock":1,"price":55000,"wordPrice":"55 Thousand","name":"Pusha T Album","description":"Diet Coke is twice as efficient. Pop Songs gain +1% sps per Diet Coke","picture":dietCoke,"visible":0,"secondItem":2,"unlockTwo":15,"addition":3,"multiply":1},
-    {"index":9,"item":0,"unlock":25,"price":100000,"wordPrice":"100 Thousand","name":"Thousand Fingers","description":"Mouse and Cursors gain +0.1 Smiles for each non-cursor object owned","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
+    {"index":9,"item":0,"unlock":25,"price":100000,"wordPrice":"100 Thousand","name":"Thousand Boops","description":"Mouse and Cursors gain +0.1 Smiles for each non-cursor object owned","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
     {"index":10,"item":3,"unlock":1,"price":120000,"wordPrice":"120 Thousand","name":"Vegan Sausage For Breakfast","description":"Meat Subs are twice as efficient","picture":beyondMeat,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":11,"item":2,"unlock":25,"price":550000,"wordPrice":"550 Thousand","name":"You Request Bottom's Up And They Play It","description":"Pop Songs are twice as efficient","picture":musicNote,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":12,"item":3,"unlock":5,"price":600000,"wordPrice":"600 Thousand","name":"Impossible Whopper","description":"Meat Subs are twice as efficient","picture":beyondMeat,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
@@ -179,24 +179,24 @@ function App() {
     {"index":16,"item":3,"unlock":25,"price":6000000,"wordPrice":"6 Million","name":"Salmon From Anixi","description":"Meat Subs are twice as efficient","picture":beyondMeat,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":17,"item":4,"unlock":5,"price":6500000,"wordPrice":"6.5 Million","name":"The Black Dalia's Been Caught","description":"True Crime is twice as efficient","picture":trueCrime,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":18,"item":1,"unlock":1,"price":6500000,"wordPrice":"6.5 Million","name":"Some Fava Beans And A Nice Chianti","description":"Diet Coke is twice as efficient. True Crime gains +1% sps per 3 Diet Cokes","picture":dietCoke,"visible":0,"secondItem":4,"unlockTwo":15,"addition":3,"multiply":0.333},
-    {"index":19,"item":0,"unlock":50,"price":10000000,"wordPrice":"10 Million","name":"Million Fingers","description":"Multiplies gain from thousand fingers by 5","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
+    {"index":19,"item":0,"unlock":50,"price":10000000,"wordPrice":"10 Million","name":"Million Boops","description":"Multiplies gain from thousand boops by 5","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
     {"index":20,"item":5,"unlock":1,"price":14000000,"wordPrice":"14 Million","name":"Matt Gets Into Johns Hopkins","description":"Family/Friends are twice as efficient","picture":family,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":21,"item":2,"unlock":50,"price":55000000,"wordPrice":"55 Million","name":"Watermelon Sugar Low","description":"Pop Songs are twice as efficient","picture":musicNote,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":22,"item":4,"unlock":25,"price":65000000,"wordPrice":"65 Million","name":"Double Murder","description":"True Crime is twice as efficient","picture":trueCrime,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":23,"item":5,"unlock":5,"price":70000000,"wordPrice":"70 Million","name":"Rich Solves A Big Case","description":"Family/Friends are twice as efficient","picture":family,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":24,"item":1,"unlock":1,"price":70000000,"wordPrice":"70 Million","name":"Paula Orders You A Diet Coke With Dinner","description":"Diet Coke is twice as efficient. Family/Friends gain +1% sps per 4 Diet Cokes","picture":dietCoke,"visible":0,"secondItem":5,"unlockTwo":15,"addition":3,"multiply":0.25},
-    {"index":25,"item":0,"unlock":100,"price":100000000,"wordPrice":"100 Million","name":"Billion Fingers","description":"Multiplies gain from thousand fingers by 10","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
+    {"index":25,"item":0,"unlock":100,"price":100000000,"wordPrice":"100 Million","name":"Billion Boops","description":"Multiplies gain from thousand boops by 10","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
     {"index":26,"item":6,"unlock":1,"price":200000000,"wordPrice":"200 Million","name":"A Fluffy Bear","description":"Nature is twice as efficient","picture":nature,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":27,"item":1,"unlock":100,"price":500000000,"wordPrice":"500 Million","name":"World's Biggest Cup Of Diet Coke","description":"Diet Coke is twice as efficient","picture":dietCoke,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":28,"item":3,"unlock":50,"price":600000000,"wordPrice":"600 Million","name":"We Find Out All Fish Are Ass Holes","description":"Meat Subs are twice as efficient","picture":beyondMeat,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":29,"item":5,"unlock":25,"price":700000000,"wordPrice":"700 Million","name":"Christmas Time","description":"Family/Friends are twice as efficient","picture":family,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-    {"index":30,"item":0,"unlock":150,"price":1000000000,"wordPrice":"1 Billion","name":"Trillion Fingers","description":"Multiplies gain from thousand fingers by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
+    {"index":30,"item":0,"unlock":150,"price":1000000000,"wordPrice":"1 Billion","name":"Trillion Boops","description":"Multiplies gain from thousand boops by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
     {"index":31,"item":6,"unlock":5,"price":1000000000,"wordPrice":"1 Billion","name":"Swim Out To Rock Island","description":"Nature is twice as efficient","picture":nature,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":32,"item":1,"unlock":1,"price":1000000000,"wordPrice":"1 Billion","name":"You Find The Fabled Sugar Free Cola Falls","description":"Diet Coke is twice as efficient. Nature gains +1% sps per 5 Diet Cokes","picture":dietCoke,"visible":0,"secondItem":6,"unlockTwo":15,"addition":3,"multiply":0.2},
     {"index":33,"item":7,"unlock":1,"price":3300000000,"wordPrice":"3.3 Billion","name":"Naruto Without The Filler","description":"Anime is twice as efficient","picture":anime,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":34,"item":2,"unlock":100,"price":5500000000,"wordPrice":"5.5 Billion","name":"The DJ Plays Bottoms Up","description":"Pop Songs are twice as efficient","picture":musicNote,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":35,"item":4,"unlock":50,"price":6500000000,"wordPrice":"6.5 Billion","name":"Who Dunnit?","description":"True Crime is twice as efficient","picture":trueCrime,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-    {"index":36,"item":0,"unlock":200,"price":10000000000,"wordPrice":"10 Billion","name":"Quadrillion Fingers","description":"Multiplies gain from thousand fingers by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
+    {"index":36,"item":0,"unlock":200,"price":10000000000,"wordPrice":"10 Billion","name":"Quadrillion Boops","description":"Multiplies gain from thousand boops by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
     {"index":37,"item":6,"unlock":25,"price":10000000000,"wordPrice":"10 Billion","name":"Breakneck Ridge","description":"Nature is twice as efficient","picture":nature,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":38,"item":7,"unlock":5,"price":16500000000,"wordPrice":"16.5 Billion","name":"You Find A Death Note. Wuh-oh","description":"Anime is twice as efficient","picture":anime,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":39,"item":1,"unlock":1,"price":16500000000,"wordPrice":"16.5 Billion","name":"ILL TAKE A CHIP AND EAT IT (With Some Diet Coke)","description":"Diet Coke is twice as efficient. Anime gains +1% sps per 6 Diet Cokes","picture":dietCoke,"visible":0,"secondItem":7,"unlockTwo":15,"addition":3,"multiply":0.1666667},
@@ -217,7 +217,7 @@ function App() {
     {"index":54,"item":3,"unlock":150,"price":6000000000000,"wordPrice":"6 Trillion","name":"You Convert A Meat Eater","description":"Meat Subs are twice as efficient","picture":beyondMeat,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":55,"item":5,"unlock":100,"price":7000000000000,"wordPrice":"7 Trillion","name":"Visit From Jules","description":"Family/Friends are twice as efficient","picture":family,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":56,"item":10,"unlock":1,"price":10000000000000,"wordPrice":"10 Trillion","name":"Riverside Park","description":"Special Places are twice as efficient","picture":house,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-    {"index":57,"item":0,"unlock":250,"price":10000000000000,"wordPrice":"10 Trillion","name":"Quintllion Fingers","description":"Multiplies gain from thousand fingers by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
+    {"index":57,"item":0,"unlock":250,"price":10000000000000,"wordPrice":"10 Trillion","name":"Quintillion Boops","description":"Multiplies gain from thousand boops by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
     {"index":58,"item":7,"unlock":50,"price":16500000000000,"wordPrice":"16.5 Trillion","name":"You Get A New Quirk","description":"Anime is twice as efficient","picture":anime,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":59,"item":9,"unlock":25,"price":37500000000000,"wordPrice":"37.5 Trillion","name":"Away From The Things Of Man","description":"Movies are twice as efficient","picture":movie,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":60,"item":10,"unlock":5,"price":50000000000000,"wordPrice":"50 Trillion","name":"Blue Mountain Lake","description":"Special Places are twice as efficient","picture":house,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
@@ -241,7 +241,7 @@ function App() {
     {"index":78,"item":11,"unlock":25,"price":7000000000000000,"wordPrice":"7 Quadrillion","name":"A Lesser Version Of This Game Involving Cookies","description":"Video Games are twice as efficient","picture":videoGame,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":79,"item":12,"unlock":5,"price":8500000000000000,"wordPrice":"8.5 Quadrillion","name":"The Perfect Thrift Find","description":"Boutiques are twice as efficient","picture":boutique,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":80,"item":1,"unlock":1,"price":8500000000000000,"wordPrice":"8.5 Quadrillion","name":"Sarah Gets Caffeinated And Shops For 3 Hours","description":"Diet Coke is twice as efficient. Boutiques gain +1% sps per 11 Diet Cokes","picture":dietCoke,"visible":0,"secondItem":12,"unlockTwo":15,"addition":3,"multiply":0.090909},
-    {"index":81,"item":0,"unlock":300,"price":10000000000000000,"wordPrice":"10 Quadrillion","name":"Sextillion Fingers","description":"Multiplies gain from thousand fingers by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
+    {"index":81,"item":0,"unlock":300,"price":10000000000000000,"wordPrice":"10 Quadrillion","name":"Sextillion Boops","description":"Multiplies gain from thousand boops by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
     {"index":82,"item":6,"unlock":150,"price":10000000000000000,"wordPrice":"10 Quadrillion","name":"Floating Donut In The River","description":"Nature is twice as efficient","picture":nature,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":83,"item":3,"unlock":15,"price":15000000000000000,"wordPrice":"15 Quadrillion","name":"Fish Are Friends, Not Food","description":"Meat Subs gain +5% sps per Movie. Movies gain +0.1% sps per Meat Sub","picture":beyondMeat,"visible":0,"secondItem":9,"unlockTwo":15,"addition":4},
     {"index":84,"item":7,"unlock":15,"price":15660000000000000,"wordPrice":"15.66 Quadrillion","name":"Miyazaki Marathon","description":"Anime gains +5% sps per Movie. Movies gain +0.1% sps per Anime","picture":movie,"visible":0,"secondItem":9,"unlockTwo":15,"addition":4},
@@ -280,7 +280,7 @@ function App() {
 
     {"index":109,"item":12,"unlock":50,"price":8500000000000000000,"wordPrice":"8.5 Quintillion","name":"Sarah Buys 8 More Pairs Of Sunglasses","description":"Boutiques are twice as efficient","picture":boutique,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
 
-    {"index":110,"item":0,"unlock":350,"price":10000000000000000000,"wordPrice":"10 Quintillion","name":"Septillion Fingers","description":"Multiplies gain from thousand fingers by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
+    {"index":110,"item":0,"unlock":350,"price":10000000000000000000,"wordPrice":"10 Quintillion","name":"Septillion Boops","description":"Multiplies gain from thousand boops by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
     {"index":111,"item":6,"unlock":200,"price":10000000000000000000,"wordPrice":"10 Quintillion","name":"Buttermilk Falls (Either One)","description":"Nature is twice as efficient","picture":nature,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     
     {"index":112,"item":4,"unlock":15,"price":34000000000000000000,"wordPrice":"34 Quintillion","name":"Murder At Claires","description":"True Crime gains +5% sps per Boutique. Boutiques gain +0.1% sps per True Crime","picture":trueCrime,"visible":0,"secondItem":12,"unlockTwo":15,"addition":4},
@@ -311,7 +311,7 @@ function App() {
 
     {"index":129,"item":11,"unlock":150,"price":7000000000000000000000,"wordPrice":"7 Sextillion","name":"Abandoney's Second Birthday","description":"Video Games are twice as efficient","picture":videoGame,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
 
-    {"index":130,"item":0,"unlock":350,"price":10000000000000000000000,"wordPrice":"10 Sextillion","name":"Octillion Fingers","description":"Multiplies gain from thousand fingers by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
+    {"index":130,"item":0,"unlock":350,"price":10000000000000000000000,"wordPrice":"10 Sextillion","name":"Octillion Boops","description":"Multiplies gain from thousand boops by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
     {"index":131,"item":6,"unlock":250,"price":10000000000000000000000,"wordPrice":"10 Sextillion","name":"Camping Weekend","description":"Nature is twice as efficient","picture":nature,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":132,"item":13,"unlock":100,"price":10500000000000000000000,"wordPrice":"10.5 Sextillion","name":"A New Watch And A Linen Shirt","description":"Brians are twice as efficient","picture":brian,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":133,"item":5,"unlock":75,"price":15003000000000000000000,"wordPrice":"15.003 Sextillion","name":"Vans Famous Part In Ozark","description":"Family/Friends gain +5% sps per Movie. Movies gain +0.1% sps per Family/Friend","picture":family,"visible":0,"secondItem":9,"unlockTwo":75,"addition":4},
@@ -337,7 +337,7 @@ function App() {
 
     {"index":146,"item":11,"unlock":200,"price":7000000000000000000000000,"wordPrice":"7 Septillion","name":"You Save Baldur's Gate With Brainy","description":"Video Games are twice as efficient","picture":videoGame,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
     {"index":147,"item":6,"unlock":300,"price":10000000000000000000000000,"wordPrice":"10 Septillion","name":"Summit Mt Marcy","description":"Nature is twice as efficient","picture":nature,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-    {"index":148,"item":0,"unlock":450,"price":10000000000000000000000000,"wordPrice":"10 Septillion","name":"Nonillion Fingers","description":"Multiplies gain from thousand fingers by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
+    {"index":148,"item":0,"unlock":450,"price":10000000000000000000000000,"wordPrice":"10 Septillion","name":"Nonillion Boops","description":"Multiplies gain from thousand boops by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
 
     {"index":149,"item":6,"unlock":75,"price":34000000000000000000000000,"wordPrice":"34 Septillion","name":"They Convert The Clayton H&R Block To A Boutique","description":"Nature gains +5% sps per Boutique. Boutiques gain +0.1% sps per Nature","picture":nature,"visible":0,"secondItem":12,"unlockTwo":75,"addition":4},
     {"index":150,"item":9,"unlock":75,"price":34150000000000000000000000,"wordPrice":"34.15 Septillion","name":"27 Dresses","description":"Movies gain +5% sps per Boutique. Boutiques gain +0.1% sps per Movie","picture":movie,"visible":0,"secondItem":12,"unlockTwo":75,"addition":4},
@@ -436,19 +436,19 @@ function App() {
     {"index":205,"item":14,"unlock":7,"price":777778000,"wordPrice":"777.778 Million","name":"Hotel Has A Jacuzzi","description":"Power Ups appear twice as often and last twice as long on screen","picture":smileyFace,"visible":0,"secondItem":14,"unlockTwo":0,"addition":5},
     {"index":206,"item":14,"unlock":27,"price":77777800000,"wordPrice":"77.778 Billion","name":"The Jets Win The SuperBowl!","description":"Power Ups appear twice as often and last twice as long on screen","picture":smileyFace,"visible":0,"secondItem":14,"unlockTwo":0,"addition":5},
     {"index":207,"item":14,"unlock":77,"price":77777800000000,"wordPrice":"77.778 Trllion","name":"Wake Up To A Dunkin Cappuccino","description":"Power Up effects last twice as long","picture":smileyFace,"visible":0,"secondItem":14,"unlockTwo":0,"addition":5},
-    {"index":208,"item":15,"unlock":1000,"price":50000,"wordPrice":"50 Thousand","name":"Cheez It The Mouse","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
-    {"index":209,"item":15,"unlock":100000,"price":5000000,"wordPrice":"5 Million","name":"Dinner At Honey Well","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
-    {"index":210,"item":15,"unlock":10000000,"price":500000000,"wordPrice":"500 Million","name":"We Get Into The Pink Pony Club","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
-    {"index":211,"item":15,"unlock":1000000000,"price":50000000000,"wordPrice":"50 Billion","name":"The Perfect Campfire","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
-    {"index":212,"item":15,"unlock":100000000000,"price":5000000000000,"wordPrice":"5 Trillion","name":"Dim Lighting With A Candle Burning","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
-    {"index":213,"item":15,"unlock":10000000000000,"price":500000000000000,"wordPrice":"500 Trillion","name":"Laughing So Hard The Asthma Comes Back","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
-    {"index":214,"item":15,"unlock":1000000000000000,"price":50000000000000000,"wordPrice":"50 Quadrillion","name":"Somehow Playing 103% of Skyrim","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
-    {"index":215,"item":15,"unlock":100000000000000000,"price":5000000000000000000,"wordPrice":"5 Quintillion","name":"The World's Best Brussels","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
-    {"index":215,"item":15,"unlock":10000000000000000000,"price":500000000000000000000,"wordPrice":"500 Quintillion","name":"Master Artist Sarah","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
-    {"index":216,"item":15,"unlock":1000000000000000000000,"price":50000000000000000000000,"wordPrice":"50 Sextillion","name":"Veggie Power Bowl","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
-    {"index":217,"item":15,"unlock":100000000000000000000000,"price":5000000000000000000000000,"wordPrice":"5 Septillion","name":"100 Squats","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
-    {"index":218,"item":15,"unlock":10000000000000000000000000,"price":500000000000000000000000000,"wordPrice":"500 Septillion","name":"Lovely","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
-    {"index":219,"item":15,"unlock":1000000000000000000000000000,"price":50000000000000000000000000000,"wordPrice":"5 Octillion","name":"Cornhole Pro Sarah","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+    {"index":208,"item":15,"unlock":1000,"price":50000,"wordPrice":"50 Thousand","name":"Cheez It The Mouse","description":"Booping gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+    {"index":209,"item":15,"unlock":100000,"price":5000000,"wordPrice":"5 Million","name":"Dinner At Honey Well","description":"Booping gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+    {"index":210,"item":15,"unlock":10000000,"price":500000000,"wordPrice":"500 Million","name":"We Get Into The Pink Pony Club","description":"Booping gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+    {"index":211,"item":15,"unlock":1000000000,"price":50000000000,"wordPrice":"50 Billion","name":"The Perfect Campfire","description":"Booping gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+    {"index":212,"item":15,"unlock":100000000000,"price":5000000000000,"wordPrice":"5 Trillion","name":"Dim Lighting With A Candle Burning","description":"Booping gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+    {"index":213,"item":15,"unlock":10000000000000,"price":500000000000000,"wordPrice":"500 Trillion","name":"Laughing So Hard The Asthma Comes Back","description":"Booping gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+    {"index":214,"item":15,"unlock":1000000000000000,"price":50000000000000000,"wordPrice":"50 Quadrillion","name":"Somehow Playing 103% of Skyrim","description":"Booping gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+    {"index":215,"item":15,"unlock":100000000000000000,"price":5000000000000000000,"wordPrice":"5 Quintillion","name":"The World's Best Brussels","description":"Booping gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+    {"index":216,"item":15,"unlock":10000000000000000000,"price":500000000000000000000,"wordPrice":"500 Quintillion","name":"Master Artist Sarah","description":"Booping gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+    {"index":217,"item":15,"unlock":1000000000000000000000,"price":50000000000000000000000,"wordPrice":"50 Sextillion","name":"Veggie Power Bowl","description":"Booping gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+    {"index":218,"item":15,"unlock":100000000000000000000000,"price":5000000000000000000000000,"wordPrice":"5 Septillion","name":"100 Squats","description":"Booping gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+    {"index":219,"item":15,"unlock":10000000000000000000000000,"price":500000000000000000000000000,"wordPrice":"500 Septillion","name":"Lovely","description":"Booping gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+    {"index":220,"item":15,"unlock":1000000000000000000000000000,"price":50000000000000000000000000000,"wordPrice":"5 Octillion","name":"Cornhole Pro Sarah","description":"Booping gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
   ])
   
   
@@ -642,6 +642,14 @@ function App() {
               .getElementById("base-timer-path-remaining")
               .classList.add(warning.color);
                     }
+              else{
+                document
+              .getElementById("base-timer-path-remaining")
+              .classList.remove(alert.color);
+              document
+                .getElementById("base-timer-path-remaining")
+                .classList.add(info.color);
+              }
 
 
               const circleDasharray = `${(
@@ -684,7 +692,7 @@ function App() {
 
              if (goldenSmile[["lowTime"]] <= goldCounter && goldCounter <goldenSmile["highTime"] && goldValue["clickable"]===false){
                
-              if (10<=mathValue && 14>=mathValue){
+              if (10<=mathValue && 14.2>=mathValue){
 
                 //death note is 2
                 //survivor is 1
@@ -693,12 +701,12 @@ function App() {
                   goldValue["clickable"]=true
                   goldValue["whichOne"]=0
                 }
-                else if (mathValue < 13.4){
+                else if (mathValue < 13.2){
                   setGoldenSmile({...goldenSmile,"activeCount":1,on:true})
                   goldValue["clickable"]=true
                   goldValue["whichOne"]=1
                 }
-                else if (mathValue < 13.8){
+                else if (mathValue < 13.6){
                   setGoldenSmile({...goldenSmile,"activeCount":1,on:true})
                   goldValue["clickable"]=true
                   goldValue["whichOne"]=2
@@ -915,12 +923,12 @@ upgrades.forEach((thing)=>{
 
   //additions: 
   //1 is multiply clicks by 2
-  //2 is thousand fingers related
+  //2 is thousand boops related
   //3 is twice as efficient and +1% sps to item 2 per item 1 (diet coke)
   //4 +5% sps on item 1 for each item 2 and +0.1% on item 2 for each item 1
   //5 is golden smiles related
 
-  //make a thousand fingers counter that counts non cursor items
+  //make a thousand boops counter that counts non cursor items
 
   function getUpgrade(event){
     
@@ -967,23 +975,23 @@ upgrades.forEach((thing)=>{
 
         }
         else if (itemAddition===2){
-          if (item["name"]==="Thousand Fingers"){
+          if (item["name"]==="Thousand boops"){
             setThousandFingersCount({...thousandFingersCount,active:true,addition:0.1})
 
-            //3: thousand fingers +.1
-            //4" million fingers *5
-            //5: billion fingers *10
-            //6: trillion fingers *20
+            //3: thousand boops +.1
+            //4" million Boops *5
+            //5: billion Boops *10
+            //6: trillion Boops *20
             //the rest are by 20
           }
           else if (item["index"]===4){
-            setThousandFingersCount({...thousandFingersCount,amount:thousandFingersCount["amount"]*5})
+            setThousandFingersCount({...thousandFingersCount,addition:thousandFingersCount["addition"]*5})
           }
           else if (item["index"]===5){
-            setThousandFingersCount({...thousandFingersCount,amount:thousandFingersCount["amount"]*10})
+            setThousandFingersCount({...thousandFingersCount,addition:thousandFingersCount["addition"]*10})
           }
           else{
-            setThousandFingersCount({...thousandFingersCount,amount:thousandFingersCount["amount"]*20})
+            setThousandFingersCount({...thousandFingersCount,addition:thousandFingersCount["addition"]*20})
           }
           setClicks(clicks-item["price"])
         }
@@ -1250,7 +1258,7 @@ upgrades.forEach((thing)=>{
       {"index":6,"item":1,"unlock":25,"price":50000,"wordPrice":"50 Thousand","name":"Caffeine Free! Sarah Can Drink At Night","description":"Diet Coke is twice as efficient","picture":dietCoke,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
       {"index":7,"item":2,"unlock":5,"price":55000,"wordPrice":"55 Thousand","name":"The She's The Man Soundtrack","description":"Pop Songs are twice as efficient","picture":musicNote,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
       {"index":8,"item":1,"unlock":1,"price":55000,"wordPrice":"55 Thousand","name":"Pusha T Album","description":"Diet Coke is twice as efficient. Pop Songs gain +1% sps per Diet Coke","picture":dietCoke,"visible":0,"secondItem":2,"unlockTwo":15,"addition":3,"multiply":1},
-      {"index":9,"item":0,"unlock":25,"price":100000,"wordPrice":"100 Thousand","name":"Thousand Fingers","description":"Mouse and Cursors gain +0.1 Smiles for each non-cursor object owned","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
+      {"index":9,"item":0,"unlock":25,"price":100000,"wordPrice":"100 Thousand","name":"Thousand boops","description":"Mouse and Cursors gain +0.1 Smiles for each non-cursor object owned","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
       {"index":10,"item":3,"unlock":1,"price":120000,"wordPrice":"120 Thousand","name":"Vegan Sausage For Breakfast","description":"Meat Subs are twice as efficient","picture":beyondMeat,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
       {"index":11,"item":2,"unlock":25,"price":550000,"wordPrice":"550 Thousand","name":"You Request Bottom's Up And They Play It","description":"Pop Songs are twice as efficient","picture":musicNote,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
       {"index":12,"item":3,"unlock":5,"price":600000,"wordPrice":"600 Thousand","name":"Impossible Whopper","description":"Meat Subs are twice as efficient","picture":beyondMeat,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
@@ -1260,24 +1268,24 @@ upgrades.forEach((thing)=>{
       {"index":16,"item":3,"unlock":25,"price":6000000,"wordPrice":"6 Million","name":"Salmon From Anixi","description":"Meat Subs are twice as efficient","picture":beyondMeat,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
       {"index":17,"item":4,"unlock":5,"price":6500000,"wordPrice":"6.5 Million","name":"The Black Dalia's Been Caught","description":"True Crime is twice as efficient","picture":trueCrime,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
       {"index":18,"item":1,"unlock":1,"price":6500000,"wordPrice":"6.5 Million","name":"Some Fava Beans And A Nice Chianti","description":"Diet Coke is twice as efficient. True Crime gains +1% sps per 3 Diet Cokes","picture":dietCoke,"visible":0,"secondItem":4,"unlockTwo":15,"addition":3,"multiply":0.333},
-      {"index":19,"item":0,"unlock":50,"price":10000000,"wordPrice":"10 Million","name":"Million Fingers","description":"Multiplies gain from thousand fingers by 5","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
+      {"index":19,"item":0,"unlock":50,"price":10000000,"wordPrice":"10 Million","name":"Million Boops","description":"Multiplies gain from thousand boops by 5","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
       {"index":20,"item":5,"unlock":1,"price":14000000,"wordPrice":"14 Million","name":"Matt Gets Into Johns Hopkins","description":"Family/Friends are twice as efficient","picture":family,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
       {"index":21,"item":2,"unlock":50,"price":55000000,"wordPrice":"55 Million","name":"Watermelon Sugar Low","description":"Pop Songs are twice as efficient","picture":musicNote,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
       {"index":22,"item":4,"unlock":25,"price":65000000,"wordPrice":"65 Million","name":"Double Murder","description":"True Crime is twice as efficient","picture":trueCrime,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
       {"index":23,"item":5,"unlock":5,"price":70000000,"wordPrice":"70 Million","name":"Rich Solves A Big Case","description":"Family/Friends are twice as efficient","picture":family,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
       {"index":24,"item":1,"unlock":1,"price":70000000,"wordPrice":"70 Million","name":"Paula Orders You A Diet Coke With Dinner","description":"Diet Coke is twice as efficient. Family/Friends gain +1% sps per 4 Diet Cokes","picture":dietCoke,"visible":0,"secondItem":5,"unlockTwo":15,"addition":3,"multiply":0.25},
-      {"index":25,"item":0,"unlock":100,"price":100000000,"wordPrice":"100 Million","name":"Billion Fingers","description":"Multiplies gain from thousand fingers by 10","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
+      {"index":25,"item":0,"unlock":100,"price":100000000,"wordPrice":"100 Million","name":"Billion Boops","description":"Multiplies gain from thousand boops by 10","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
       {"index":26,"item":6,"unlock":1,"price":200000000,"wordPrice":"200 Million","name":"A Fluffy Bear","description":"Nature is twice as efficient","picture":nature,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
       {"index":27,"item":1,"unlock":100,"price":500000000,"wordPrice":"500 Million","name":"World's Biggest Cup Of Diet Coke","description":"Diet Coke is twice as efficient","picture":dietCoke,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
       {"index":28,"item":3,"unlock":50,"price":600000000,"wordPrice":"600 Million","name":"We Find Out All Fish Are Ass Holes","description":"Meat Subs are twice as efficient","picture":beyondMeat,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
       {"index":29,"item":5,"unlock":25,"price":700000000,"wordPrice":"700 Million","name":"Christmas Time","description":"Family/Friends are twice as efficient","picture":family,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-      {"index":30,"item":0,"unlock":150,"price":1000000000,"wordPrice":"1 Billion","name":"Trillion Fingers","description":"Multiplies gain from thousand fingers by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
+      {"index":30,"item":0,"unlock":150,"price":1000000000,"wordPrice":"1 Billion","name":"Trillion Boops","description":"Multiplies gain from thousand boops by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
       {"index":31,"item":6,"unlock":5,"price":1000000000,"wordPrice":"1 Billion","name":"Swim Out To Rock Island","description":"Nature is twice as efficient","picture":nature,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
       {"index":32,"item":1,"unlock":1,"price":1000000000,"wordPrice":"1 Billion","name":"You Find The Fabled Sugar Free Cola Falls","description":"Diet Coke is twice as efficient. Nature gains +1% sps per 5 Diet Cokes","picture":dietCoke,"visible":0,"secondItem":6,"unlockTwo":15,"addition":3,"multiply":0.2},
       {"index":33,"item":7,"unlock":1,"price":3300000000,"wordPrice":"3.3 Billion","name":"Naruto Without The Filler","description":"Anime is twice as efficient","picture":anime,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
       {"index":34,"item":2,"unlock":100,"price":5500000000,"wordPrice":"5.5 Billion","name":"The DJ Plays Bottoms Up","description":"Pop Songs are twice as efficient","picture":musicNote,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
       {"index":35,"item":4,"unlock":50,"price":6500000000,"wordPrice":"6.5 Billion","name":"Who Dunnit?","description":"True Crime is twice as efficient","picture":trueCrime,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-      {"index":36,"item":0,"unlock":200,"price":10000000000,"wordPrice":"10 Billion","name":"Quadrillion Fingers","description":"Multiplies gain from thousand fingers by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
+      {"index":36,"item":0,"unlock":200,"price":10000000000,"wordPrice":"10 Billion","name":"Quadrillion Boops","description":"Multiplies gain from thousand boops by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
       {"index":37,"item":6,"unlock":25,"price":10000000000,"wordPrice":"10 Billion","name":"Breakneck Ridge","description":"Nature is twice as efficient","picture":nature,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
       {"index":38,"item":7,"unlock":5,"price":16500000000,"wordPrice":"16.5 Billion","name":"You Find A Death Note. Wuh-oh","description":"Anime is twice as efficient","picture":anime,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
       {"index":39,"item":1,"unlock":1,"price":16500000000,"wordPrice":"16.5 Billion","name":"ILL TAKE A CHIP AND EAT IT (With Some Diet Coke)","description":"Diet Coke is twice as efficient. Anime gains +1% sps per 6 Diet Cokes","picture":dietCoke,"visible":0,"secondItem":7,"unlockTwo":15,"addition":3,"multiply":0.1666667},
@@ -1298,7 +1306,7 @@ upgrades.forEach((thing)=>{
       {"index":54,"item":3,"unlock":150,"price":6000000000000,"wordPrice":"6 Trillion","name":"You Convert A Meat Eater","description":"Meat Subs are twice as efficient","picture":beyondMeat,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
       {"index":55,"item":5,"unlock":100,"price":7000000000000,"wordPrice":"7 Trillion","name":"Visit From Jules","description":"Family/Friends are twice as efficient","picture":family,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
       {"index":56,"item":10,"unlock":1,"price":10000000000000,"wordPrice":"10 Trillion","name":"Riverside Park","description":"Special Places are twice as efficient","picture":house,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-      {"index":57,"item":0,"unlock":250,"price":10000000000000,"wordPrice":"10 Trillion","name":"Quintllion Fingers","description":"Multiplies gain from thousand fingers by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
+      {"index":57,"item":0,"unlock":250,"price":10000000000000,"wordPrice":"10 Trillion","name":"Quintillion Boops","description":"Multiplies gain from thousand boops by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
       {"index":58,"item":7,"unlock":50,"price":16500000000000,"wordPrice":"16.5 Trillion","name":"You Get A New Quirk","description":"Anime is twice as efficient","picture":anime,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
       {"index":59,"item":9,"unlock":25,"price":37500000000000,"wordPrice":"37.5 Trillion","name":"Away From The Things Of Man","description":"Movies are twice as efficient","picture":movie,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
       {"index":60,"item":10,"unlock":5,"price":50000000000000,"wordPrice":"50 Trillion","name":"Blue Mountain Lake","description":"Special Places are twice as efficient","picture":house,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
@@ -1322,7 +1330,7 @@ upgrades.forEach((thing)=>{
       {"index":78,"item":11,"unlock":25,"price":7000000000000000,"wordPrice":"7 Quadrillion","name":"A Lesser Version Of This Game Involving Cookies","description":"Video Games are twice as efficient","picture":videoGame,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
       {"index":79,"item":12,"unlock":5,"price":8500000000000000,"wordPrice":"8.5 Quadrillion","name":"The Perfect Thrift Find","description":"Boutiques are twice as efficient","picture":boutique,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
       {"index":80,"item":1,"unlock":1,"price":8500000000000000,"wordPrice":"8.5 Quadrillion","name":"Sarah Gets Caffeinated And Shops For 3 Hours","description":"Diet Coke is twice as efficient. Boutiques gain +1% sps per 11 Diet Cokes","picture":dietCoke,"visible":0,"secondItem":12,"unlockTwo":15,"addition":3,"multiply":0.090909},
-      {"index":81,"item":0,"unlock":300,"price":10000000000000000,"wordPrice":"10 Quadrillion","name":"Sextillion Fingers","description":"Multiplies gain from thousand fingers by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
+      {"index":81,"item":0,"unlock":300,"price":10000000000000000,"wordPrice":"10 Quadrillion","name":"Sextillion Boops","description":"Multiplies gain from thousand boops by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
       {"index":82,"item":6,"unlock":150,"price":10000000000000000,"wordPrice":"10 Quadrillion","name":"Floating Donut In The River","description":"Nature is twice as efficient","picture":nature,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
       {"index":83,"item":3,"unlock":15,"price":15000000000000000,"wordPrice":"15 Quadrillion","name":"Fish Are Friends, Not Food","description":"Meat Subs gain +5% sps per Movie. Movies gain +0.1% sps per Meat Sub","picture":beyondMeat,"visible":0,"secondItem":9,"unlockTwo":15,"addition":4},
       {"index":84,"item":7,"unlock":15,"price":15660000000000000,"wordPrice":"15.66 Quadrillion","name":"Miyazaki Marathon","description":"Anime gains +5% sps per Movie. Movies gain +0.1% sps per Anime","picture":movie,"visible":0,"secondItem":9,"unlockTwo":15,"addition":4},
@@ -1361,7 +1369,7 @@ upgrades.forEach((thing)=>{
   
       {"index":109,"item":12,"unlock":50,"price":8500000000000000000,"wordPrice":"8.5 Quintillion","name":"Sarah Buys 8 More Pairs Of Sunglasses","description":"Boutiques are twice as efficient","picture":boutique,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
   
-      {"index":110,"item":0,"unlock":350,"price":10000000000000000000,"wordPrice":"10 Quintillion","name":"Septillion Fingers","description":"Multiplies gain from thousand fingers by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
+      {"index":110,"item":0,"unlock":350,"price":10000000000000000000,"wordPrice":"10 Quintillion","name":"Septillion Boops","description":"Multiplies gain from thousand boops by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
       {"index":111,"item":6,"unlock":200,"price":10000000000000000000,"wordPrice":"10 Quintillion","name":"Buttermilk Falls (Either One)","description":"Nature is twice as efficient","picture":nature,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
       
       {"index":112,"item":4,"unlock":15,"price":34000000000000000000,"wordPrice":"34 Quintillion","name":"Murder At Claires","description":"True Crime gains +5% sps per Boutique. Boutiques gain +0.1% sps per True Crime","picture":trueCrime,"visible":0,"secondItem":12,"unlockTwo":15,"addition":4},
@@ -1392,7 +1400,7 @@ upgrades.forEach((thing)=>{
   
       {"index":129,"item":11,"unlock":150,"price":7000000000000000000000,"wordPrice":"7 Sextillion","name":"Abandoney's Second Birthday","description":"Video Games are twice as efficient","picture":videoGame,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
   
-      {"index":130,"item":0,"unlock":350,"price":10000000000000000000000,"wordPrice":"10 Sextillion","name":"Octillion Fingers","description":"Multiplies gain from thousand fingers by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
+      {"index":130,"item":0,"unlock":350,"price":10000000000000000000000,"wordPrice":"10 Sextillion","name":"Octillion Boops","description":"Multiplies gain from thousand boops by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
       {"index":131,"item":6,"unlock":250,"price":10000000000000000000000,"wordPrice":"10 Sextillion","name":"Camping Weekend","description":"Nature is twice as efficient","picture":nature,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
       {"index":132,"item":13,"unlock":100,"price":10500000000000000000000,"wordPrice":"10.5 Sextillion","name":"A New Watch And A Linen Shirt","description":"Brians are twice as efficient","picture":brian,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
       {"index":133,"item":5,"unlock":75,"price":15003000000000000000000,"wordPrice":"15.003 Sextillion","name":"Vans Famous Part In Ozark","description":"Family/Friends gain +5% sps per Movie. Movies gain +0.1% sps per Family/Friend","picture":family,"visible":0,"secondItem":9,"unlockTwo":75,"addition":4},
@@ -1418,7 +1426,7 @@ upgrades.forEach((thing)=>{
   
       {"index":146,"item":11,"unlock":200,"price":7000000000000000000000000,"wordPrice":"7 Septillion","name":"You Save Baldur's Gate With Brainy","description":"Video Games are twice as efficient","picture":videoGame,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
       {"index":147,"item":6,"unlock":300,"price":10000000000000000000000000,"wordPrice":"10 Septillion","name":"Summit Mt Marcy","description":"Nature is twice as efficient","picture":nature,"visible":0,"secondItem":14,"unlockTwo":0,"addition":1},
-      {"index":148,"item":0,"unlock":450,"price":10000000000000000000000000,"wordPrice":"10 Septillion","name":"Nonillion Fingers","description":"Multiplies gain from thousand fingers by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
+      {"index":148,"item":0,"unlock":450,"price":10000000000000000000000000,"wordPrice":"10 Septillion","name":"Nonillion Boops","description":"Multiplies gain from thousand boops by 20","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":2},
   
       {"index":149,"item":6,"unlock":75,"price":34000000000000000000000000,"wordPrice":"34 Septillion","name":"They Convert The Clayton H&R Block To A Boutique","description":"Nature gains +5% sps per Boutique. Boutiques gain +0.1% sps per Nature","picture":nature,"visible":0,"secondItem":12,"unlockTwo":75,"addition":4},
       {"index":150,"item":9,"unlock":75,"price":34150000000000000000000000,"wordPrice":"34.15 Septillion","name":"27 Dresses","description":"Movies gain +5% sps per Boutique. Boutiques gain +0.1% sps per Movie","picture":movie,"visible":0,"secondItem":12,"unlockTwo":75,"addition":4},
@@ -1517,19 +1525,19 @@ upgrades.forEach((thing)=>{
       {"index":205,"item":14,"unlock":7,"price":777778000,"wordPrice":"777.778 Million","name":"Hotel Has A Jacuzzi","description":"Power Ups appear twice as often and last twice as long on screen","picture":smileyFace,"visible":0,"secondItem":14,"unlockTwo":0,"addition":5},
       {"index":206,"item":14,"unlock":27,"price":77777800000,"wordPrice":"77.778 Billion","name":"The Jets Win The SuperBowl!","description":"Power Ups appear twice as often and last twice as long on screen","picture":smileyFace,"visible":0,"secondItem":14,"unlockTwo":0,"addition":5},
       {"index":207,"item":14,"unlock":77,"price":77777800000000,"wordPrice":"77.778 Trllion","name":"Wake Up To A Dunkin Cappuccino","description":"Power Up effects last twice as long","picture":smileyFace,"visible":0,"secondItem":14,"unlockTwo":0,"addition":5},
-      {"index":208,"item":15,"unlock":1000,"price":50000,"wordPrice":"50 Thousand","name":"Cheez It The Mouse","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
-      {"index":209,"item":15,"unlock":100000,"price":5000000,"wordPrice":"5 Million","name":"Dinner At Honey Well","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
-      {"index":210,"item":15,"unlock":10000000,"price":500000000,"wordPrice":"500 Million","name":"We Get Into The Pink Pony Club","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
-      {"index":211,"item":15,"unlock":1000000000,"price":50000000000,"wordPrice":"50 Billion","name":"The Perfect Campfire","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
-      {"index":212,"item":15,"unlock":100000000000,"price":5000000000000,"wordPrice":"5 Trillion","name":"Dim Lighting With A Candle Burning","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
-      {"index":213,"item":15,"unlock":10000000000000,"price":500000000000000,"wordPrice":"500 Trillion","name":"Laughing So Hard The Asthma Comes Back","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
-      {"index":214,"item":15,"unlock":1000000000000000,"price":50000000000000000,"wordPrice":"50 Quadrillion","name":"Somehow Playing 103% of Skyrim","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
-      {"index":215,"item":15,"unlock":100000000000000000,"price":5000000000000000000,"wordPrice":"5 Quintillion","name":"The World's Best Brussels","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
-      {"index":215,"item":15,"unlock":10000000000000000000,"price":500000000000000000000,"wordPrice":"500 Quintillion","name":"Master Artist Sarah","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
-      {"index":216,"item":15,"unlock":1000000000000000000000,"price":50000000000000000000000,"wordPrice":"50 Sextillion","name":"Veggie Power Bowl","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
-      {"index":217,"item":15,"unlock":100000000000000000000000,"price":5000000000000000000000000,"wordPrice":"5 Septillion","name":"100 Squats","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
-      {"index":218,"item":15,"unlock":10000000000000000000000000,"price":500000000000000000000000000,"wordPrice":"500 Septillion","name":"Lovely","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
-      {"index":219,"item":15,"unlock":1000000000000000000000000000,"price":50000000000000000000000000000,"wordPrice":"5 Octillion","name":"Cornhole Pro Sarah","description":"Clicking gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+      {"index":208,"item":15,"unlock":1000,"price":50000,"wordPrice":"50 Thousand","name":"Cheez It The Mouse","description":"Booping gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+      {"index":209,"item":15,"unlock":100000,"price":5000000,"wordPrice":"5 Million","name":"Dinner At Honey Well","description":"Booping gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+      {"index":210,"item":15,"unlock":10000000,"price":500000000,"wordPrice":"500 Million","name":"We Get Into The Pink Pony Club","description":"Booping gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+      {"index":211,"item":15,"unlock":1000000000,"price":50000000000,"wordPrice":"50 Billion","name":"The Perfect Campfire","description":"Booping gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+      {"index":212,"item":15,"unlock":100000000000,"price":5000000000000,"wordPrice":"5 Trillion","name":"Dim Lighting With A Candle Burning","description":"Booping gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+      {"index":213,"item":15,"unlock":10000000000000,"price":500000000000000,"wordPrice":"500 Trillion","name":"Laughing So Hard The Asthma Comes Back","description":"Booping gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+      {"index":214,"item":15,"unlock":1000000000000000,"price":50000000000000000,"wordPrice":"50 Quadrillion","name":"Somehow Playing 103% of Skyrim","description":"Booping gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+      {"index":215,"item":15,"unlock":100000000000000000,"price":5000000000000000000,"wordPrice":"5 Quintillion","name":"The World's Best Brussels","description":"Booping gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+      {"index":216,"item":15,"unlock":10000000000000000000,"price":500000000000000000000,"wordPrice":"500 Quintillion","name":"Master Artist Sarah","description":"Booping gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+      {"index":217,"item":15,"unlock":1000000000000000000000,"price":50000000000000000000000,"wordPrice":"50 Sextillion","name":"Veggie Power Bowl","description":"Booping gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+      {"index":218,"item":15,"unlock":100000000000000000000000,"price":5000000000000000000000000,"wordPrice":"5 Septillion","name":"100 Squats","description":"Booping gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+      {"index":219,"item":15,"unlock":10000000000000000000000000,"price":500000000000000000000000000,"wordPrice":"500 Septillion","name":"Lovely","description":"Booping gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
+      {"index":220,"item":15,"unlock":1000000000000000000000000000,"price":50000000000000000000000000000,"wordPrice":"5 Octillion","name":"Cornhole Pro Sarah","description":"Booping gains +1% of your sps","picture":cursor,"visible":0,"secondItem":14,"unlockTwo":0,"addition":6},
     ])
     
     setYouSure(false)
@@ -1597,7 +1605,7 @@ upgrades.forEach((thing)=>{
             <div className="sarahCounter">
               <h1 className="smilesCounter">{clicksString} Smiles</h1>
               <h3 className="perSecond">Per Second: {perSecondString}</h3>
-              <h3 className="perSecond">Clicks Gain {mouseString} Smiles</h3>
+              <h3 className="perSecond">Boops Gain {mouseString} Smiles</h3>
             </div>
               <SarahFace clickOnFace={clickOnFace} goldenSmile={goldenSmile}/>
             </div>

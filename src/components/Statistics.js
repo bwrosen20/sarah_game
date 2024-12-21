@@ -1,6 +1,6 @@
 import UpgradeItem from './UpgradeItem'
 import numberify from '../numberify.js'
-import {useContext} from 'react'
+import {useContext, useState} from 'react'
 import {StoreItemsContext} from '../App'
 
 function Statistics({upgrades,clicksSoFar,soFar,clicks}){
@@ -8,6 +8,7 @@ function Statistics({upgrades,clicksSoFar,soFar,clicks}){
     upgrades.sort((a,b)=>a["price"]>b["price"] ? 1 : b["price"]>a["price"] ? -1 : 0)
 
     const mainStoreItems = useContext(StoreItemsContext)
+    const [spoilerMode,setSpoilerMode]=useState(false)
 
     let amount = 0
     let smileMakers = 0
@@ -43,8 +44,10 @@ function Statistics({upgrades,clicksSoFar,soFar,clicks}){
         <h3 className="bigWords">Upgrades: <span className="parenth">(scroll down)</span></h3>
         <h6 className="littleWords">Upgrades unlocked: {amount}/{upgrades.length}</h6>
         <div className="upgradeGrid">
-            {upgrades.map((grade)=>(<UpgradeItem grade={grade}/>))}
+            {upgrades.map((grade)=>(<UpgradeItem spoilerMode={spoilerMode} grade={grade}/>))}
+            
         </div>
+        <button onClick={()=>{setSpoilerMode(!spoilerMode)}}className="spoilerMode">Spoiler Mode</button>
     </div>
 }
 

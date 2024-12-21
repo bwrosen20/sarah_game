@@ -120,9 +120,198 @@ else if (1000000000000000000000n <= soFar && soFar <1000000000000000000000000n){
     }
     
 }
+
+else if (1000000000000000000000000n <= soFar && soFar <1000000000000000000000000000n){
+    let firstPart = soFarString.slice(-27,-24)
+    let secondPart = soFarString.slice(-24,-21)
+    for (let i=0; i<secondPart.length+2; i++){
+        if (secondPart.slice(-1)[0]==='0'){
+            secondPart = secondPart.slice(0,-1)
+        }
+    }
+    if (secondPart.length>0){
+        soFarString = `${firstPart}.${secondPart} Septillion`
+    }
+    else{
+        soFarString = `${firstPart} Septillion`
+    }
+    
+}
+
+else if (1000000000000000000000000000n <= soFar && soFar <1000000000000000000000000000000n){
+    let firstPart = soFarString.slice(-30,-27)
+    let secondPart = soFarString.slice(-27,-24)
+    for (let i=0; i<secondPart.length+2; i++){
+        if (secondPart.slice(-1)[0]==='0'){
+            secondPart = secondPart.slice(0,-1)
+        }
+    }
+    if (secondPart.length>0){
+        soFarString = `${firstPart}.${secondPart} Octillion`
+    }
+    else{
+        soFarString = `${firstPart} Octillion`
+    }
+    
+}
+
+else if (1000000000000000000000000000000n <= soFar && soFar <1000000000000000000000000000000000n){
+    let firstPart = soFarString.slice(-33,-30)
+    let secondPart = soFarString.slice(-30,-27)
+    for (let i=0; i<secondPart.length+2; i++){
+        if (secondPart.slice(-1)[0]==='0'){
+            secondPart = secondPart.slice(0,-1)
+        }
+    }
+    if (secondPart.length>0){
+        soFarString = `${firstPart}.${secondPart} Nonllion`
+    }
+    else{
+        soFarString = `${firstPart} Nonillion`
+    }
+    
+}
+
+else if (1000000000000000000000000000000000n <= soFar && soFar <1000000000000000000000000000000000000n){
+    let firstPart = soFarString.slice(-36,-33)
+    let secondPart = soFarString.slice(-33,-30)
+    for (let i=0; i<secondPart.length+2; i++){
+        if (secondPart.slice(-1)[0]==='0'){
+            secondPart = secondPart.slice(0,-1)
+        }
+    }
+    if (secondPart.length>0){
+        soFarString = `${firstPart}.${secondPart} Decllion`
+    }
+    else{
+        soFarString = `${firstPart} Decillion`
+    }
+    
+}
+
+else if (1000000000000000000000000000000000000n <= soFar && soFar <1000000000000000000000000000000000000000n){
+    let firstPart = soFarString.slice(-39,-36)
+    let secondPart = soFarString.slice(-36,-33)
+    for (let i=0; i<secondPart.length+2; i++){
+        if (secondPart.slice(-1)[0]==='0'){
+            secondPart = secondPart.slice(0,-1)
+        }
+    }
+    if (secondPart.length>0){
+        soFarString = `${firstPart}.${secondPart} Undecillion`
+    }
+    else{
+        soFarString = `${firstPart} Undecillion`
+    }
+    
+}
+
+else if (1000000000000000000000000000000000000000n <= soFar && soFar <1000000000000000000000000000000000000000000n){
+    let firstPart = soFarString.slice(-42,-39)
+    let secondPart = soFarString.slice(-39,-36)
+    for (let i=0; i<secondPart.length+2; i++){
+        if (secondPart.slice(-1)[0]==='0'){
+            secondPart = secondPart.slice(0,-1)
+        }
+    }
+    if (secondPart.length>0){
+        soFarString = `${firstPart}.${secondPart} Duodecillion`
+    }
+    else{
+        soFarString = `${firstPart} Duodecillion`
+    }
+    
+}
+
+else if (1000000000000000000000000000000000000000000n <= soFar && soFar <1000000000000000000000000000000000000000000000n){
+    let firstPart = soFarString.slice(-45,-42)
+    let secondPart = soFarString.slice(-42,-39)
+    for (let i=0; i<secondPart.length+2; i++){
+        if (secondPart.slice(-1)[0]==='0'){
+            secondPart = secondPart.slice(0,-1)
+        }
+    }
+    if (secondPart.length>0){
+        soFarString = `${firstPart}.${secondPart} Tredecillion`
+    }
+    else{
+        soFarString = `${firstPart} Tredecillion`
+    }
+    
+}
+
+else if (1000000000000000000000000000000000000000000000n <= soFar && soFar <1000000000000000000000000000000000000000000000000n){
+    let firstPart = soFarString.slice(-48,-45)
+    let secondPart = soFarString.slice(-45,-42)
+    for (let i=0; i<secondPart.length+2; i++){
+        if (secondPart.slice(-1)[0]==='0'){
+            secondPart = secondPart.slice(0,-1)
+        }
+    }
+    if (secondPart.length>0){
+        soFarString = `${firstPart}.${secondPart} Quattuordecillion`
+    }
+    else{
+        soFarString = `${firstPart} Quattuordecillion`
+    }
+    
+}
+
+else if (1000000000000000000000000000000000000000000000000n <= soFar && soFar <1000000000000000000000000000000000000000000000000000n){
+    let firstPart = soFarString.slice(-51,-48)
+    let secondPart = soFarString.slice(-48,-45)
+    for (let i=0; i<secondPart.length+2; i++){
+        if (secondPart.slice(-1)[0]==='0'){
+            secondPart = secondPart.slice(0,-1)
+        }
+    }
+    if (secondPart.length>0){
+        soFarString = `${firstPart}.${secondPart} Quindecillion`
+    }
+    else{
+        soFarString = `${firstPart} Quindecillion`
+    }
+    
+}
+
+else if (1000000000000000000000000000000000000000000000000000n <= soFar && soFar <1000000000000000000000000000000000000000000000000000000n){
+    let firstPart = soFarString.slice(-54,-51)
+    let secondPart = soFarString.slice(-51,-48)
+    for (let i=0; i<secondPart.length+2; i++){
+        if (secondPart.slice(-1)[0]==='0'){
+            secondPart = secondPart.slice(0,-1)
+        }
+    }
+    if (secondPart.length>0){
+        soFarString = `${firstPart}.${secondPart} Sexdecillion`
+    }
+    else{
+        soFarString = `${firstPart} Sexdecillion`
+    }
+    
+}
+
+
 else if (soFar > 1000){
     soFarString = "Too Many"
 }
+
+const firstBunch = soFarString.split('.')[0]
+
+if (soFarString.split('.').length>1){
+    const secondBunch = soFarString.split('.')[1]
+
+    if (secondBunch.split(' ').length>1){
+        let numby = secondBunch.split(' ')[0]
+        const final = secondBunch.split(' ')[1]
+        if (numby.length===2){
+            soFarString = `${firstBunch}.${numby}0 ${final}`
+        }
+    }   
+
+
+}
+
 
 return soFarString
 }

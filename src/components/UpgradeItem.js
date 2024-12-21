@@ -1,17 +1,16 @@
 import question from '../question.png'
 import {useState} from 'react'
 
-function UpgradeItem({grade}){
+function UpgradeItem({grade,spoilerMode}){
 
     const hidden = grade["visible"]
-    const picture = hidden>0 ? grade["picture"]:question
+    const picture = hidden>0 || spoilerMode ? grade["picture"]:question
     const [blurb,setBlurb]=useState(false)
 
 
     function handleMouseMove(e){
             let blurbScreen = document.getElementsByName(`noBlurb_${grade["index"]}`)[0]
-            console.log(blurbScreen)
-            console.log(grade["index"])
+           
             
             let y = e.clientY;
             let x = e.clientX;
@@ -20,10 +19,10 @@ function UpgradeItem({grade}){
     }
 
     return<div>
-        <div onMouseMove={handleMouseMove} onMouseEnter={(()=>{setBlurb(hidden>0?true:false)})} onMouseLeave={(()=>{setBlurb(false)})}>
+        <div onMouseMove={handleMouseMove} onMouseEnter={(()=>{setBlurb(hidden>0 || spoilerMode?true:false)})} onMouseLeave={(()=>{setBlurb(false)})}>
             <img className={hidden<3?"preGridImage":"gridImage"} name="gridImage" src={picture} onClick={()=>(console.log(grade["index"]))}/>
         </div>
-        <div id = {"blurbScreen"} name={`noBlurb_${grade["index"]}`}  className={blurb ? (hidden<3? "preBlurb":"blurb") : "noBlurb"}>
+        <div id = {"blurbScreen"} name={`noBlurb_${grade["index"]}`}  className={blurb ? (hidden<3 ? "preBlurb":"blurb") : "noBlurb"}>
  
             <h5 className="lilBlurbTitle">{grade["name"]}</h5>
             <h6 className="lilBlurbDescribe">{grade["description"]}</h6>
