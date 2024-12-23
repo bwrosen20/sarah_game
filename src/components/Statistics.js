@@ -47,7 +47,7 @@ function Statistics({upgrades,clicksSoFar,soFar,clicks}){
             {upgrades.map((grade)=>(<UpgradeItem spoilerMode={spoilerMode} grade={grade}/>))}
             
         </div>
-        <button onClick={()=>{setSpoilerMode(!spoilerMode)}}className="spoilerMode">Spoiler Mode</button>
+        {/* <button onClick={()=>{setSpoilerMode(!spoilerMode)}}className="spoilerMode">Spoiler Mode</button> */}
     </div>
 }
 

@@ -248,6 +248,7 @@ marquee{
   cursor:pointer;
 }
 
+
   .gridImage:hover{
     background-color:rgb(136, 200, 138);
   }
@@ -783,8 +784,6 @@ marquee{
     display:none
   }
 
-
-  upgradesList
 
   .instructionsScreen{
     padding:2vw;
