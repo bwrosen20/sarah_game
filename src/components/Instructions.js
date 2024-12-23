@@ -18,8 +18,8 @@ function Instructions(){
         <h4>Smile Makers</h4>
         <p>The smile makers unlock as your smile total grows.
             Since Sarah loves them all so much, they will make
-            Sarah smile for you, without the need to click
-            on her face.
+            Sarah smile for you, without the need to boop
+            her.
         </p>
         <h4>Upgrades</h4>
         <p>You can upgrade the smile makers to collect more
